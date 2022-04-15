@@ -72,6 +72,7 @@ public class CadastroProfessor extends javax.swing.JFrame {
         jLabel10.setText("Coordenadoria");
         jPanel8.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 20));
 
+        coordenadoriaSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administração", "Arquitetura e Urbanismo", "Sistemas de Informação" }));
         jPanel8.add(coordenadoriaSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 230, 30));
 
         jPanel6.add(jPanel8);
@@ -177,7 +178,7 @@ public class CadastroProfessor extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Widows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
