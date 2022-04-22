@@ -94,7 +94,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <Component id="jButton3" min="-2" pref="169" max="-2" attributes="0"/>
                           <EmptySpace pref="299" max="32767" attributes="0"/>
-                          <Component id="jButton2" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="btnEditarProjeto" min="-2" pref="152" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButton1" min="-2" pref="152" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -107,7 +107,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Component id="jButton3" pref="38" max="32767" attributes="0"/>
-                              <Component id="jButton2" alignment="1" max="32767" attributes="0"/>
+                              <Component id="btnEditarProjeto" alignment="1" max="32767" attributes="0"/>
                               <Component id="jButton1" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -121,10 +121,13 @@
                     <Property name="text" type="java.lang.String" value="Excluir"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton2">
+                <Component class="javax.swing.JButton" name="btnEditarProjeto">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Editar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarProjetoActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton3">
                   <Properties>
@@ -133,10 +136,13 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton12">
+            <Component class="javax.swing.JButton" name="btnFiltrarProjetos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Filtrar resultados"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFiltrarProjetosActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="160" y="10" width="-1" height="40"/>
@@ -164,7 +170,7 @@
                           <Group type="102" attributes="0">
                               <Component id="btnNovoAluno" min="-2" pref="130" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                              <Component id="jButton11" min="-2" pref="127" max="-2" attributes="0"/>
+                              <Component id="btnFiltrarAlunos" min="-2" pref="127" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -181,7 +187,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton11" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnFiltrarAlunos" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                           <Component id="btnNovoAluno" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -227,7 +233,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="468" max="32767" attributes="0"/>
-                          <Component id="jButton5" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="btnEditarAluno" min="-2" pref="152" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButton4" min="-2" pref="152" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -239,7 +245,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jButton5" alignment="1" pref="36" max="32767" attributes="0"/>
+                              <Component id="btnEditarAluno" alignment="1" pref="36" max="32767" attributes="0"/>
                               <Component id="jButton4" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -253,17 +259,23 @@
                     <Property name="text" type="java.lang.String" value="Excluir"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton5">
+                <Component class="javax.swing.JButton" name="btnEditarAluno">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Editar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarAlunoActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton11">
+            <Component class="javax.swing.JButton" name="btnFiltrarAlunos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Filtrar resultados"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFiltrarAlunosActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -285,7 +297,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="btnNovoProfessor" min="-2" pref="130" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="jButton14" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnFiltrarProfessores" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <Component id="containerprofessores" alignment="0" max="32767" attributes="0"/>
@@ -304,7 +316,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnNovoProfessor" pref="40" max="32767" attributes="0"/>
-                          <Component id="jButton14" max="32767" attributes="0"/>
+                          <Component id="btnFiltrarProfessores" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="containerprofessores" min="-2" pref="279" max="-2" attributes="0"/>
@@ -349,7 +361,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="468" max="32767" attributes="0"/>
-                          <Component id="jButton8" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="btnEditarProfessor" min="-2" pref="152" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButton7" min="-2" pref="152" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -361,7 +373,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jButton8" alignment="1" pref="38" max="32767" attributes="0"/>
+                              <Component id="btnEditarProfessor" alignment="1" pref="38" max="32767" attributes="0"/>
                               <Component id="jButton7" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -375,17 +387,23 @@
                     <Property name="text" type="java.lang.String" value="Excluir"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton8">
+                <Component class="javax.swing.JButton" name="btnEditarProfessor">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Editar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarProfessorActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton14">
+            <Component class="javax.swing.JButton" name="btnFiltrarProfessores">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Filtrar resultados"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFiltrarProfessoresActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -410,7 +428,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="btnNovaEmpresa" min="-2" pref="130" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jButton13" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnFiltrarEmpresas" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jPanel8" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -427,7 +445,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="btnNovaEmpresa" pref="40" max="32767" attributes="0"/>
-                          <Component id="jButton13" max="32767" attributes="0"/>
+                          <Component id="btnFiltrarEmpresas" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="containerempresas" min="-2" pref="279" max="-2" attributes="0"/>
@@ -472,7 +490,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace pref="468" max="32767" attributes="0"/>
-                          <Component id="jButton10" min="-2" pref="152" max="-2" attributes="0"/>
+                          <Component id="btnEditarEmpresa" min="-2" pref="152" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jButton9" min="-2" pref="152" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
@@ -484,7 +502,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
-                              <Component id="jButton10" alignment="1" pref="38" max="32767" attributes="0"/>
+                              <Component id="btnEditarEmpresa" alignment="1" pref="38" max="32767" attributes="0"/>
                               <Component id="jButton9" alignment="1" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -498,17 +516,23 @@
                     <Property name="text" type="java.lang.String" value="Excluir"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="jButton10">
+                <Component class="javax.swing.JButton" name="btnEditarEmpresa">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Editar"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarEmpresaActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="jButton13">
+            <Component class="javax.swing.JButton" name="btnFiltrarEmpresas">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Filtrar resultados"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFiltrarEmpresasActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

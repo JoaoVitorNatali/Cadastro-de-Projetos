@@ -1,5 +1,11 @@
 package Professores;
 
+import Constantes.TipoFormulario;
+import static Constantes.TipoFormulario.EDITAR;
+import static Constantes.TipoFormulario.FILTRAR;
+import static Constantes.TipoFormulario.INSERIR;
+import custom.CustomFormularioInterface;
+
 
 
 /*
@@ -11,14 +17,17 @@ package Professores;
  *
  * @author João Vitor
  */
-public class CadastroProfessor extends javax.swing.JDialog {
+public class FormularioProfessor extends javax.swing.JDialog implements CustomFormularioInterface{
 
+    private TipoFormulario tipo;
+    
     /**
      * Creates new form CadastroProfessor
      */
-    public CadastroProfessor(java.awt.Frame parent, boolean modal) {
+    public FormularioProfessor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.tipo = INSERIR;
     }
 
     /**
@@ -30,7 +39,7 @@ public class CadastroProfessor extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel7 = new javax.swing.JLabel();
+        tituloModal = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         nomeProfessor = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
@@ -48,10 +57,10 @@ public class CadastroProfessor extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Novo Professor");
-        jLabel7.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        tituloModal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tituloModal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloModal.setText("Novo Professor");
+        tituloModal.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jLabel8.setText("Nome do professor:");
 
@@ -88,7 +97,7 @@ public class CadastroProfessor extends javax.swing.JDialog {
             }
         });
 
-        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setText("Concluir");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
@@ -147,14 +156,14 @@ public class CadastroProfessor extends javax.swing.JDialog {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(217, 217, 217)
-                .addComponent(jLabel7)
+                .addComponent(tituloModal)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7)
+                .addComponent(tituloModal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -188,20 +197,21 @@ public class CadastroProfessor extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CadastroProfessor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioProfessor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CadastroProfessor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioProfessor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CadastroProfessor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioProfessor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CadastroProfessor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioProfessor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                CadastroProfessor dialog = new CadastroProfessor(new javax.swing.JFrame(), true);
+                FormularioProfessor dialog = new FormularioProfessor(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -220,7 +230,6 @@ public class CadastroProfessor extends javax.swing.JDialog {
     private javax.swing.JTextField emailProfessor;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel5;
@@ -229,5 +238,47 @@ public class CadastroProfessor extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JTextField nomeProfessor;
     private javax.swing.JFormattedTextField siapeProfessor;
+    private javax.swing.JLabel tituloModal;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void abrirModalEdicao(int codigo) {
+        this.tipo = EDITAR;
+        alterarTituloModal();
+        this.setVisible(true);
+    }
+
+    @Override
+    public void abrirModalCriacao() {
+        this.tipo = INSERIR;
+        alterarTituloModal();
+        this.setVisible(true);
+    }
+    
+    @Override
+    public void abrirModalFiltragem() {
+        this.tipo = FILTRAR;
+        alterarTituloModal();
+        this.setVisible(true);
+    }
+
+    @Override
+    public void alterarTituloModal() {
+        String titulo = "";
+        if(null != this.tipo) switch (this.tipo) {
+            case INSERIR:
+                titulo = "Novo Professor";
+                break;
+            case EDITAR:
+                titulo = "Editar Professor";
+                break;
+            case FILTRAR:
+                titulo = "Filtrar Professor";
+                break;
+            default:
+                break;
+        }
+        
+        tituloModal.setText(titulo);
+    }
 }

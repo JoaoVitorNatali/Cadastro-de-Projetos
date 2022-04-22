@@ -1,9 +1,11 @@
 
 import Empresas.FormularioEmpresa;
-import Professores.CadastroProfessor;
+import Professores.FormularioProfessor;
 import Projetos.FormularioProjeto;
 import Alunos.FormularioAluno;
 import Alunos.TableModelAluno;
+import static Constantes.TipoFormulario.EDITAR;
+import static Constantes.TipoFormulario.INSERIR;
 import Empresas.TableModelEmpresa;
 import Professores.TableModelProfessor;
 import Projetos.TableModelProjeto;
@@ -19,10 +21,12 @@ import Projetos.TableModelProjeto;
  */
 public class MainWindow extends javax.swing.JFrame {
     
-    private FormularioAluno janelaNovoAluno;
-    private FormularioEmpresa janelaNovaEmpresa;
-    private CadastroProfessor janelaNovoProfessor;
-    private FormularioProjeto janelaNovoProjeto;
+//    Componentes de formulario para criar
+    private FormularioAluno formularioAluno;
+    private FormularioEmpresa formularioEmpresa;
+    private FormularioProfessor formularioProfessor;
+    private FormularioProjeto formularioProjeto;
+    
     
     private TableModelAluno tabelaAlunos;
     private TableModelProjeto tabelaProjetos;
@@ -33,10 +37,10 @@ public class MainWindow extends javax.swing.JFrame {
      * Creates new form MainWindow
      */
     public MainWindow() {
-        janelaNovoAluno = new FormularioAluno(this, true);
-        janelaNovaEmpresa = new FormularioEmpresa(this, true);
-        janelaNovoProfessor = new CadastroProfessor(this, true);
-        janelaNovoProjeto = new FormularioProjeto(this, true);
+        formularioAluno = new FormularioAluno(this, true);
+        formularioEmpresa = new FormularioEmpresa(this, true);
+        formularioProfessor = new FormularioProfessor(this, true);
+        formularioProjeto = new FormularioProjeto(this, true);
 
         initComponents();
         iniciarTabelas();
@@ -70,33 +74,33 @@ public class MainWindow extends javax.swing.JFrame {
         jtbListaProjetos = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnEditarProjeto = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton12 = new javax.swing.JButton();
+        btnFiltrarProjetos = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnNovoAluno = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbListaAlunos = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        btnEditarAluno = new javax.swing.JButton();
+        btnFiltrarAlunos = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnNovoProfessor = new javax.swing.JButton();
         containerprofessores = new javax.swing.JScrollPane();
         jtbListaProfessores = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
         jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
+        btnEditarProfessor = new javax.swing.JButton();
+        btnFiltrarProfessores = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         btnNovaEmpresa = new javax.swing.JButton();
         containerempresas = new javax.swing.JScrollPane();
         jtbListaEmpresas = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
         jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton13 = new javax.swing.JButton();
+        btnEditarEmpresa = new javax.swing.JButton();
+        btnFiltrarEmpresas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -127,7 +131,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         jButton1.setText("Excluir");
 
-        jButton2.setText("Editar");
+        btnEditarProjeto.setText("Editar");
+        btnEditarProjeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarProjetoActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Abrir Projeto");
 
@@ -138,7 +147,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEditarProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -149,15 +158,20 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditarProjeto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 800, -1));
 
-        jButton12.setText("Filtrar resultados");
-        jPanel1.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, 40));
+        btnFiltrarProjetos.setText("Filtrar resultados");
+        btnFiltrarProjetos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarProjetosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnFiltrarProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, 40));
 
         jTabbedPane1.addTab("Projetos", jPanel1);
 
@@ -182,7 +196,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         jButton4.setText("Excluir");
 
-        jButton5.setText("Editar");
+        btnEditarAluno.setText("Editar");
+        btnEditarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarAlunoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -190,7 +209,7 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap(468, Short.MAX_VALUE)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEditarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -200,12 +219,17 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                    .addComponent(btnEditarAluno, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
                     .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jButton11.setText("Filtrar resultados");
+        btnFiltrarAlunos.setText("Filtrar resultados");
+        btnFiltrarAlunos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarAlunosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -218,7 +242,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(btnNovoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
-                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnFiltrarAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -230,7 +254,7 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFiltrarAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnNovoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,7 +286,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         jButton7.setText("Excluir");
 
-        jButton8.setText("Editar");
+        btnEditarProfessor.setText("Editar");
+        btnEditarProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarProfessorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -270,7 +299,7 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(468, Short.MAX_VALUE)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEditarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -280,12 +309,17 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(btnEditarProfessor, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                     .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jButton14.setText("Filtrar resultados");
+        btnFiltrarProfessores.setText("Filtrar resultados");
+        btnFiltrarProfessores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarProfessoresActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -297,7 +331,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(btnNovoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton14)
+                        .addComponent(btnFiltrarProfessores)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(containerprofessores)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
@@ -311,7 +345,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnNovoProfessor, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnFiltrarProfessores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(containerprofessores, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -342,7 +376,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         jButton9.setText("Excluir");
 
-        jButton10.setText("Editar");
+        btnEditarEmpresa.setText("Editar");
+        btnEditarEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarEmpresaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -350,7 +389,7 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap(468, Short.MAX_VALUE)
-                .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEditarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -360,12 +399,17 @@ public class MainWindow extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton10, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(btnEditarEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                     .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        jButton13.setText("Filtrar resultados");
+        btnFiltrarEmpresas.setText("Filtrar resultados");
+        btnFiltrarEmpresas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFiltrarEmpresasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -380,7 +424,7 @@ public class MainWindow extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(btnNovaEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton13))
+                                .addComponent(btnFiltrarEmpresas))
                             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -391,7 +435,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnNovaEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(jButton13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnFiltrarEmpresas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(containerempresas, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -416,20 +460,52 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProjetoActionPerformed
-        janelaNovoProjeto.setVisible(true);
+        formularioProjeto.abrirModalCriacao();
     }//GEN-LAST:event_btnNovoProjetoActionPerformed
 
     private void btnNovoAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoAlunoActionPerformed
-        janelaNovoAluno.setVisible(true);
+        formularioAluno.abrirModalCriacao();
     }//GEN-LAST:event_btnNovoAlunoActionPerformed
 
     private void btnNovoProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProfessorActionPerformed
-        janelaNovoProfessor.setVisible(true);
+        formularioProfessor.abrirModalCriacao();
     }//GEN-LAST:event_btnNovoProfessorActionPerformed
 
     private void btnNovaEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaEmpresaActionPerformed
-        janelaNovaEmpresa.setVisible(true);
+        formularioEmpresa.abrirModalCriacao();
     }//GEN-LAST:event_btnNovaEmpresaActionPerformed
+
+    private void btnFiltrarProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarProjetosActionPerformed
+        formularioProjeto.abrirModalFiltragem();
+    }//GEN-LAST:event_btnFiltrarProjetosActionPerformed
+
+    private void btnFiltrarAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarAlunosActionPerformed
+        formularioAluno.abrirModalFiltragem();
+    }//GEN-LAST:event_btnFiltrarAlunosActionPerformed
+
+    private void btnFiltrarProfessoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarProfessoresActionPerformed
+        formularioProfessor.abrirModalFiltragem();
+    }//GEN-LAST:event_btnFiltrarProfessoresActionPerformed
+
+    private void btnFiltrarEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarEmpresasActionPerformed
+        formularioEmpresa.abrirModalFiltragem();
+    }//GEN-LAST:event_btnFiltrarEmpresasActionPerformed
+
+    private void btnEditarProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProjetoActionPerformed
+        formularioProjeto.abrirModalEdicao(1);
+    }//GEN-LAST:event_btnEditarProjetoActionPerformed
+
+    private void btnEditarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarAlunoActionPerformed
+        formularioAluno.abrirModalEdicao(1);
+    }//GEN-LAST:event_btnEditarAlunoActionPerformed
+
+    private void btnEditarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProfessorActionPerformed
+        formularioProfessor.abrirModalEdicao(1);
+    }//GEN-LAST:event_btnEditarProfessorActionPerformed
+
+    private void btnEditarEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEmpresaActionPerformed
+        formularioEmpresa.abrirModalEdicao(1);
+    }//GEN-LAST:event_btnEditarEmpresaActionPerformed
 
     
     /**
@@ -469,6 +545,14 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditarAluno;
+    private javax.swing.JButton btnEditarEmpresa;
+    private javax.swing.JButton btnEditarProfessor;
+    private javax.swing.JButton btnEditarProjeto;
+    private javax.swing.JButton btnFiltrarAlunos;
+    private javax.swing.JButton btnFiltrarEmpresas;
+    private javax.swing.JButton btnFiltrarProfessores;
+    private javax.swing.JButton btnFiltrarProjetos;
     private javax.swing.JButton btnNovaEmpresa;
     private javax.swing.JButton btnNovoAluno;
     private javax.swing.JButton btnNovoProfessor;
@@ -476,17 +560,9 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JScrollPane containerempresas;
     private javax.swing.JScrollPane containerprofessores;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

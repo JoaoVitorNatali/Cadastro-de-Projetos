@@ -9,6 +9,7 @@ package Alunos;
  * @author João Vitor
  */
 public class Aluno {
+    private int codigo;
     private String nome;
     private String matricula;
     private String curso;
@@ -29,6 +30,10 @@ public class Aluno {
     
     public Object[] getCamposAluno(){
         return new Object[] {"Nome", "E-mail", "Matrícula", "Curso", "Telefone"};
+    }
+    
+    public int getCodigo() {
+        return codigo;
     }
     
     public String getNome(){

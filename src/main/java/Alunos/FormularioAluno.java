@@ -1,6 +1,13 @@
 package Alunos;
 
 
+import Constantes.TipoFormulario;
+import static Constantes.TipoFormulario.EDITAR;
+import static Constantes.TipoFormulario.FILTRAR;
+import static Constantes.TipoFormulario.INSERIR;
+import custom.CustomFormularioInterface;
+
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -11,14 +18,57 @@ package Alunos;
  *
  * @author João Vitor
  */
-public class FormularioAluno extends javax.swing.JDialog {
+public class FormularioAluno extends javax.swing.JDialog implements CustomFormularioInterface {
+    private TipoFormulario tipo;
 
     /**
      * Creates new form CadastroAluno
      */
     public FormularioAluno(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.tipo = INSERIR;
         initComponents();
+    }
+    
+    @Override
+    public void abrirModalEdicao(int codigoAluno){
+        this.tipo = EDITAR;
+        alterarTituloModal();
+        this.setVisible(true);
+    }
+    
+    @Override
+    public void abrirModalCriacao(){
+        this.tipo = INSERIR;
+        alterarTituloModal();
+        this.setVisible(true);
+    }
+    
+    @Override
+    public void abrirModalFiltragem() {
+        this.tipo = FILTRAR;
+        alterarTituloModal();
+        this.setVisible(true);
+    }
+
+    @Override
+    public void alterarTituloModal(){
+        String titulo = "";
+        if(null != this.tipo) switch (this.tipo) {
+            case INSERIR:
+                titulo = "Novo Aluno";
+                break;
+            case EDITAR:
+                titulo = "Editar Aluno";
+                break;
+            case FILTRAR:
+                titulo = "Filtrar Aluno";
+                break;
+            default:
+                break;
+        }
+        
+        tituloModal.setText(titulo);
     }
 
     /**
@@ -30,7 +80,7 @@ public class FormularioAluno extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        tituloModal = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         tituloProjeto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -50,10 +100,10 @@ public class FormularioAluno extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Novo Aluno");
-        jLabel1.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+        tituloModal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        tituloModal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloModal.setText("Novo Aluno");
+        tituloModal.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jLabel2.setText("Nome do aluno:");
 
@@ -90,7 +140,7 @@ public class FormularioAluno extends javax.swing.JDialog {
             }
         });
 
-        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setText("Concluir");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
@@ -166,14 +216,14 @@ public class FormularioAluno extends javax.swing.JDialog {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(217, 217, 217)
-                .addComponent(jLabel1)
+                .addComponent(tituloModal)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(tituloModal)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -243,7 +293,6 @@ public class FormularioAluno extends javax.swing.JDialog {
     private javax.swing.JTextField cursoAluno;
     private javax.swing.JTextField emailAluno;
     private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -254,6 +303,7 @@ public class FormularioAluno extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField matriculaAluno;
+    private javax.swing.JLabel tituloModal;
     private javax.swing.JTextField tituloProjeto;
     // End of variables declaration//GEN-END:variables
 }
