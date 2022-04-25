@@ -114,7 +114,7 @@ public class MainWindow extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
         jButton1.setText("Excluir");
 
-        btnEditarProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/botao-editar.png"))); // NOI18N
+        btnEditarProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/botao-editar.png"))); // NOI18N
         btnEditarProjeto.setText("Editar");
         btnEditarProjeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
