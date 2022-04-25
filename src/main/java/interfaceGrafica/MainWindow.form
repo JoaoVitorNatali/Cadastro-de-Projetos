@@ -53,7 +53,7 @@
             <Component class="javax.swing.JButton" name="btnNovoProjeto">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/interfaceGrafica/Imagens/add.png"/>
+                  <Image iconType="3" name="/interfaceGrafica/imagens/add.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Novo projeto"/>
               </Properties>
@@ -122,7 +122,7 @@
                 <Component class="javax.swing.JButton" name="jButton1">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/interfaceGrafica/Imagens/remove.png"/>
+                      <Image iconType="3" name="/interfaceGrafica/imagens/remove.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Excluir"/>
                   </Properties>
@@ -141,7 +141,7 @@
                 <Component class="javax.swing.JButton" name="btnAbrirProjeto">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/interfaceGrafica/Imagens/detalhes.png"/>
+                      <Image iconType="3" name="/interfaceGrafica/imagens/detalhes.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Abrir Projeto"/>
                   </Properties>
@@ -154,7 +154,7 @@
             <Component class="javax.swing.JButton" name="btnFiltrarProjetos">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/interfaceGrafica/Imagens/search.png"/>
+                  <Image iconType="3" name="/interfaceGrafica/imagens/search.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Filtrar resultados"/>
               </Properties>
@@ -277,13 +277,16 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="jButton4">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/interfaceGrafica/imagens/remove.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Excluir"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnEditarAluno">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/interfaceGrafica/Imagens/botao-editar.png"/>
+                      <Image iconType="3" name="/interfaceGrafica/imagens/botao-editar.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Editar"/>
                   </Properties>
@@ -296,7 +299,7 @@
             <Component class="javax.swing.JButton" name="btnFiltrarAlunos">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/interfaceGrafica/Imagens/search.png"/>
+                  <Image iconType="3" name="/interfaceGrafica/imagens/search.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Filtrar resultados"/>
               </Properties>
@@ -414,13 +417,16 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="jButton7">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/interfaceGrafica/imagens/remove.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Excluir"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnEditarProfessor">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/interfaceGrafica/Imagens/botao-editar.png"/>
+                      <Image iconType="3" name="/interfaceGrafica/imagens/botao-editar.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Editar"/>
                   </Properties>
@@ -433,7 +439,7 @@
             <Component class="javax.swing.JButton" name="btnFiltrarProfessores">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/interfaceGrafica/Imagens/search.png"/>
+                  <Image iconType="3" name="/interfaceGrafica/imagens/search.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Filtrar resultados"/>
               </Properties>
@@ -552,13 +558,16 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="jButton9">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/interfaceGrafica/imagens/remove.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Excluir"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnEditarEmpresa">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/interfaceGrafica/Imagens/botao-editar.png"/>
+                      <Image iconType="3" name="/interfaceGrafica/imagens/botao-editar.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Editar"/>
                   </Properties>
@@ -571,7 +580,7 @@
             <Component class="javax.swing.JButton" name="btnFiltrarEmpresas">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/interfaceGrafica/Imagens/search.png"/>
+                  <Image iconType="3" name="/interfaceGrafica/imagens/search.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Filtrar resultados"/>
               </Properties>

@@ -45,7 +45,7 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        siapeProfessor = new javax.swing.JFormattedTextField();
+        cnpjEmpresa = new javax.swing.JFormattedTextField();
         jPanel8 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jFormattedTextField1 = new javax.swing.JFormattedTextField();
@@ -75,11 +75,11 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
         jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 244, 24));
 
         try {
-            siapeProfessor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
+            cnpjEmpresa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###/####-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanel7.add(siapeProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 230, 30));
+        jPanel7.add(cnpjEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 230, 30));
 
         jPanel6.add(jPanel7);
 
@@ -206,7 +206,9 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // TODO add your handling code here:
+        String cnpj = cnpjEmpresa.getText();
+        
+        System.out.println(cnpj);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
@@ -255,6 +257,7 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JFormattedTextField cnpjEmpresa;
     private javax.swing.JTextField emailProfessor;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
@@ -269,7 +272,6 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
     private javax.swing.JPanel jPanel8;
     private javax.swing.JTextField nomeFantasia;
     private javax.swing.JTextField razaoSocial;
-    private javax.swing.JFormattedTextField siapeProfessor;
     private javax.swing.JTextField telefoneAluno1;
     private javax.swing.JLabel tituloModal;
     // End of variables declaration//GEN-END:variables

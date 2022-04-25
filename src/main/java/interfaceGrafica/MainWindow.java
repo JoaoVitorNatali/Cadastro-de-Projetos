@@ -87,7 +87,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnNovoProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/add.png"))); // NOI18N
+        btnNovoProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/add.png"))); // NOI18N
         btnNovoProjeto.setText("Novo projeto");
         btnNovoProjeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +111,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel1.add(listagemProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 800, 280));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/remove.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
         jButton1.setText("Excluir");
 
         btnEditarProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/botao-editar.png"))); // NOI18N
@@ -122,7 +122,7 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
-        btnAbrirProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/detalhes.png"))); // NOI18N
+        btnAbrirProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/detalhes.png"))); // NOI18N
         btnAbrirProjeto.setText("Abrir Projeto");
         btnAbrirProjeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,7 +155,7 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 800, -1));
 
-        btnFiltrarProjetos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/search.png"))); // NOI18N
+        btnFiltrarProjetos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/search.png"))); // NOI18N
         btnFiltrarProjetos.setText("Filtrar resultados");
         btnFiltrarProjetos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,9 +186,10 @@ public class MainWindow extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtbListaAlunos);
 
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
         jButton4.setText("Excluir");
 
-        btnEditarAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/botao-editar.png"))); // NOI18N
+        btnEditarAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/botao-editar.png"))); // NOI18N
         btnEditarAluno.setText("Editar");
         btnEditarAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,7 +218,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnFiltrarAlunos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/search.png"))); // NOI18N
+        btnFiltrarAlunos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/search.png"))); // NOI18N
         btnFiltrarAlunos.setText("Filtrar resultados");
         btnFiltrarAlunos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -279,9 +280,10 @@ public class MainWindow extends javax.swing.JFrame {
         ));
         containerprofessores.setViewportView(jtbListaProfessores);
 
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
         jButton7.setText("Excluir");
 
-        btnEditarProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/botao-editar.png"))); // NOI18N
+        btnEditarProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/botao-editar.png"))); // NOI18N
         btnEditarProfessor.setText("Editar");
         btnEditarProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -310,7 +312,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnFiltrarProfessores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/search.png"))); // NOI18N
+        btnFiltrarProfessores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/search.png"))); // NOI18N
         btnFiltrarProfessores.setText("Filtrar resultados");
         btnFiltrarProfessores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -372,9 +374,10 @@ public class MainWindow extends javax.swing.JFrame {
         ));
         containerempresas.setViewportView(jtbListaEmpresas);
 
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
         jButton9.setText("Excluir");
 
-        btnEditarEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/botao-editar.png"))); // NOI18N
+        btnEditarEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/botao-editar.png"))); // NOI18N
         btnEditarEmpresa.setText("Editar");
         btnEditarEmpresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -403,7 +406,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        btnFiltrarEmpresas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/search.png"))); // NOI18N
+        btnFiltrarEmpresas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/search.png"))); // NOI18N
         btnFiltrarEmpresas.setText("Filtrar resultados");
         btnFiltrarEmpresas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

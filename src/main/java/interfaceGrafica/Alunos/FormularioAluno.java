@@ -243,7 +243,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
