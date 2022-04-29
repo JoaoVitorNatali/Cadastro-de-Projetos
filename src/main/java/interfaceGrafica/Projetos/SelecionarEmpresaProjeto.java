@@ -4,31 +4,25 @@
  */
 package interfaceGrafica.Projetos;
 
-import interfaceGrafica.Professores.FormularioProfessor;
-import gerTarefas.gerInterface.Professor.TableModelProfessor;
+import interfaceGrafica.Empresas.FormularioEmpresa;
 
 /**
  *
  * @author João Vitor
  */
-public class SelecionarProfessorProjeto extends javax.swing.JDialog {
-    
-    private final FormularioProfessor formularioProfessor;
-    private TableModelProfessor tabelaProfessores;
+public class SelecionarEmpresaProjeto extends javax.swing.JDialog {
 
+    private final FormularioEmpresa formularioEmpresa;
+    
     /**
-     * Creates new form SelecionarProfessor
+     * Creates new form SelecionarEmpresaProjeto
      */
-    public SelecionarProfessorProjeto(java.awt.Frame parent, boolean modal) {
+    public SelecionarEmpresaProjeto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-        formularioProfessor = new FormularioProfessor(parent, true);
-        tabelaProfessores = new TableModelProfessor();
-        
-        listaProfessores.setModel(tabelaProfessores);
-    }
 
+        formularioEmpresa = new FormularioEmpresa(parent, true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,15 +34,15 @@ public class SelecionarProfessorProjeto extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaProfessores = new javax.swing.JTable();
+        listaEmpresas = new javax.swing.JTable();
         btnSelecionar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        filtrarProfessores = new javax.swing.JButton();
+        filtrarEmpresas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        listaProfessores.setModel(new javax.swing.table.DefaultTableModel(
+        listaEmpresas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -59,7 +53,7 @@ public class SelecionarProfessorProjeto extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(listaProfessores);
+        jScrollPane1.setViewportView(listaEmpresas);
 
         btnSelecionar.setText("Selecionar");
 
@@ -72,13 +66,13 @@ public class SelecionarProfessorProjeto extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Professores");
+        jLabel1.setText("Empresas");
 
-        filtrarProfessores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/search.png"))); // NOI18N
-        filtrarProfessores.setText("Filtrar professores");
-        filtrarProfessores.addActionListener(new java.awt.event.ActionListener() {
+        filtrarEmpresas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/search.png"))); // NOI18N
+        filtrarEmpresas.setText("Filtrar empresas");
+        filtrarEmpresas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filtrarProfessoresActionPerformed(evt);
+                filtrarEmpresasActionPerformed(evt);
             }
         });
 
@@ -94,9 +88,9 @@ public class SelecionarProfessorProjeto extends javax.swing.JDialog {
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(filtrarProfessores)
+                        .addComponent(filtrarEmpresas, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -106,7 +100,7 @@ public class SelecionarProfessorProjeto extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(filtrarProfessores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(filtrarEmpresas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -123,9 +117,9 @@ public class SelecionarProfessorProjeto extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void filtrarProfessoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarProfessoresActionPerformed
-        formularioProfessor.abrirModalFiltragem();
-    }//GEN-LAST:event_filtrarProfessoresActionPerformed
+    private void filtrarEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarEmpresasActionPerformed
+        formularioEmpresa.abrirModalFiltragem();
+    }//GEN-LAST:event_filtrarEmpresasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,21 +138,20 @@ public class SelecionarProfessorProjeto extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SelecionarProfessorProjeto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SelecionarEmpresaProjeto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SelecionarProfessorProjeto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SelecionarEmpresaProjeto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SelecionarProfessorProjeto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SelecionarEmpresaProjeto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SelecionarProfessorProjeto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SelecionarEmpresaProjeto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                SelecionarProfessorProjeto dialog = new SelecionarProfessorProjeto(new javax.swing.JFrame(), true);
+                SelecionarEmpresaProjeto dialog = new SelecionarEmpresaProjeto(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -173,9 +166,9 @@ public class SelecionarProfessorProjeto extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnSelecionar;
-    private javax.swing.JButton filtrarProfessores;
+    private javax.swing.JButton filtrarEmpresas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable listaProfessores;
+    private javax.swing.JTable listaEmpresas;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,7 +14,7 @@ import javax.swing.JTable;
  */
 public class GerenciadorProfessor {
     private final FormularioProfessor formularioProfessor;
-    private TableModelProfessor tabelaProfessores;
+    private final TableModelProfessor tabelaProfessores;
 
     public GerenciadorProfessor(MainWindow janelaPrincipal, JTable jTable) {
         formularioProfessor = new FormularioProfessor(janelaPrincipal, true);

@@ -9,11 +9,11 @@ package gerTarefas.gerInterface.custom;
  * @author João Vitor
  */
 public interface CustomFormularioInterface {
-    
+
     public void abrirModalEdicao(int codigo);
-    
+
     public void abrirModalCriacao();
-    
+
     public void abrirModalFiltragem();
 
     public void alterarTituloModal();

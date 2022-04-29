@@ -7,6 +7,8 @@ package gerTarefas.gerInterface.Projeto;
 import interfaceGrafica.MainWindow;
 import interfaceGrafica.Projetos.DadosProjeto;
 import interfaceGrafica.Projetos.FormularioProjeto;
+import interfaceGrafica.Projetos.SelecionarAlunoProjeto;
+import interfaceGrafica.Projetos.SelecionarProfessorProjeto;
 import javax.swing.JTable;
 
 /**
@@ -16,7 +18,8 @@ import javax.swing.JTable;
 public class GerenciadorProjeto {
     private final FormularioProjeto formularioProjeto;
     private final DadosProjeto janelaProjeto;
-    private TableModelProjeto tabelaProjetos;
+    private final TableModelProjeto tabelaProjetos;
+    
 
     public GerenciadorProjeto(MainWindow janelaPrincipal, JTable jTable) {
         formularioProjeto = new FormularioProjeto(janelaPrincipal, true);

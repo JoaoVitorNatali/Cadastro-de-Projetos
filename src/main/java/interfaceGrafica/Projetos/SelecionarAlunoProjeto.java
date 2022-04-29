@@ -16,8 +16,6 @@ import interfaceGrafica.Professores.FormularioProfessor;
 public class SelecionarAlunoProjeto extends javax.swing.JDialog {
     
     private final FormularioAluno formularioAluno;
-    private final FormularioProfessor formularioProfessor;
-    
     private TableModelAluno tabelaAlunos;
 
     /**
@@ -28,17 +26,10 @@ public class SelecionarAlunoProjeto extends javax.swing.JDialog {
         initComponents();
         
         formularioAluno = new FormularioAluno(parent, true);
-        formularioProfessor = new FormularioProfessor(parent, true);
-        
-        iniciarTabelas();
-    }
-    
-    
-    private void iniciarTabelas(){
         tabelaAlunos = new TableModelAluno();
-        
         listaAlunos.setModel(tabelaAlunos);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

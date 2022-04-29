@@ -6,6 +6,7 @@ package interfaceGrafica.Projetos;
 
 import gerTarefas.gerInterface.Projeto.TableModelProfessoresProjeto;
 import gerTarefas.gerInterface.Projeto.TableModelAlunosProjeto;
+import gerTarefas.gerInterface.Projeto.TableModelEmpresasProjeto;
 
 /**
  *
@@ -15,9 +16,11 @@ public class DadosProjeto extends javax.swing.JDialog {
     
     private final SelecionarAlunoProjeto listaAlunosSelecionar;
     private final SelecionarProfessorProjeto listaProfessoresSelecionar;
+    private final SelecionarEmpresaProjeto listaEmpresasSelecionar;
     
     private TableModelAlunosProjeto alunosProjeto;
     private TableModelProfessoresProjeto professoresProjeto;
+    private TableModelEmpresasProjeto empresasProjeto;
     
     /**
      * Creates new form DadosProjeto
@@ -27,6 +30,7 @@ public class DadosProjeto extends javax.swing.JDialog {
         
         listaAlunosSelecionar = new SelecionarAlunoProjeto(parent, true);
         listaProfessoresSelecionar = new SelecionarProfessorProjeto(parent, true);
+        listaEmpresasSelecionar = new SelecionarEmpresaProjeto(parent, true);
         
         initComponents();
         iniciarTabelas();
@@ -35,10 +39,11 @@ public class DadosProjeto extends javax.swing.JDialog {
     private void iniciarTabelas(){
         alunosProjeto = new TableModelAlunosProjeto();
         professoresProjeto = new TableModelProfessoresProjeto();
-        
+        empresasProjeto = new TableModelEmpresasProjeto();
         
         tabelaAlunos.setModel(alunosProjeto);
         tabelaProfessores.setModel(professoresProjeto);
+        tabelaEmpresas.setModel(empresasProjeto);
     }
 
     /**
@@ -57,10 +62,15 @@ public class DadosProjeto extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaProfessores = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        adicionarAluno = new javax.swing.JButton();
         adicionarProfessor = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tabelaEmpresas = new javax.swing.JTable();
+        adicionarAluno = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -69,6 +79,8 @@ public class DadosProjeto extends javax.swing.JDialog {
         jLabel1.setText("Titulo do projeto");
 
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.X_AXIS));
+
+        jScrollPane1.setBorder(null);
 
         tabelaAlunos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,10 +107,12 @@ public class DadosProjeto extends javax.swing.JDialog {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 267, Short.MAX_VALUE)
+            .addGap(0, 130, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel2);
+
+        jScrollPane2.setBorder(null);
 
         tabelaProfessores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,17 +129,7 @@ public class DadosProjeto extends javax.swing.JDialog {
 
         jPanel1.add(jScrollPane2);
 
-        jLabel2.setText("Alunos do projeto:");
-
         jLabel3.setText("Professores:");
-
-        adicionarAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/add.png"))); // NOI18N
-        adicionarAluno.setText("Adicionar aluno");
-        adicionarAluno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adicionarAlunoActionPerformed(evt);
-            }
-        });
 
         adicionarProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/add.png"))); // NOI18N
         adicionarProfessor.setText("Adicionar professor");
@@ -135,6 +139,48 @@ public class DadosProjeto extends javax.swing.JDialog {
             }
         });
 
+        jScrollPane3.setBorder(null);
+        jScrollPane3.setEnabled(false);
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setBorder(javax.swing.BorderFactory.createTitledBorder("Descrição"));
+        jScrollPane3.setViewportView(jTextArea1);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/add.png"))); // NOI18N
+        jButton1.setText("Adicionar Empresa");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jScrollPane4.setBorder(null);
+
+        tabelaEmpresas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(tabelaEmpresas);
+
+        adicionarAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/add.png"))); // NOI18N
+        adicionarAluno.setText("Adicionar aluno");
+        adicionarAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarAlunoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Alunos do projeto:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -143,15 +189,24 @@ public class DadosProjeto extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 813, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
-                            .addComponent(adicionarAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(292, 292, 292)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(adicionarProfessor))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(419, 419, 419)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(adicionarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(272, 272, 272)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(adicionarProfessor))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -160,16 +215,23 @@ public class DadosProjeto extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(adicionarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(adicionarProfessor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(adicionarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(adicionarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -183,6 +245,10 @@ public class DadosProjeto extends javax.swing.JDialog {
     private void adicionarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarProfessorActionPerformed
         listaProfessoresSelecionar.setVisible(true);
     }//GEN-LAST:event_adicionarProfessorActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        listaEmpresasSelecionar.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,6 +295,7 @@ public class DadosProjeto extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionarAluno;
     private javax.swing.JButton adicionarProfessor;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -236,7 +303,11 @@ public class DadosProjeto extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTable tabelaAlunos;
+    private javax.swing.JTable tabelaEmpresas;
     private javax.swing.JTable tabelaProfessores;
     // End of variables declaration//GEN-END:variables
 }
