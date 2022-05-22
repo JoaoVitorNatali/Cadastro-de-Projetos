@@ -4,15 +4,46 @@
  */
 package modelo;
 
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
 /**
  *
  * @author João Vitor
  */
-public class Professor {
+@Entity
+public class Professor implements Serializable {
+    @Id
+    @GeneratedValue ( strategy = GenerationType.IDENTITY )
+    private int Codigo;
+    @Column(nullable=false, unique=true)
     private String siape;
+    @Column(nullable=false)
     private String nome;
+    @Column(nullable=false)
     private int coordenadoria;
+    @Column(nullable=false, unique=true)
     private String email;
+    
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "Professor_Projeto",
+        joinColumns = {@JoinColumn(name="professor")},
+        inverseJoinColumns = {@JoinColumn(name="projeto")}
+    )
+    private List<Projeto> projetos;
+
+    public Professor() {
+    }
 
     public Professor(String siape, String nome, int coordenadoria, String email) {
         this.siape = siape;

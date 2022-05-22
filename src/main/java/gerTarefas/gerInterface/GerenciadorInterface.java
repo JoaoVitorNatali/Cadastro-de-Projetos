@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package gerTarefas.gerInterface;
+import gerTarefas.gerDominio.GerenciadorDominio;
 import interfaceGrafica.MainWindow;
 
 
@@ -12,11 +13,12 @@ import interfaceGrafica.MainWindow;
  */
 public class GerenciadorInterface {
     private MainWindow janelaPrincipal = null;
+    private GerenciadorDominio gerDom = null;
     
 
     
     public GerenciadorInterface() {
-
+        gerDom = new GerenciadorDominio();
     }
 
     public void abrirJanelaPrincipal(){

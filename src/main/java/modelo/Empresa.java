@@ -4,17 +4,50 @@
  */
 package modelo;
 
+import java.util.List;
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+
 /**
  *
  * @author João Vitor
  */
-public class Empresa {
+@Entity
+public class Empresa implements Serializable {
+    @Id
+    @GeneratedValue ( strategy = GenerationType.IDENTITY )
+    private int codigo;
+    @Column(nullable=false, unique=true)
     private String razaoSocial;
+    @Column()
     private String nomeFantasia;
+    @Column(nullable=false, unique=true)
     private String cnpj;
+    @Column()
     private String email;
+    @Column()
     private String telefone;
+    @Column()
     private String nomeContato;
+    
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "Empresa_Projeto",
+        joinColumns = {@JoinColumn(name="empresa")},
+        inverseJoinColumns = {@JoinColumn(name="projeto")}
+    )
+    private List<Projeto> projetos;
+
+    public Empresa() {
+    }
 
     public Empresa(String razaoSocial, String nomeFantasia, String cnpj, String email, String telefone, String nomeContato) {
         this.razaoSocial = razaoSocial;
@@ -25,6 +58,10 @@ public class Empresa {
         this.nomeContato = nomeContato;
     }
 
+    public int getCodigo() {
+        return codigo;
+    }    
+    
     public String getRazaoSocial() {
         return razaoSocial;
     }
@@ -49,5 +86,39 @@ public class Empresa {
         return nomeContato;
     }
     
-    
+    public List<Projeto> getProjetos() {
+        return projetos;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public void setRazaoSocial(String razaoSocial) {
+        this.razaoSocial = razaoSocial;
+    }
+
+    public void setNomeFantasia(String nomeFantasia) {
+        this.nomeFantasia = nomeFantasia;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public void setNomeContato(String nomeContato) {
+        this.nomeContato = nomeContato;
+    }
+
+    public void setProjetos(List<Projeto> projetos) {
+        this.projetos = projetos;
+    }
 }
