@@ -17,4 +17,6 @@ public interface CustomFormularioInterface {
     public void abrirModalFiltragem();
 
     public void alterarTituloModal();
+    
+    public void closeModal();
 }

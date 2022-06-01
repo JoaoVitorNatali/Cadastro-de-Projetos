@@ -12,6 +12,8 @@ import java.util.InputMismatchException;
  */
 public class ValidaCnpj {
     public static boolean isCNPJ(String CNPJ) {
+        CNPJ = removeMascara(CNPJ);
+        System.out.println(CNPJ);
         // considera-se erro CNPJ's formados por uma sequencia de numeros iguais
         if (CNPJ.equals("00000000000000") || CNPJ.equals("11111111111111") ||
             CNPJ.equals("22222222222222") || CNPJ.equals("33333333333333") ||
@@ -60,6 +62,10 @@ public class ValidaCnpj {
         } catch (InputMismatchException erro) {
             return(false);
         }
+    }
+    
+    public static String removeMascara(String CNPJ){
+        return CNPJ.replaceAll("[^\\d]", "");
     }
 
     public static String imprimeCNPJ(String CNPJ) {

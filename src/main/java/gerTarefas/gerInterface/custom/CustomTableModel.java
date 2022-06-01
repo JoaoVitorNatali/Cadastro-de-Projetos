@@ -2,6 +2,7 @@ package gerTarefas.gerInterface.custom;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /*
@@ -35,7 +36,12 @@ public abstract class CustomTableModel<Model> extends AbstractTableModel{
         fireTableDataChanged();   
     }
     
-    public void removerPessoa(int rowIndex){
+    public void adicionar(ArrayList<Model> entidades){
+        this.entidades = entidades;
+        fireTableDataChanged();
+    }
+    
+    public void removerEntidade(int rowIndex){
         this.entidades.remove(rowIndex);
         fireTableDataChanged();
     }

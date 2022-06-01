@@ -7,8 +7,6 @@ package gerTarefas.gerInterface.Projeto;
 import interfaceGrafica.MainWindow;
 import interfaceGrafica.Projetos.DadosProjeto;
 import interfaceGrafica.Projetos.FormularioProjeto;
-import interfaceGrafica.Projetos.SelecionarAlunoProjeto;
-import interfaceGrafica.Projetos.SelecionarProfessorProjeto;
 import javax.swing.JTable;
 
 /**

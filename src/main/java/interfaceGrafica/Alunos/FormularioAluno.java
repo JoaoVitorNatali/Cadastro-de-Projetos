@@ -6,6 +6,7 @@ import static gerTarefas.Constantes.TipoFormulario.EDITAR;
 import static gerTarefas.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.Constantes.TipoFormulario.INSERIR;
 import gerTarefas.gerInterface.custom.CustomFormularioInterface;
+import javax.swing.JOptionPane;
 
 
 
@@ -84,7 +85,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
 
         tituloModal = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        tituloProjeto = new javax.swing.JTextField();
+        nomeAluno = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
@@ -98,7 +99,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
         btnCadastrar = new javax.swing.JButton();
         emailAluno = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        telefoneAluno = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -152,7 +153,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
         jLabel6.setText("E-mail:");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+            telefoneAluno.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -165,7 +166,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(telefoneAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(emailAluno))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -182,7 +183,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
                                 .addGap(53, 53, 53)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(tituloProjeto))
+                    .addComponent(nomeAluno))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -191,7 +192,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
                 .addGap(24, 24, 24)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tituloProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nomeAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -201,7 +202,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(emailAluno, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(jFormattedTextField1))
+                    .addComponent(telefoneAluno))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
@@ -239,62 +240,37 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
     }//GEN-LAST:event_cursoAlunoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.dispose();
+        closeModal();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        String nome = getNomeAluno();
+        String matricula = matriculaAluno.getText();
+        String curso = cursoAluno.getText();
+        String telefone = telefoneAluno.getText();
+        String email = emailAluno.getText();
+        
         
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormularioAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormularioAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormularioAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormularioAluno.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private String getNomeAluno(){
+        String nome = nomeAluno.getText();
+        if(nome.equals("")){
+            JOptionPane.showMessageDialog(this, "Teste");
         }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FormularioAluno dialog = new FormularioAluno(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
+        return nome;
     }
-
+    
+    @Override
+    public void closeModal() {
+        this.dispose();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JTextField cursoAluno;
     private javax.swing.JTextField emailAluno;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -305,7 +281,8 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField matriculaAluno;
+    private javax.swing.JTextField nomeAluno;
+    private javax.swing.JFormattedTextField telefoneAluno;
     private javax.swing.JLabel tituloModal;
-    private javax.swing.JTextField tituloProjeto;
     // End of variables declaration//GEN-END:variables
 }

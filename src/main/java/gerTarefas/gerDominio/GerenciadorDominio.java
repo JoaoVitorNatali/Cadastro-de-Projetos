@@ -5,19 +5,27 @@
 package gerTarefas.gerDominio;
 
 import dao.ConexaoHibernate;
+import dao.GenericDao;
+import java.util.List;
+import modelo.Empresa;
 
 /**
  *
  * @author João Vitor
  */
 public class GerenciadorDominio {
-//    private ConexaoHibernate conn = null;
+    private GenericDao genericDao = null;
 
     public GerenciadorDominio() {
-        ConexaoHibernate.getSessionFactory();
+        ConexaoHibernate.getSessionFactory();   
+        genericDao = new GenericDao();
     }
     
-//    public ConexaoHibernate getConn() {
-//        return conn;
-//    }
+    public List<Empresa> listarEmpresa(){
+        return genericDao.listar(Empresa.class);
+    }
+    
+    public void inserirEmpresa(Empresa empresa){
+        genericDao.inserir(empresa);
+    }
 }

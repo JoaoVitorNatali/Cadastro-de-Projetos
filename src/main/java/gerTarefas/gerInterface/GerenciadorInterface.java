@@ -5,6 +5,8 @@
 package gerTarefas.gerInterface;
 import gerTarefas.gerDominio.GerenciadorDominio;
 import interfaceGrafica.MainWindow;
+import java.util.List;
+import modelo.Empresa;
 
 
 /**

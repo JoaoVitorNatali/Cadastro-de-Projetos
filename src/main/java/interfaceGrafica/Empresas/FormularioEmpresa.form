@@ -75,7 +75,7 @@
                       <Component id="razaoSocial" alignment="0" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="telefoneAluno1" alignment="0" min="-2" pref="227" max="-2" attributes="0"/>
+                              <Component id="nomeContatoEmpresa" alignment="0" min="-2" pref="227" max="-2" attributes="0"/>
                               <Component id="jLabel11" alignment="0" min="-2" pref="106" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -84,7 +84,7 @@
                                   <Component id="jLabel12" min="-2" pref="76" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
-                              <Component id="emailProfessor" alignment="0" max="32767" attributes="0"/>
+                              <Component id="emailEmpresa" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="nomeFantasia" alignment="0" max="32767" attributes="0"/>
@@ -120,8 +120,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="telefoneAluno1" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                      <Component id="emailProfessor" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="nomeContatoEmpresa" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="emailEmpresa" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -190,7 +190,7 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
+                <Component class="javax.swing.JFormattedTextField" name="telefoneEmpresa">
                   <Properties>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                       <Format format="(##) #####-####" subtype="-1" type="5"/>
@@ -227,9 +227,9 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="telefoneAluno1">
+        <Component class="javax.swing.JTextField" name="nomeContatoEmpresa">
         </Component>
-        <Component class="javax.swing.JTextField" name="emailProfessor">
+        <Component class="javax.swing.JTextField" name="emailEmpresa">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>

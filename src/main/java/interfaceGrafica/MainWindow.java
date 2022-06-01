@@ -354,6 +354,12 @@ public class MainWindow extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Professores", jPanel3);
 
+        jPanel4.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel4ComponentShown(evt);
+            }
+        });
+
         btnNovaEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/add.png"))); // NOI18N
         btnNovaEmpresa.setText("Nova Empresa");
         btnNovaEmpresa.addActionListener(new java.awt.event.ActionListener() {
@@ -514,6 +520,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void btnAbrirProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirProjetoActionPerformed
         gerenciadorProjeto.abrirProjeto();
     }//GEN-LAST:event_btnAbrirProjetoActionPerformed
+
+    private void jPanel4ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel4ComponentShown
+        gerenciadorEmpresa.listar();
+    }//GEN-LAST:event_jPanel4ComponentShown
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

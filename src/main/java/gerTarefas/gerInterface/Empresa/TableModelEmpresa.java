@@ -6,6 +6,7 @@ package gerTarefas.gerInterface.Empresa;
 
 import modelo.Empresa;
 import gerTarefas.gerInterface.custom.CustomTableModel;
+import gerTarefas.gerInterface.custom.ValidaCnpj;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class TableModelEmpresa extends CustomTableModel<Empresa>{
                 return this.detalhar(rowIndex).getNomeFantasia();
             
             case 1:
-                return this.detalhar(rowIndex).getCnpj();
+                return ValidaCnpj.imprimeCNPJ(this.detalhar(rowIndex).getCnpj());
                 
             case 2:
                 return this.detalhar(rowIndex).getEmail();

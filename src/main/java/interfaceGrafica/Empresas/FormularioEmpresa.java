@@ -4,7 +4,9 @@ import gerTarefas.Constantes.TipoFormulario;
 import static gerTarefas.Constantes.TipoFormulario.EDITAR;
 import static gerTarefas.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.Constantes.TipoFormulario.INSERIR;
+import gerTarefas.gerInterface.Empresa.GerenciadorEmpresa;
 import gerTarefas.gerInterface.custom.CustomFormularioInterface;
+import gerTarefas.gerInterface.custom.ValidaCampoForm;
 
 
 
@@ -20,12 +22,17 @@ import gerTarefas.gerInterface.custom.CustomFormularioInterface;
 public class FormularioEmpresa extends javax.swing.JDialog implements CustomFormularioInterface {
 
     private TipoFormulario tipo;
+    GerenciadorEmpresa gerEmpresa = null;
     
     /**
      * Creates new form CadastroEmpresa
+     * @param parent
+     * @param modal
+     * @param gerenciador
      */
-    public FormularioEmpresa(java.awt.Frame parent, boolean modal) {
+    public FormularioEmpresa(java.awt.Frame parent, boolean modal, GerenciadorEmpresa gerenciador) {
         super(parent, modal);
+        gerEmpresa = gerenciador;
         initComponents();
     }
 
@@ -48,12 +55,12 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
         cnpjEmpresa = new javax.swing.JFormattedTextField();
         jPanel8 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        telefoneEmpresa = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
-        telefoneAluno1 = new javax.swing.JTextField();
-        emailProfessor = new javax.swing.JTextField();
+        nomeContatoEmpresa = new javax.swing.JTextField();
+        emailEmpresa = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         nomeFantasia = new javax.swing.JTextField();
@@ -89,11 +96,11 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
         jPanel8.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 20));
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
+            telefoneEmpresa.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanel8.add(jFormattedTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 230, 30));
+        jPanel8.add(telefoneEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 230, 30));
 
         jPanel6.add(jPanel8);
 
@@ -132,14 +139,14 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
                     .addComponent(razaoSocial)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(telefoneAluno1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nomeContatoEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(emailProfessor)))
+                            .addComponent(emailEmpresa)))
                     .addComponent(nomeFantasia)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,8 +174,8 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(telefoneAluno1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(emailProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nomeContatoEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(emailEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(50, 50, 50)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
@@ -202,64 +209,26 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.dispose();
+        closeModal();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        String cnpj = cnpjEmpresa.getText();
+        String razao = ValidaCampoForm.getTexto(razaoSocial, this, "Digite uma razão social válida");
+        String nome = ValidaCampoForm.getTexto(nomeFantasia, this, "Digite um nome fantasia válido");
+        String cnpj = ValidaCampoForm.getCnpj(cnpjEmpresa, this, "Digite um CNPJ válido");
+        String telefone = ValidaCampoForm.getTelefone(telefoneEmpresa, this, "Digite um telefone válido");
         
-        System.out.println(cnpj);
+        String nomeContato = ValidaCampoForm.getTexto(nomeContatoEmpresa, this, "Digite um nome de contato válido");
+        String email = ValidaCampoForm.getTexto(emailEmpresa, this, "Digite um E-mail válido");
+        
+        gerEmpresa.inserir(razao, nome, cnpj, telefone, nomeContato, email);
     }//GEN-LAST:event_btnCadastrarActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Windows".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FormularioEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FormularioEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FormularioEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FormularioEmpresa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                FormularioEmpresa dialog = new FormularioEmpresa(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
     private javax.swing.JFormattedTextField cnpjEmpresa;
-    private javax.swing.JTextField emailProfessor;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
+    private javax.swing.JTextField emailEmpresa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -270,9 +239,10 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JTextField nomeContatoEmpresa;
     private javax.swing.JTextField nomeFantasia;
     private javax.swing.JTextField razaoSocial;
-    private javax.swing.JTextField telefoneAluno1;
+    private javax.swing.JFormattedTextField telefoneEmpresa;
     private javax.swing.JLabel tituloModal;
     // End of variables declaration//GEN-END:variables
 
@@ -315,5 +285,10 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
         }
         
         tituloModal.setText(titulo);
+    }
+
+    @Override
+    public void closeModal() {
+        this.dispose();
     }
 }
