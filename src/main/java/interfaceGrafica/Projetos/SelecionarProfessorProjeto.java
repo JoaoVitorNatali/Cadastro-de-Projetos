@@ -4,7 +4,6 @@
  */
 package interfaceGrafica.Projetos;
 
-import interfaceGrafica.Professores.FormularioProfessor;
 import gerTarefas.gerInterface.Professor.TableModelProfessor;
 
 /**

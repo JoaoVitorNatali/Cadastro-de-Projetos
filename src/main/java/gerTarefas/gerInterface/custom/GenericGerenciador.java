@@ -5,7 +5,6 @@
 package gerTarefas.gerInterface.custom;
 
 import gerTarefas.gerDominio.GenericGerenciadorDominio;
-import gerTarefas.gerDominio.GerenciadorDominio;
 import gerTarefas.gerInterface.GerenciadorInterface;
 import java.awt.Frame;
 import java.lang.reflect.InvocationTargetException;

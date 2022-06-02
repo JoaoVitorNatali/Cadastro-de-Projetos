@@ -4,9 +4,7 @@
  */
 package interfaceGrafica.Projetos;
 
-import interfaceGrafica.Alunos.FormularioAluno;
 import gerTarefas.gerInterface.Aluno.TableModelAluno;
-import interfaceGrafica.Professores.FormularioProfessor;
 
 
 /**
@@ -19,6 +17,8 @@ public class SelecionarAlunoProjeto extends javax.swing.JDialog {
 
     /**
      * Creates new form SelecionarAluno
+     * @param parent
+     * @param modal
      */
     public SelecionarAlunoProjeto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

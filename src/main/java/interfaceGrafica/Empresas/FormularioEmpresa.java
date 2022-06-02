@@ -4,7 +4,6 @@ import gerTarefas.Constantes.TipoFormulario;
 import static gerTarefas.Constantes.TipoFormulario.EDITAR;
 import static gerTarefas.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.Constantes.TipoFormulario.INSERIR;
-import gerTarefas.gerInterface.Empresa.GerenciadorEmpresa;
 import gerTarefas.gerInterface.GerenciadorInterface;
 import gerTarefas.gerInterface.custom.CustomFormularioInterface;
 import gerTarefas.gerInterface.custom.ValidaCampoForm;
