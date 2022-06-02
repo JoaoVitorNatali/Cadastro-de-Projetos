@@ -4,10 +4,11 @@
  */
 package gerTarefas.gerInterface;
 import gerTarefas.gerDominio.GerenciadorDominio;
+import gerTarefas.gerInterface.Aluno.GerenciadorAluno;
+import gerTarefas.gerInterface.Empresa.GerenciadorEmpresa;
+import gerTarefas.gerInterface.Professor.GerenciadorProfessor;
+import gerTarefas.gerInterface.Projeto.GerenciadorProjeto;
 import interfaceGrafica.MainWindow;
-import java.util.List;
-import modelo.Empresa;
-
 
 /**
  *
@@ -17,20 +18,49 @@ public class GerenciadorInterface {
     private MainWindow janelaPrincipal = null;
     private GerenciadorDominio gerDom = null;
     
+    private GerenciadorAluno aluno = null;
+    private GerenciadorEmpresa empresa = null;
+    private GerenciadorProfessor professor = null;
+    private GerenciadorProjeto projeto = null;
 
-    
     public GerenciadorInterface() {
         gerDom = new GerenciadorDominio();
     }
 
     public void abrirJanelaPrincipal(){
-        if(janelaPrincipal == null){
-            janelaPrincipal = new MainWindow(this);
+        if(this.janelaPrincipal == null){
+            this.janelaPrincipal = new MainWindow(this);
         }
-        janelaPrincipal.setVisible(true);
+        this.janelaPrincipal.setVisible(true);
     }
     
+    public GerenciadorAluno getAluno(){
+        if(this.aluno == null){
+            this.aluno = new GerenciadorAluno(this.janelaPrincipal, this);
+        }
+        return this.aluno;
+    }
     
+    public GerenciadorEmpresa getEmpresa() {
+        if(this.empresa == null){
+            this.empresa = new GerenciadorEmpresa(this.janelaPrincipal, this);
+        }
+        return this.empresa;
+    }
+    
+    public GerenciadorProfessor getProfessor(){
+        if(this.professor == null){
+            this.professor = new GerenciadorProfessor(this.janelaPrincipal, this);
+        }
+        return this.professor;
+    }
+    
+    public GerenciadorProjeto getProjeto(){
+        if(this.projeto == null){
+            this.projeto = new GerenciadorProjeto(this.janelaPrincipal, this);
+        }
+        return this.projeto;
+    }
     
     /**
     * @param args the command line arguments
@@ -48,13 +78,7 @@ public class GerenciadorInterface {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>

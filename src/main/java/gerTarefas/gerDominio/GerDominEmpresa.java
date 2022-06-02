@@ -4,15 +4,17 @@
  */
 package gerTarefas.gerDominio;
 
-import dao.ConexaoHibernate;
+import java.util.List;
+import modelo.Empresa;
 
 /**
  *
  * @author João Vitor
  */
-public class GerenciadorDominio {
+public class GerDominEmpresa extends GenericGerenciadorDominio<Empresa> {
 
-    public GerenciadorDominio() {
-        ConexaoHibernate.getSessionFactory();   
+    @Override
+    public List<Empresa> listar(){
+        return getGenericDao().listar(Empresa.class);
     }
 }

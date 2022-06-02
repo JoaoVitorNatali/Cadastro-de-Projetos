@@ -13,17 +13,19 @@ import gerTarefas.gerInterface.Professor.TableModelProfessor;
  */
 public class SelecionarProfessorProjeto extends javax.swing.JDialog {
     
-    private final FormularioProfessor formularioProfessor;
+//    private final FormularioProfessor formularioProfessor;
     private TableModelProfessor tabelaProfessores;
 
     /**
      * Creates new form SelecionarProfessor
+     * @param parent
+     * @param modal
      */
     public SelecionarProfessorProjeto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         
-        formularioProfessor = new FormularioProfessor(parent, true);
+//        formularioProfessor = new FormularioProfessor(parent, true);
         tabelaProfessores = new TableModelProfessor();
         
         listaProfessores.setModel(tabelaProfessores);
@@ -124,7 +126,7 @@ public class SelecionarProfessorProjeto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void filtrarProfessoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarProfessoresActionPerformed
-        formularioProfessor.abrirModalFiltragem();
+//        formularioProfessor.abrirModalFiltragem();
     }//GEN-LAST:event_filtrarProfessoresActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

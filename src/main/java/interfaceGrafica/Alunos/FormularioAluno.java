@@ -5,6 +5,7 @@ import gerTarefas.Constantes.TipoFormulario;
 import static gerTarefas.Constantes.TipoFormulario.EDITAR;
 import static gerTarefas.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.Constantes.TipoFormulario.INSERIR;
+import gerTarefas.gerInterface.GerenciadorInterface;
 import gerTarefas.gerInterface.custom.CustomFormularioInterface;
 import javax.swing.JOptionPane;
 
@@ -21,14 +22,17 @@ import javax.swing.JOptionPane;
  */
 public class FormularioAluno extends javax.swing.JDialog implements CustomFormularioInterface {
     private TipoFormulario tipo;
+    private GerenciadorInterface gerenciador;
 
     /**
      * Creates new form CadastroAluno
      * @param parent
      * @param modal
+     * @param gerenciador
      */
-    public FormularioAluno(java.awt.Frame parent, boolean modal) {
+    public FormularioAluno(java.awt.Frame parent, boolean modal, GerenciadorInterface gerenciador) {
         super(parent, modal);
+        this.gerenciador = gerenciador;
         this.tipo = INSERIR;
         initComponents();
     }

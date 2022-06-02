@@ -4,6 +4,7 @@ import gerTarefas.Constantes.TipoFormulario;
 import static gerTarefas.Constantes.TipoFormulario.EDITAR;
 import static gerTarefas.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.Constantes.TipoFormulario.INSERIR;
+import gerTarefas.gerInterface.GerenciadorInterface;
 import gerTarefas.gerInterface.custom.CustomFormularioInterface;
 
 
@@ -19,14 +20,19 @@ import gerTarefas.gerInterface.custom.CustomFormularioInterface;
  */
 public class FormularioProjeto extends javax.swing.JDialog implements CustomFormularioInterface {
     private TipoFormulario tipo;
+    private GerenciadorInterface gerenciador;
 
     /**
      * Creates new form CadastroProjeto
+     * @param parent
+     * @param modal
+     * @param gerenciador
      */
-    public FormularioProjeto(java.awt.Frame parent, boolean modal) {
+    public FormularioProjeto(java.awt.Frame parent, boolean modal,GerenciadorInterface gerenciador) {
         super(parent, modal);
-        initComponents();
         this.tipo = INSERIR;
+        this.gerenciador = gerenciador;
+        initComponents();
     }
 
     /**

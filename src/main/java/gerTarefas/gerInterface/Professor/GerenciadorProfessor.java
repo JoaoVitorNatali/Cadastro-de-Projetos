@@ -4,34 +4,20 @@
  */
 package gerTarefas.gerInterface.Professor;
 
+import gerTarefas.gerDominio.GerDominProfessor;
+import gerTarefas.gerInterface.GerenciadorInterface;
+import gerTarefas.gerInterface.custom.GenericGerenciador;
 import interfaceGrafica.MainWindow;
 import interfaceGrafica.Professores.FormularioProfessor;
-import javax.swing.JTable;
+import modelo.Professor;
 
 /**
  *
  * @author João Vitor
  */
-public class GerenciadorProfessor {
-    private final FormularioProfessor formularioProfessor;
-    private final TableModelProfessor tabelaProfessores;
+public class GerenciadorProfessor extends GenericGerenciador<Professor>{
 
-    public GerenciadorProfessor(MainWindow janelaPrincipal, JTable jTable) {
-        formularioProfessor = new FormularioProfessor(janelaPrincipal, true);
-        
-        tabelaProfessores = new TableModelProfessor();
-        jTable.setModel(tabelaProfessores);
-    }
-
-    public void abrirModalCriacao(){
-        formularioProfessor.abrirModalCriacao();
-    }
-
-    public void abrirModalEdicao(int codigo){
-        formularioProfessor.abrirModalEdicao(codigo);
-    }
-
-    public void abrirModalFiltragem(){
-        formularioProfessor.abrirModalFiltragem();
+    public GerenciadorProfessor(MainWindow janelaPrincipal, GerenciadorInterface gerInter) {
+        super(janelaPrincipal, FormularioProfessor.class, TableModelProfessor.class, gerInter, GerDominProfessor.class);
     }
 }

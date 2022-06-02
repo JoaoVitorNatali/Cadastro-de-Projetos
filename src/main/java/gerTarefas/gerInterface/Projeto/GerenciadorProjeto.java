@@ -4,42 +4,19 @@
  */
 package gerTarefas.gerInterface.Projeto;
 
+import gerTarefas.gerDominio.GerDominProjeto;
+import gerTarefas.gerInterface.GerenciadorInterface;
+import gerTarefas.gerInterface.custom.GenericGerenciador;
 import interfaceGrafica.MainWindow;
-import interfaceGrafica.Projetos.DadosProjeto;
 import interfaceGrafica.Projetos.FormularioProjeto;
-import javax.swing.JTable;
-
+import modelo.Projeto;
 /**
  *
  * @author João Vitor
  */
-public class GerenciadorProjeto {
-    private final FormularioProjeto formularioProjeto;
-    private final DadosProjeto janelaProjeto;
-    private final TableModelProjeto tabelaProjetos;
+public class GerenciadorProjeto extends GenericGerenciador<Projeto>{
     
-
-    public GerenciadorProjeto(MainWindow janelaPrincipal, JTable jTable) {
-        formularioProjeto = new FormularioProjeto(janelaPrincipal, true);
-        janelaProjeto = new DadosProjeto(janelaPrincipal, true);
-        
-        tabelaProjetos = new TableModelProjeto();
-        jTable.setModel(tabelaProjetos);
-    }
-    
-    public void abrirModalCriacao(){
-        formularioProjeto.abrirModalCriacao();
-    }
-    
-    public void abrirModalEdicao(int codigo){
-        formularioProjeto.abrirModalEdicao(codigo);
-    }
-        
-    public void abrirModalFiltragem(){
-        formularioProjeto.abrirModalFiltragem();
-    }
-    
-    public void abrirProjeto(){
-        janelaProjeto.setVisible(true);
+    public GerenciadorProjeto(MainWindow janelaPrincipal, GerenciadorInterface gerInter) {
+        super(janelaPrincipal, FormularioProjeto.class, TableModelProjeto.class, gerInter, GerDominProjeto.class);
     }
 }

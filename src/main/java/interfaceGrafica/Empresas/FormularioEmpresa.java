@@ -5,6 +5,7 @@ import static gerTarefas.Constantes.TipoFormulario.EDITAR;
 import static gerTarefas.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.Constantes.TipoFormulario.INSERIR;
 import gerTarefas.gerInterface.Empresa.GerenciadorEmpresa;
+import gerTarefas.gerInterface.GerenciadorInterface;
 import gerTarefas.gerInterface.custom.CustomFormularioInterface;
 import gerTarefas.gerInterface.custom.ValidaCampoForm;
 
@@ -22,7 +23,7 @@ import gerTarefas.gerInterface.custom.ValidaCampoForm;
 public class FormularioEmpresa extends javax.swing.JDialog implements CustomFormularioInterface {
 
     private TipoFormulario tipo;
-    GerenciadorEmpresa gerEmpresa = null;
+    GerenciadorInterface gerenciador;
     
     /**
      * Creates new form CadastroEmpresa
@@ -30,9 +31,10 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
      * @param modal
      * @param gerenciador
      */
-    public FormularioEmpresa(java.awt.Frame parent, boolean modal, GerenciadorEmpresa gerenciador) {
+    public FormularioEmpresa(java.awt.Frame parent, boolean modal, GerenciadorInterface gerenciador) {
         super(parent, modal);
-        gerEmpresa = gerenciador;
+        this.tipo = INSERIR;
+        this.gerenciador = gerenciador;
         initComponents();
     }
 
@@ -221,7 +223,7 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
         String nomeContato = ValidaCampoForm.getTexto(nomeContatoEmpresa, this, "Digite um nome de contato válido");
         String email = ValidaCampoForm.getTexto(emailEmpresa, this, "Digite um E-mail válido");
         
-        gerEmpresa.inserir(razao, nome, cnpj, telefone, nomeContato, email);
+//        gerEmpresa.inserir(razao, nome, cnpj, telefone, nomeContato, email);
     }//GEN-LAST:event_btnCadastrarActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

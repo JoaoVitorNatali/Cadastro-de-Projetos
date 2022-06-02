@@ -4,7 +4,6 @@
  */
 package interfaceGrafica.Projetos;
 
-import interfaceGrafica.Empresas.FormularioEmpresa;
 
 /**
  *
@@ -16,6 +15,8 @@ public class SelecionarEmpresaProjeto extends javax.swing.JDialog {
     
     /**
      * Creates new form SelecionarEmpresaProjeto
+     * @param parent
+     * @param modal
      */
     public SelecionarEmpresaProjeto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

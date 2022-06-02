@@ -4,34 +4,21 @@
  */
 package gerTarefas.gerInterface.Aluno;
 
+import gerTarefas.gerDominio.GerDominAluno;
+import gerTarefas.gerInterface.GerenciadorInterface;
+import gerTarefas.gerInterface.custom.GenericGerenciador;
 import interfaceGrafica.MainWindow;
 import interfaceGrafica.Alunos.FormularioAluno;
-import javax.swing.JTable;
+import modelo.Aluno;
 
 
 /**
  *
  * @author João Vitor
  */
-public class GerenciadorAluno {
-    private final FormularioAluno formularioAluno;
-    private TableModelAluno tabelaAlunos;
+public class GerenciadorAluno extends GenericGerenciador<Aluno>{
 
-    public GerenciadorAluno(MainWindow janelaPrincipal, JTable jTable) {
-        formularioAluno = new FormularioAluno(janelaPrincipal, true);
-        tabelaAlunos = new TableModelAluno();
-        jTable.setModel(tabelaAlunos);
-    }
-    
-    public void abrirModalCriacao(){
-        formularioAluno.abrirModalCriacao();
-    }
-    
-    public void abrirModalEdicao(int codigo){
-        formularioAluno.abrirModalEdicao(codigo);
-    }
-        
-    public void abrirModalFiltragem(){
-        formularioAluno.abrirModalFiltragem();
+    public GerenciadorAluno(MainWindow janelaPrincipal, GerenciadorInterface gerInter) {
+        super(janelaPrincipal, FormularioAluno.class, TableModelAluno.class, gerInter, GerDominAluno.class);
     }
 }

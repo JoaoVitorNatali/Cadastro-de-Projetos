@@ -1,11 +1,6 @@
 package interfaceGrafica;
 
-
-import gerTarefas.gerInterface.Aluno.GerenciadorAluno;
-import gerTarefas.gerInterface.Empresa.GerenciadorEmpresa;
 import gerTarefas.gerInterface.GerenciadorInterface;
-import gerTarefas.gerInterface.Professor.GerenciadorProfessor;
-import gerTarefas.gerInterface.Projeto.GerenciadorProjeto;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -17,27 +12,26 @@ import gerTarefas.gerInterface.Projeto.GerenciadorProjeto;
  * @author João Vitor
  */
 public class MainWindow extends javax.swing.JFrame {
-    private GerenciadorInterface gerenciadorInterface;
-    
-    // Gerenciadores de interfaces
-    private final GerenciadorAluno gerenciadorAluno;
-    private final GerenciadorEmpresa gerenciadorEmpresa;
-    private final GerenciadorProfessor gerenciadorProfessor;
-    private final GerenciadorProjeto gerenciadorProjeto;
+    private final GerenciadorInterface gerenciadorInterface;
 
+    
     /**
      * Creates new form MainWindow
+     * @param gerenciadorInterface
      */
     public MainWindow(GerenciadorInterface gerenciadorInterface) {
         this.gerenciadorInterface = gerenciadorInterface;
-        initComponents();
         
-        gerenciadorAluno = new GerenciadorAluno(this, jtbListaAlunos);
-        gerenciadorEmpresa = new GerenciadorEmpresa(this, jtbListaEmpresas);
-        gerenciadorProfessor = new GerenciadorProfessor(this, jtbListaProfessores);
-        gerenciadorProjeto = new GerenciadorProjeto(this, jtbListaProjetos);
+        initComponents();
+        iniciarTabelas();
     }
     
+    private void iniciarTabelas(){
+        this.gerenciadorInterface.getAluno().setTableModel(jtbListaAlunos);
+        this.gerenciadorInterface.getEmpresa().setTableModel(jtbListaEmpresas);
+        this.gerenciadorInterface.getProfessor().setTableModel(jtbListaProfessores);
+        this.gerenciadorInterface.getProjeto().setTableModel(jtbListaProjetos);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -469,60 +463,60 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNovoProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProjetoActionPerformed
-        gerenciadorProjeto.abrirModalCriacao();
+        this.gerenciadorInterface.getProjeto().abrirModalCriacao();
         
     }//GEN-LAST:event_btnNovoProjetoActionPerformed
 
     private void btnNovoAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoAlunoActionPerformed
-        gerenciadorAluno.abrirModalCriacao();
+        gerenciadorInterface.getAluno().abrirModalCriacao();
     }//GEN-LAST:event_btnNovoAlunoActionPerformed
 
     private void btnNovoProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoProfessorActionPerformed
-        gerenciadorProfessor.abrirModalCriacao();
+        this.gerenciadorInterface.getProfessor().abrirModalCriacao();
     }//GEN-LAST:event_btnNovoProfessorActionPerformed
 
     private void btnNovaEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovaEmpresaActionPerformed
-        gerenciadorEmpresa.abrirModalCriacao();
+        this.gerenciadorInterface.getEmpresa().abrirModalCriacao();
     }//GEN-LAST:event_btnNovaEmpresaActionPerformed
 
     private void btnFiltrarProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarProjetosActionPerformed
-        gerenciadorProjeto.abrirModalFiltragem();
+        this.gerenciadorInterface.getProjeto().abrirModalFiltragem();
     }//GEN-LAST:event_btnFiltrarProjetosActionPerformed
 
     private void btnFiltrarAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarAlunosActionPerformed
-        gerenciadorAluno.abrirModalFiltragem();
+        gerenciadorInterface.getAluno().abrirModalFiltragem();
     }//GEN-LAST:event_btnFiltrarAlunosActionPerformed
 
     private void btnFiltrarProfessoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarProfessoresActionPerformed
-        gerenciadorProfessor.abrirModalFiltragem();
+        this.gerenciadorInterface.getProfessor().abrirModalFiltragem();
     }//GEN-LAST:event_btnFiltrarProfessoresActionPerformed
 
     private void btnFiltrarEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarEmpresasActionPerformed
-        gerenciadorEmpresa.abrirModalFiltragem();
+        this.gerenciadorInterface.getEmpresa().abrirModalFiltragem();
     }//GEN-LAST:event_btnFiltrarEmpresasActionPerformed
 
     private void btnEditarProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProjetoActionPerformed
-        gerenciadorProjeto.abrirModalEdicao(1);
+        this.gerenciadorInterface.getProjeto().abrirModalEdicao(1);
     }//GEN-LAST:event_btnEditarProjetoActionPerformed
 
     private void btnEditarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarAlunoActionPerformed
-        gerenciadorAluno.abrirModalEdicao(1);
+        gerenciadorInterface.getAluno().abrirModalEdicao(1);
     }//GEN-LAST:event_btnEditarAlunoActionPerformed
 
     private void btnEditarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProfessorActionPerformed
-        gerenciadorProfessor.abrirModalEdicao(1);
+        this.gerenciadorInterface.getProfessor().abrirModalEdicao(1);
     }//GEN-LAST:event_btnEditarProfessorActionPerformed
 
     private void btnEditarEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEmpresaActionPerformed
-        gerenciadorEmpresa.abrirModalEdicao(1);
+        this.gerenciadorInterface.getEmpresa().abrirModalEdicao(1);
     }//GEN-LAST:event_btnEditarEmpresaActionPerformed
 
     private void btnAbrirProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirProjetoActionPerformed
-        gerenciadorProjeto.abrirProjeto();
+//        this.gerenciadorInterface.getProjeto().abrirProjeto();
     }//GEN-LAST:event_btnAbrirProjetoActionPerformed
 
     private void jPanel4ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel4ComponentShown
-        gerenciadorEmpresa.listar();
+        this.gerenciadorInterface.getEmpresa().listar();
     }//GEN-LAST:event_jPanel4ComponentShown
 
 

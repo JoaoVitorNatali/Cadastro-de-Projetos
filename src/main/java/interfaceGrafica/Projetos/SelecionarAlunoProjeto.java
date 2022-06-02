@@ -15,7 +15,6 @@ import interfaceGrafica.Professores.FormularioProfessor;
  */
 public class SelecionarAlunoProjeto extends javax.swing.JDialog {
     
-    private final FormularioAluno formularioAluno;
     private TableModelAluno tabelaAlunos;
 
     /**
@@ -25,7 +24,6 @@ public class SelecionarAlunoProjeto extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
-        formularioAluno = new FormularioAluno(parent, true);
         tabelaAlunos = new TableModelAluno();
         listaAlunos.setModel(tabelaAlunos);
     }
@@ -125,7 +123,7 @@ public class SelecionarAlunoProjeto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void filtrarAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarAlunosActionPerformed
-        formularioAluno.abrirModalFiltragem();
+//        formularioAluno.abrirModalFiltragem();
     }//GEN-LAST:event_filtrarAlunosActionPerformed
 
 

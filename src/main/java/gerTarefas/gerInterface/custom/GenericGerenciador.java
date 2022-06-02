@@ -4,42 +4,87 @@
  */
 package gerTarefas.gerInterface.custom;
 
+import gerTarefas.gerDominio.GenericGerenciadorDominio;
 import gerTarefas.gerDominio.GerenciadorDominio;
-import gerTarefas.gerInterface.Empresa.TableModelEmpresa;
-import interfaceGrafica.Empresas.FormularioEmpresa;
-import interfaceGrafica.MainWindow;
+import gerTarefas.gerInterface.GerenciadorInterface;
+import java.awt.Frame;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JTable;
 
 /**
  *
  * @author João Vitor
- * @param <TableModel>
+ * @param <Entidade>
  */
-public class GenericGerenciador<TableModel> {
+public class GenericGerenciador<Entidade> {
     
-    private final CustomFormularioInterface formulario;
-    private CustomTableModel tabela;
-    private GerenciadorDominio gerDom = null;
+    private JDialog formulario = null;
+    private CustomTableModel tabela = null;
+    private GenericGerenciadorDominio gerenciadorDominio = null;
 
-    public GenericGerenciador(MainWindow janelaPrincipal, JTable jTable) {
-        formulario = (CustomFormularioInterface) new JDialog(janelaPrincipal, true);
+    // Contador de horas gastas aqui: 5
+    // Caso for alterar, aumente o contador
+    public GenericGerenciador(
+            java.awt.Frame janelaPrincipal, 
+            Class formularioGenerico, 
+            Class tableModelGenerico, 
+            GerenciadorInterface gerInter, 
+            Class genericGerenciadorDominio
+    ) {
+        // Instanciando dinamicamente um JDialog de formulario generico
+        try {
+            formulario = (JDialog) formularioGenerico.getConstructor(
+                    Frame.class,
+                    boolean.class,
+                    GerenciadorInterface.class
+            ).newInstance(janelaPrincipal, true, gerInter);
+        } catch (
+                NoSuchMethodException | SecurityException | InvocationTargetException | IllegalArgumentException | IllegalAccessException | InstantiationException ex
+                ) {
+            Logger.getLogger(GenericGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        // Instanciando dinamicamente uma tableModel generica
+        try {
+            tabela = (CustomTableModel) tableModelGenerico.getConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
+            Logger.getLogger(GenericGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
-        tabela = (CustomTableModel<TableModel>) new Object();
-        
-        jTable.setModel(tabela);
-        gerDom = new GerenciadorDominio();
+        // Instanciando dinamicamente um gerenciador de dominio
+        try {
+            gerenciadorDominio = (GenericGerenciadorDominio) genericGerenciadorDominio.getConstructor().newInstance();
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
+            Logger.getLogger(GenericGerenciador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    public GenericGerenciadorDominio getGerenciadorDominio(){
+        return this.gerenciadorDominio;
+    }
+    
+    public void setTableModel(JTable tabelaEntidade){
+        tabelaEntidade.setModel(tabela);
     }
     
     public void abrirModalCriacao(){
-        formulario.abrirModalCriacao();
+        ((CustomFormularioInterface) formulario).abrirModalCriacao();
     }
     
     public void abrirModalEdicao(int codigo){
-        formulario.abrirModalEdicao(codigo);
+        ((CustomFormularioInterface) formulario).abrirModalEdicao(codigo);
     }
         
     public void abrirModalFiltragem(){
-        formulario.abrirModalFiltragem();
+        ((CustomFormularioInterface) formulario).abrirModalFiltragem();
+    }
+    
+    public void listar() {
+        ArrayList<Entidade> lista = (ArrayList) gerenciadorDominio.listar();
+        tabela.adicionar(lista);
     }
 }
