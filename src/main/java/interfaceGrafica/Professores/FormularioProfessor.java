@@ -1,11 +1,14 @@
 package interfaceGrafica.Professores;
 
-import gerTarefas.Constantes.TipoFormulario;
-import static gerTarefas.Constantes.TipoFormulario.EDITAR;
-import static gerTarefas.Constantes.TipoFormulario.FILTRAR;
-import static gerTarefas.Constantes.TipoFormulario.INSERIR;
+import gerTarefas.gerInterface.Constantes.Coordenadoria;
+import gerTarefas.gerInterface.Constantes.TipoFormulario;
+import static gerTarefas.gerInterface.Constantes.TipoFormulario.EDITAR;
+import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
+import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
 import gerTarefas.gerInterface.GerenciadorInterface;
 import gerTarefas.gerInterface.custom.CustomFormularioInterface;
+import gerTarefas.gerInterface.custom.ValidaCampoForm;
+import modelo.Professor;
 
 
 
@@ -62,6 +65,11 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
         jLabel12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         tituloModal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tituloModal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -91,7 +99,6 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
         jLabel10.setText("Coordenadoria");
         jPanel8.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 20));
 
-        coordenadoriaSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administração", "Arquitetura e Urbanismo", "Sistemas de Informação" }));
         jPanel8.add(coordenadoriaSelect, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 230, 30));
 
         jPanel6.add(jPanel8);
@@ -183,13 +190,19 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // TODO add your handling code here:
+        gerenciador.getProfessor().concluir();
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        for(Coordenadoria item : Coordenadoria.values()){
+            coordenadoriaSelect.addItem(item);
+        }
+    }//GEN-LAST:event_formComponentShown
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<String> coordenadoriaSelect;
+    private javax.swing.JComboBox<Object> coordenadoriaSelect;
     private javax.swing.JTextField emailProfessor;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -248,5 +261,25 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
     @Override
     public void closeModal() {
         this.dispose();
+    }
+
+    @Override
+    public Professor toObject() {
+        String nome = ValidaCampoForm.getTexto(nomeProfessor, this, "Insira um nome válido");
+        String siape = ValidaCampoForm.getTexto(siapeProfessor, this, "Insira um nome válido");;
+        Coordenadoria coordenadoria = (Coordenadoria) ValidaCampoForm.getValue(coordenadoriaSelect, this);
+        String email = ValidaCampoForm.getTexto(emailProfessor, this, "Insira um nome válido");;
+        
+        if(nome.equals("") || siape.equals("") || coordenadoria.equals("") || email.equals("")){
+            return null;
+        }
+        
+        Professor professor = new Professor(siape, nome, coordenadoria, email);
+        return professor;
+    }
+
+    @Override
+    public TipoFormulario getTipo() {
+        return this.tipo;
     }
 }

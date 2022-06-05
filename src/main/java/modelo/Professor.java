@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import gerTarefas.gerInterface.Constantes.Coordenadoria;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
@@ -30,7 +31,7 @@ public class Professor implements Serializable {
     @Column(nullable=false)
     private String nome;
     @Column(nullable=false)
-    private int coordenadoria;
+    private Coordenadoria coordenadoria;
     @Column(nullable=false, unique=true)
     private String email;
     
@@ -45,7 +46,7 @@ public class Professor implements Serializable {
     public Professor() {
     }
 
-    public Professor(String siape, String nome, int coordenadoria, String email) {
+    public Professor(String siape, String nome, Coordenadoria coordenadoria, String email) {
         this.siape = siape;
         this.nome = nome;
         this.coordenadoria = coordenadoria;
@@ -60,7 +61,7 @@ public class Professor implements Serializable {
         return nome;
     }
 
-    public int getCoordenadoria() {
+    public Coordenadoria getCoordenadoria() {
         return coordenadoria;
     }
 

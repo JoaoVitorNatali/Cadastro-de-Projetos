@@ -27,15 +27,15 @@ public class Empresa implements Serializable {
     private int codigo;
     @Column(nullable=false, unique=true)
     private String razaoSocial;
-    @Column()
+    @Column(nullable=false)
     private String nomeFantasia;
-    @Column(nullable=false, unique=true)
+    @Column(nullable=false, unique=true, length=14)
     private String cnpj;
-    @Column()
+    @Column(nullable=false)
     private String email;
-    @Column()
+    @Column(nullable=false)
     private String telefone;
-    @Column()
+    @Column(nullable=false)
     private String nomeContato;
     
     @ManyToMany(fetch = FetchType.LAZY)

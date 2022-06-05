@@ -4,11 +4,14 @@
  */
 package gerTarefas.gerInterface.custom;
 
+import gerTarefas.gerInterface.Constantes.TipoFormulario;
+
 /**
  *
  * @author João Vitor
+ * @param <Entidade>
  */
-public interface CustomFormularioInterface {
+public interface CustomFormularioInterface<Entidade> {
 
     public void abrirModalEdicao(int codigo);
 
@@ -18,5 +21,9 @@ public interface CustomFormularioInterface {
 
     public void alterarTituloModal();
     
+    public TipoFormulario getTipo();
+    
     public void closeModal();
+    
+    public Entidade toObject();
 }

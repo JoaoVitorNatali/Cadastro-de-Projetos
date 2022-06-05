@@ -1,13 +1,15 @@
 package interfaceGrafica.Alunos;
 
 
-import gerTarefas.Constantes.TipoFormulario;
-import static gerTarefas.Constantes.TipoFormulario.EDITAR;
-import static gerTarefas.Constantes.TipoFormulario.FILTRAR;
-import static gerTarefas.Constantes.TipoFormulario.INSERIR;
+import gerTarefas.gerInterface.Constantes.Coordenadoria;
+import gerTarefas.gerInterface.Constantes.TipoFormulario;
+import static gerTarefas.gerInterface.Constantes.TipoFormulario.EDITAR;
+import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
+import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
 import gerTarefas.gerInterface.GerenciadorInterface;
 import gerTarefas.gerInterface.custom.CustomFormularioInterface;
-import javax.swing.JOptionPane;
+import gerTarefas.gerInterface.custom.ValidaCampoForm;
+import modelo.Aluno;
 
 
 
@@ -94,10 +96,10 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        matriculaAluno = new javax.swing.JTextField();
+        matriculaAluno = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        cursoAluno = new javax.swing.JTextField();
+        cursoAluno = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
@@ -106,6 +108,11 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
         telefoneAluno = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         tituloModal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tituloModal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -120,6 +127,12 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
 
         jLabel3.setText("Matrícula:");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 244, 24));
+
+        try {
+            matriculaAluno.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#############")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         jPanel3.add(matriculaAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 230, 30));
 
         jPanel2.add(jPanel3);
@@ -128,12 +141,6 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
 
         jLabel4.setText("Curso:");
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 20));
-
-        cursoAluno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cursoAlunoActionPerformed(evt);
-            }
-        });
         jPanel4.add(cursoAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 230, 30));
 
         jPanel2.add(jPanel4);
@@ -239,31 +246,19 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cursoAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cursoAlunoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cursoAlunoActionPerformed
-
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         closeModal();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        String nome = getNomeAluno();
-        String matricula = matriculaAluno.getText();
-        String curso = cursoAluno.getText();
-        String telefone = telefoneAluno.getText();
-        String email = emailAluno.getText();
-        
-        
+        gerenciador.getAluno().concluir();        
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    private String getNomeAluno(){
-        String nome = nomeAluno.getText();
-        if(nome.equals("")){
-            JOptionPane.showMessageDialog(this, "Teste");
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        for(Coordenadoria item : Coordenadoria.values()){
+            cursoAluno.addItem(item);
         }
-        return nome;
-    }
+    }//GEN-LAST:event_formComponentShown
     
     @Override
     public void closeModal() {
@@ -273,7 +268,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JTextField cursoAluno;
+    private javax.swing.JComboBox<Object> cursoAluno;
     private javax.swing.JTextField emailAluno;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -284,9 +279,30 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JTextField matriculaAluno;
+    private javax.swing.JFormattedTextField matriculaAluno;
     private javax.swing.JTextField nomeAluno;
     private javax.swing.JFormattedTextField telefoneAluno;
     private javax.swing.JLabel tituloModal;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public Aluno toObject() {
+        String nome = ValidaCampoForm.getTexto(nomeAluno, this, "Insira um nome válido");
+        String matricula = ValidaCampoForm.getTexto(matriculaAluno, this, "Insira uma matricula válida");
+        Coordenadoria curso = (Coordenadoria) ValidaCampoForm.getValue(cursoAluno, this);
+        String telefone = ValidaCampoForm.getTelefone(telefoneAluno, this, "Insira um telefone válido");
+        String email = ValidaCampoForm.getEmail(emailAluno, this, "Insira um e-mail válido");
+        
+        if(nome.equals("") || matricula.equals("") || telefone.equals("") || email.equals("")){
+            return null;
+        }
+        
+        Aluno aluno = new Aluno(nome, matricula, curso, telefone, email);
+        return aluno;
+    }
+
+    @Override
+    public TipoFormulario getTipo() {
+        return this.tipo;
+    }
 }

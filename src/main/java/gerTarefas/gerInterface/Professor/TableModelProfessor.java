@@ -21,7 +21,6 @@ public class TableModelProfessor extends CustomTableModel<Professor>{
         ); 
         this.setColunas(nomeColunas);
     }
-    
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {

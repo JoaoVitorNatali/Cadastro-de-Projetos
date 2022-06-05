@@ -5,8 +5,13 @@
 package modelo;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -35,10 +40,10 @@ public class Projeto implements Serializable {
     private Date dataInicio;
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataFim;
-    @Column()
+    @Column(nullable=false)
     private String descricao;
     
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "Empresa_Projeto",
         joinColumns = {@JoinColumn(name="projeto")},
@@ -46,13 +51,14 @@ public class Projeto implements Serializable {
     )
     private List<Empresa> empresas;
     
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "Professor_Projeto",
         joinColumns = {@JoinColumn(name="projeto")},
         inverseJoinColumns = {@JoinColumn(name="professor")}
     )
     private List<Professor> professores;
+    
     
     @OneToMany (mappedBy = "codigo.projeto", fetch = FetchType.LAZY)
     private List<AlunoParticipante> alunos;
@@ -61,9 +67,17 @@ public class Projeto implements Serializable {
     }
 
     public Projeto(String titulo, Date dataInicio, Date dataFim, String descricao) {
+        System.out.println("erro aquii");
         this.titulo = titulo;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
+        this.descricao = descricao;
+    }
+    
+    public Projeto(String titulo, String dataInicio, String dataFim, String descricao) {
+        this.titulo = titulo;
+        this.dataInicio = stringToDate(dataInicio);
+        this.dataFim = stringToDate(dataFim);
         this.descricao = descricao;
     }
     
@@ -75,12 +89,12 @@ public class Projeto implements Serializable {
         return titulo;
     }
 
-    public Date getDataInicio() {
-        return dataInicio;
+    public String getDataInicio() {
+        return dateToString(dataInicio);
     }
 
-    public Date getDataFim() {
-        return dataFim;
+    public String getDataFim() {
+        return dateToString(dataFim);
     }
 
     public String getDescricao() {
@@ -93,6 +107,10 @@ public class Projeto implements Serializable {
 
     public List<Professor> getProfessores() {
         return professores;
+    }
+    
+    public List<AlunoParticipante> getAlunos() {
+        return alunos;
     }
     
     public void setCodigo(int codigo) {
@@ -122,6 +140,28 @@ public class Projeto implements Serializable {
     public void setProfessores(List<Professor> professores) {
         this.professores = professores;
     }
+
+    public void setAlunos(List<AlunoParticipante> alunos) {
+        this.alunos = alunos;
+    }
     
+    private String dateToString(Date data){
+        if(data == null) return "";
+        String pattern = "dd/MM/yyyy";
+        DateFormat df = new SimpleDateFormat(pattern);
+        String dataString = df.format(data);
+        return dataString;
+    }
     
+    private Date stringToDate(String dataString){
+        if(dataString.equals("")) return null;
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
+        try {
+            Date dataFormatada = formato.parse(dataString);
+            return dataFormatada;
+        } catch (ParseException ex) {
+            Logger.getLogger(Projeto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

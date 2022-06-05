@@ -4,6 +4,7 @@
  */
 package modelo;
 
+import gerTarefas.gerInterface.Constantes.Coordenadoria;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
@@ -25,13 +26,13 @@ public class Aluno implements Serializable {
     private int codigo;
     @Column(nullable=false)
     private String nome;
-    @Column(nullable=false, unique=true)
+    @Column(nullable=false, unique=true, length=13)
     private String matricula;
     @Column(nullable=false)
-    private String curso;
-    @Column()
+    private Coordenadoria curso;
+    @Column(nullable=false)
     private String telefone;
-    @Column(unique=true)
+    @Column(unique=true, nullable=false)
     private String email;
     
     @OneToMany (mappedBy = "codigo.aluno", fetch = FetchType.LAZY)
@@ -40,7 +41,7 @@ public class Aluno implements Serializable {
     public Aluno() {
     }
 
-    public Aluno(String nome, String matricula, String curso, String telefone, String email){
+    public Aluno(String nome, String matricula, Coordenadoria curso, String telefone, String email){
         this.nome = nome;
         this.matricula = matricula;
         this.curso = curso;
@@ -68,7 +69,7 @@ public class Aluno implements Serializable {
         return this.matricula;
     }
     
-    public String getCurso(){
+    public Coordenadoria getCurso(){
         return this.curso;
     }
     

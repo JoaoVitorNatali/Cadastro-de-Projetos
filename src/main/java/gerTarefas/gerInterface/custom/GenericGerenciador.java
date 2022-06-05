@@ -5,6 +5,7 @@
 package gerTarefas.gerInterface.custom;
 
 import gerTarefas.gerDominio.GenericGerenciadorDominio;
+import gerTarefas.gerInterface.Constantes.TipoFormulario;
 import gerTarefas.gerInterface.GerenciadorInterface;
 import java.awt.Frame;
 import java.lang.reflect.InvocationTargetException;
@@ -82,8 +83,37 @@ public class GenericGerenciador<Entidade> {
         ((CustomFormularioInterface) formulario).abrirModalFiltragem();
     }
     
+    public void fecharModal(){
+        ((CustomFormularioInterface) formulario).closeModal();
+        listar();
+    }
+    
     public void listar() {
         ArrayList<Entidade> lista = (ArrayList) gerenciadorDominio.listar();
         tabela.adicionar(lista);
+    }
+    
+    public void inserir(Entidade entidade){
+        gerenciadorDominio.inserir(entidade);
+        fecharModal();
+    }
+    
+    public void concluir(){
+        Entidade entidade = ((CustomFormularioInterface<Entidade>) formulario).toObject();
+        if(entidade == null) return;
+        
+        TipoFormulario tipo = ((CustomFormularioInterface<Entidade>) formulario).getTipo();
+        
+        if(null != tipo) switch (tipo) {
+            case INSERIR:
+                inserir(entidade);
+                break;
+            case EDITAR:
+                break;
+            case FILTRAR:
+                break;
+            default:
+                break;
+        }
     }
 }

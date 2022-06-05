@@ -16,7 +16,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public abstract class CustomTableModel<Model> extends AbstractTableModel{
     private ArrayList<Model> entidades = new ArrayList<>();
-    public ArrayList<String> colunas;
+    private ArrayList<String> colunas;
     
     public void CustomTableModel(){
         this.colunas = new ArrayList<>();

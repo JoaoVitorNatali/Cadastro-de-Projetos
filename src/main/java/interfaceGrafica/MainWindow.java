@@ -79,6 +79,11 @@ public class MainWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel1ComponentShown(evt);
+            }
+        });
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnNovoProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/add.png"))); // NOI18N
@@ -159,6 +164,12 @@ public class MainWindow extends javax.swing.JFrame {
         jPanel1.add(btnFiltrarProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 170, 40));
 
         jTabbedPane1.addTab("Projetos", jPanel1);
+
+        jPanel2.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel2ComponentShown(evt);
+            }
+        });
 
         btnNovoAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/add.png"))); // NOI18N
         btnNovoAluno.setText("Novo aluno");
@@ -253,6 +264,12 @@ public class MainWindow extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Alunos", jPanel2);
+
+        jPanel3.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel3ComponentShown(evt);
+            }
+        });
 
         btnNovoProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/Imagens/add.png"))); // NOI18N
         btnNovoProfessor.setText("Novo professor");
@@ -518,6 +535,18 @@ public class MainWindow extends javax.swing.JFrame {
     private void jPanel4ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel4ComponentShown
         this.gerenciadorInterface.getEmpresa().listar();
     }//GEN-LAST:event_jPanel4ComponentShown
+
+    private void jPanel3ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel3ComponentShown
+        this.gerenciadorInterface.getProfessor().listar();
+    }//GEN-LAST:event_jPanel3ComponentShown
+
+    private void jPanel2ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel2ComponentShown
+        this.gerenciadorInterface.getAluno().listar();
+    }//GEN-LAST:event_jPanel2ComponentShown
+
+    private void jPanel1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentShown
+        this.gerenciadorInterface.getProjeto().listar();
+    }//GEN-LAST:event_jPanel1ComponentShown
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

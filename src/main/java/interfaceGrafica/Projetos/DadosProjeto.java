@@ -24,6 +24,8 @@ public class DadosProjeto extends javax.swing.JDialog {
     
     /**
      * Creates new form DadosProjeto
+     * @param parent
+     * @param modal
      */
     public DadosProjeto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);

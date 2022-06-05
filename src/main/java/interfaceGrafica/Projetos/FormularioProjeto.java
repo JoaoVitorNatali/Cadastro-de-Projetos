@@ -1,11 +1,13 @@
 package interfaceGrafica.Projetos;
 
-import gerTarefas.Constantes.TipoFormulario;
-import static gerTarefas.Constantes.TipoFormulario.EDITAR;
-import static gerTarefas.Constantes.TipoFormulario.FILTRAR;
-import static gerTarefas.Constantes.TipoFormulario.INSERIR;
+import gerTarefas.gerInterface.Constantes.TipoFormulario;
+import static gerTarefas.gerInterface.Constantes.TipoFormulario.EDITAR;
+import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
+import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
 import gerTarefas.gerInterface.GerenciadorInterface;
 import gerTarefas.gerInterface.custom.CustomFormularioInterface;
+import gerTarefas.gerInterface.custom.ValidaCampoForm;
+import modelo.Projeto;
 
 
 
@@ -89,7 +91,7 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setText("Fim:");
+        jLabel4.setText("Fim (opcional):");
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 20));
 
         try {
@@ -190,7 +192,7 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        // TODO add your handling code here:
+        this.gerenciador.getProjeto().concluir();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
 
@@ -257,5 +259,25 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
     @Override
     public void closeModal() {
         this.dispose();
+    }
+
+    @Override
+    public Projeto toObject() {
+        String titulo = ValidaCampoForm.getTexto(tituloProjeto, this, "Insira um titulo válido");
+        String inicio = ValidaCampoForm.getTexto(dataInicio, this, "Insira uma data de início válida");
+        String fim = dataFim.getText();
+        String descricao = ValidaCampoForm.getTexto(descricaoProjeto, this, "Insira um titulo válido");
+        
+        if(fim.equals("  /  /    ")) fim = "";
+        
+        if(titulo.equals("") || inicio.equals("") || descricao.equals("")) return null;
+        
+        Projeto projeto = new Projeto(titulo, inicio, fim, descricao);
+        return projeto;
+    }
+
+    @Override
+    public TipoFormulario getTipo() {
+        return this.tipo;
     }
 }

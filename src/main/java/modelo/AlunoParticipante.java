@@ -27,9 +27,9 @@ public class AlunoParticipante implements Serializable {
     private Date dataSaida;
     @Column(nullable=false)
     private int cargaHorariaSemanal;
-    @Column()
+    @Column(nullable=true)
     private double valorBolsa;
-    @Column()
+    @Column(nullable=false)
     private boolean bolsista;
 
     public AlunoParticipante() {

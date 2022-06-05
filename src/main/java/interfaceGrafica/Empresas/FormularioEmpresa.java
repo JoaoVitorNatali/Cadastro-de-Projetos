@@ -1,12 +1,13 @@
 package interfaceGrafica.Empresas;
 
-import gerTarefas.Constantes.TipoFormulario;
-import static gerTarefas.Constantes.TipoFormulario.EDITAR;
-import static gerTarefas.Constantes.TipoFormulario.FILTRAR;
-import static gerTarefas.Constantes.TipoFormulario.INSERIR;
+import gerTarefas.gerInterface.Constantes.TipoFormulario;
+import static gerTarefas.gerInterface.Constantes.TipoFormulario.EDITAR;
+import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
+import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
 import gerTarefas.gerInterface.GerenciadorInterface;
 import gerTarefas.gerInterface.custom.CustomFormularioInterface;
 import gerTarefas.gerInterface.custom.ValidaCampoForm;
+import modelo.Empresa;
 
 
 
@@ -19,7 +20,7 @@ import gerTarefas.gerInterface.custom.ValidaCampoForm;
  *
  * @author João Vitor
  */
-public class FormularioEmpresa extends javax.swing.JDialog implements CustomFormularioInterface {
+public class FormularioEmpresa extends javax.swing.JDialog implements CustomFormularioInterface<Empresa> {
 
     private TipoFormulario tipo;
     GerenciadorInterface gerenciador;
@@ -214,15 +215,7 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        String razao = ValidaCampoForm.getTexto(razaoSocial, this, "Digite uma razão social válida");
-        String nome = ValidaCampoForm.getTexto(nomeFantasia, this, "Digite um nome fantasia válido");
-        String cnpj = ValidaCampoForm.getCnpj(cnpjEmpresa, this, "Digite um CNPJ válido");
-        String telefone = ValidaCampoForm.getTelefone(telefoneEmpresa, this, "Digite um telefone válido");
-        
-        String nomeContato = ValidaCampoForm.getTexto(nomeContatoEmpresa, this, "Digite um nome de contato válido");
-        String email = ValidaCampoForm.getTexto(emailEmpresa, this, "Digite um E-mail válido");
-        
-//        gerEmpresa.inserir(razao, nome, cnpj, telefone, nomeContato, email);
+        gerenciador.getEmpresa().concluir();
     }//GEN-LAST:event_btnCadastrarActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -291,5 +284,27 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
     @Override
     public void closeModal() {
         this.dispose();
+    }
+
+    @Override
+    public Empresa toObject() {
+        String razao = ValidaCampoForm.getTexto(razaoSocial, this, "Digite uma razão social válida");
+        String nomeF = ValidaCampoForm.getTexto(nomeFantasia, this, "Digite um nome fantasia válido");
+        String cnpj = ValidaCampoForm.getCnpj(cnpjEmpresa, this, "Digite um CNPJ válido");
+        String telefone = ValidaCampoForm.getTelefone(telefoneEmpresa, this, "Digite um telefone válido");
+        String nomeContato = ValidaCampoForm.getTexto(nomeContatoEmpresa, this, "Digite um nome de contato válido");
+        String email = ValidaCampoForm.getEmail(emailEmpresa, this, "Digite um E-mail válido");
+        
+        if(razao.equals("") || nomeF.equals("") || cnpj.equals("") || telefone.equals("") || nomeContato.equals("") || email.equals("")){
+            return null;
+        }
+        
+        Empresa empresa = new Empresa(razao, nomeF, cnpj,email, telefone, nomeContato);
+        return empresa;
+    }
+
+    @Override
+    public TipoFormulario getTipo() {
+        return this.tipo;
     }
 }
