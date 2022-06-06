@@ -282,4 +282,12 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
     public TipoFormulario getTipo() {
         return this.tipo;
     }
+
+    @Override
+    public void limparCampos() {
+        nomeProfessor.setText("");
+        siapeProfessor.setText("");
+        coordenadoriaSelect.setSelectedIndex(0);
+        emailProfessor.setText("");
+    }
 }

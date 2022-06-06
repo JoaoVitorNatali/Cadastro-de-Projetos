@@ -305,4 +305,13 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
     public TipoFormulario getTipo() {
         return this.tipo;
     }
+
+    @Override
+    public void limparCampos() {
+        nomeAluno.setText("");
+        matriculaAluno.setText("");
+        cursoAluno.setSelectedIndex(0);
+        telefoneAluno.setText("");
+        emailAluno.setText("");
+    }
 }

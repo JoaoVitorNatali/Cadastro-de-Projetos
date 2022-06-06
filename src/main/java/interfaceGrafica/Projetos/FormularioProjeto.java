@@ -280,4 +280,12 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
     public TipoFormulario getTipo() {
         return this.tipo;
     }
+
+    @Override
+    public void limparCampos() {
+        tituloProjeto.setText("");
+        dataInicio.setText("");
+        dataFim.setText("");
+        descricaoProjeto.setText("");
+    }
 }

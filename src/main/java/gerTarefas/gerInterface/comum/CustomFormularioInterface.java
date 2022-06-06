@@ -26,4 +26,6 @@ public interface CustomFormularioInterface<Entidade> {
     public void closeModal();
     
     public Entidade toObject();
+    
+    public void limparCampos();
 }

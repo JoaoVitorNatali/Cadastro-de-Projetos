@@ -307,4 +307,14 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
     public TipoFormulario getTipo() {
         return this.tipo;
     }
+
+    @Override
+    public void limparCampos() {
+        razaoSocial.setText("");
+        nomeFantasia.setText("");
+        cnpjEmpresa.setText("");
+        telefoneEmpresa.setText("");
+        nomeContatoEmpresa.setText("");
+        emailEmpresa.setText("");
+    }
 }
