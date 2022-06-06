@@ -87,7 +87,8 @@ public class GenericGerenciador<Entidade> implements InterfGerenciadorInterface 
     }
     
     public void fecharModal(){
-        ((CustomFormularioInterface) formulario).closeModal();
+        formulario.closeModal();
+        formulario.limparCampos();
         listar();
     }
     
