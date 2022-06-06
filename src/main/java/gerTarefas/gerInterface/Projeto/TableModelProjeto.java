@@ -16,6 +16,7 @@ import java.util.List;
 public class TableModelProjeto extends CustomTableModel<Projeto>{
 
     public TableModelProjeto() {
+        System.out.println("table model projeto");
         ArrayList<String> nomeColunas = new ArrayList<>(
             List.of("Título", "Data de Início", "Data de Finalização")
         ); 

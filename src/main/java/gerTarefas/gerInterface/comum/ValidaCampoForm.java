@@ -4,7 +4,6 @@
  */
 package gerTarefas.gerInterface.comum;
 
-import interfaceGrafica.Professores.FormularioProfessor;
 import java.awt.Component;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

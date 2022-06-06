@@ -49,6 +49,11 @@ public class SelecionarProfessorProjeto extends javax.swing.JDialog {
         filtrarProfessores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         listaProfessores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -64,6 +69,11 @@ public class SelecionarProfessorProjeto extends javax.swing.JDialog {
         jScrollPane1.setViewportView(listaProfessores);
 
         btnSelecionar.setText("Selecionar");
+        btnSelecionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSelecionarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -128,6 +138,14 @@ public class SelecionarProfessorProjeto extends javax.swing.JDialog {
     private void filtrarProfessoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarProfessoresActionPerformed
         this.gerenciador.abrirFiltro();
     }//GEN-LAST:event_filtrarProfessoresActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.gerenciador.listarEntidades();
+    }//GEN-LAST:event_formComponentShown
+
+    private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed
+        this.gerenciador.adicionarProfessor();
+    }//GEN-LAST:event_btnSelecionarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

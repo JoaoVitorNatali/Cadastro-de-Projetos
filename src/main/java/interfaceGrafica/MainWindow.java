@@ -14,6 +14,7 @@ import modelo.Projeto;
  */
 public class MainWindow extends javax.swing.JFrame {
     private final GerenciadorInterface gerenciadorInterface;
+    private boolean carregou = false;
 
     
     /**
@@ -24,14 +25,16 @@ public class MainWindow extends javax.swing.JFrame {
         this.gerenciadorInterface = gerenciadorInterface;
         
         initComponents();
-        iniciarTabelas();
     }
     
-    private void iniciarTabelas(){
+    public void iniciarTabelas(){
         this.gerenciadorInterface.getAluno().setTabela(jtbListaAlunos);
         this.gerenciadorInterface.getEmpresa().setTabela(jtbListaEmpresas);
         this.gerenciadorInterface.getProfessor().setTabela(jtbListaProfessores);
         this.gerenciadorInterface.getProjeto().setTabela(jtbListaProjetos);
+        
+        this.gerenciadorInterface.getProjeto().listar();
+        this.carregou = true;
     }
 
     /**
@@ -479,7 +482,7 @@ public class MainWindow extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -553,11 +556,11 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel2ComponentShown
 
     private void jPanel1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentShown
-        this.gerenciadorInterface.getProjeto().listar();
+        if(this.carregou) this.gerenciadorInterface.getProjeto().listar();
     }//GEN-LAST:event_jPanel1ComponentShown
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        this.gerenciadorInterface.getProjeto().listar();
+
     }//GEN-LAST:event_formComponentShown
 
 

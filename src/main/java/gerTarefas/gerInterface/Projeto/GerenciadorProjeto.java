@@ -4,6 +4,9 @@
  */
 package gerTarefas.gerInterface.Projeto;
 
+import gerTarefas.gerDominio.GerDominAluno;
+import gerTarefas.gerDominio.GerDominEmpresa;
+import gerTarefas.gerDominio.GerDominProfessor;
 import gerTarefas.gerDominio.GerDominProjeto;
 import gerTarefas.gerInterface.Aluno.TableModelAluno;
 import gerTarefas.gerInterface.Empresa.TableModelEmpresa;
@@ -19,6 +22,7 @@ import interfaceGrafica.Projetos.FormularioProjeto;
 import interfaceGrafica.Projetos.SelecionarAlunoProjeto;
 import interfaceGrafica.Projetos.SelecionarEmpresaProjeto;
 import interfaceGrafica.Projetos.SelecionarProfessorProjeto;
+import java.util.Date;
 import modelo.Aluno;
 import modelo.Empresa;
 import modelo.Professor;
@@ -29,11 +33,11 @@ import modelo.Projeto;
  */
 public class GerenciadorProjeto extends GenericGerenciador<Projeto> {
     private Projeto projeto = null;
-    private DadosProjeto dadosProjeto;
+    private final DadosProjeto dadosProjeto;
     
-    private GerenciadorEntidadesProjeto professoresProjeto;
-    private GerenciadorEntidadesProjeto empresasProjeto;
-    private GerenciadorEntidadesProjeto alunosProjeto;
+    private final GerenciadorEntidadesProjeto professoresProjeto;
+    private final GerenciadorEntidadesProjeto empresasProjeto;
+    private final GerenciadorEntidadesProjeto alunosProjeto;
     
     
     public GerenciadorProjeto(MainWindow janelaPrincipal, GerenciadorInterface gerInter) {
@@ -46,7 +50,8 @@ public class GerenciadorProjeto extends GenericGerenciador<Projeto> {
                 new TableModelProfessor(),
                 SelecionarProfessorProjeto.class,
                 FormularioProfessor.class,
-                this
+                this,
+                new GerDominProfessor()
         );
         
         empresasProjeto = new GerenciadorEntidadesProjeto<Empresa>(
@@ -55,7 +60,8 @@ public class GerenciadorProjeto extends GenericGerenciador<Projeto> {
                 new TableModelEmpresa(),
                 SelecionarEmpresaProjeto.class,
                 FormularioEmpresa.class,
-                this
+                this,
+                new GerDominEmpresa()
         );
 
         alunosProjeto = new GerenciadorEntidadesProjeto<Aluno>(
@@ -64,7 +70,8 @@ public class GerenciadorProjeto extends GenericGerenciador<Projeto> {
                 new TableModelAluno(),
                 SelecionarAlunoProjeto.class,
                 FormularioAluno.class,
-                this
+                this,
+                new GerDominAluno()
         );
         
         dadosProjeto = new DadosProjeto(janelaPrincipal, true, this);
@@ -77,6 +84,14 @@ public class GerenciadorProjeto extends GenericGerenciador<Projeto> {
 
     public void listarAlunos() {
         this.getGerenciadorDominio().getGenericDao().get(Projeto.class, projeto.getCodigo());
+    }
+    
+    public void adicionarAluno(Aluno aluno, Date dataEntrada, int cargaHoraria, double valorBolsa, boolean bolsista){
+        this.projeto.setAluno(aluno, dataEntrada, cargaHoraria, valorBolsa, bolsista);
+    }
+    
+    public void atualizarObjeto(){
+        this.getGerenciadorDominio().alterar(this.projeto);
     }
 
     public GerenciadorEntidadesProjeto getProfessoresProjeto() {

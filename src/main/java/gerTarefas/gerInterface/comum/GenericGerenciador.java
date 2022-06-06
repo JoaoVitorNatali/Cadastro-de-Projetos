@@ -81,7 +81,7 @@ public class GenericGerenciador<Entidade> implements InterfGerenciadorInterface 
     public void abrirModalEdicao(int codigo){
         formulario.abrirModalEdicao(codigo);
     }
-        
+
     public void abrirModalFiltragem(){
         formulario.abrirModalFiltragem();
     }

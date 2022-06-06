@@ -28,4 +28,8 @@ public abstract class GenericGerenciadorDominio<Entidade> {
     public void inserir(Entidade entidade){
         genericDao.inserir(entidade);
     }
+    
+    public void alterar(Entidade entidade){
+        genericDao.alterar(entidade);
+    }
 }

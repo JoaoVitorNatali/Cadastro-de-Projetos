@@ -45,6 +45,14 @@ public class AlunoParticipante implements Serializable {
         this.valorBolsa = valorBolsa;
         this.bolsista = bolsista;
     }
+    
+    public AlunoParticipante(Aluno aluno, Projeto projeto, Date dataEntrada, int cargaHorariaSemanal, double valorBolsa, boolean bolsista) {
+        this.codigo = new AlunoParticipantePk(aluno, projeto);
+        this.dataEntrada = dataEntrada;
+        this.cargaHorariaSemanal = cargaHorariaSemanal;
+        this.valorBolsa = valorBolsa;
+        this.bolsista = bolsista;
+    }
 
     public Date getDataEntrada() {
         return dataEntrada;

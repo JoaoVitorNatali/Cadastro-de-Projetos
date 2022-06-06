@@ -25,6 +25,8 @@ public class GenericDao {
 
             Criteria consulta = sessao.createCriteria(classe);
             lista = consulta.list();
+            
+            System.out.println(lista.get(0).toString());
 
             sessao.getTransaction().commit();
             sessao.close();

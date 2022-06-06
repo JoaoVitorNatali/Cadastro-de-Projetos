@@ -32,6 +32,7 @@ public class GerenciadorInterface {
             this.janelaPrincipal = new MainWindow(this);
         }
         this.janelaPrincipal.setVisible(true);
+        this.janelaPrincipal.iniciarTabelas();
     }
     
     public GerenciadorAluno getAluno(){

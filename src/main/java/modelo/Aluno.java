@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,6 +30,7 @@ public class Aluno implements Serializable {
     private String nome;
     @Column(nullable=false, unique=true, length=13)
     private String matricula;
+    @Enumerated(EnumType.ORDINAL)
     @Column(nullable=false)
     private Coordenadoria curso;
     @Column(nullable=false)
@@ -47,14 +50,6 @@ public class Aluno implements Serializable {
         this.curso = curso;
         this.telefone = telefone;
         this.email = email;
-    }
-    
-    public Object[] toArray(){
-        return new Object[] {nome, email, matricula, curso, telefone};
-    }
-    
-    public Object[] getCamposAluno(){
-        return new Object[] {"Nome", "E-mail", "Matrícula", "Curso", "Telefone"};
     }
     
     public int getCodigo() {

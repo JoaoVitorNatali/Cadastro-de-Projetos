@@ -25,9 +25,8 @@ public class DadosProjeto extends javax.swing.JDialog {
     public DadosProjeto(java.awt.Frame parent, boolean modal, GerenciadorProjeto gerenciador) {
         super(parent, modal);
         
-        this.gerenciador = gerenciador;
-        
         initComponents();
+        this.gerenciador = gerenciador;
         iniciarTabelas();
     }
     

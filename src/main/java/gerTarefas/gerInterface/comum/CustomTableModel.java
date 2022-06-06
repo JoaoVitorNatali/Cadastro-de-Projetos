@@ -38,6 +38,10 @@ public abstract class CustomTableModel<Model> extends AbstractTableModel{
         return detalhar(linha);
     }
     
+    public int getSelectedRow(){
+        return this.tabela.getSelectedRow();
+    }
+    
     public Model detalhar(int rowIndex){
         return this.entidades.get(rowIndex);
     }

@@ -31,6 +31,7 @@ public class ConexaoHibernate {
     }
     
     public static SessionFactory getSessionFactory() {
+        System.out.println("getting section factory");
         return sessionFactory;
     }
 }

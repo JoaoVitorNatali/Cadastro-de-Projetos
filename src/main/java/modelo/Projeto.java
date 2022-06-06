@@ -4,14 +4,10 @@
  */
 package modelo;
 
+import gerTarefas.gerInterface.comum.FormataData;
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -43,7 +39,7 @@ public class Projeto implements Serializable {
     @Column(nullable=false)
     private String descricao;
     
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(
         name = "Empresa_Projeto",
         joinColumns = {@JoinColumn(name="projeto")},
@@ -51,16 +47,20 @@ public class Projeto implements Serializable {
     )
     private List<Empresa> empresas;
     
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     @JoinTable(
         name = "Professor_Projeto",
         joinColumns = {@JoinColumn(name="projeto")},
         inverseJoinColumns = {@JoinColumn(name="professor")}
     )
     private List<Professor> professores;
+
+    @Override
+    public String toString() {
+        return "Projeto{" + "codigo=" + codigo + ", titulo=" + titulo + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", descricao=" + descricao + ", empresas=" + empresas + ", professores=" + professores + ", alunos=" + alunos + '}';
+    }
     
-    
-    @OneToMany (mappedBy = "codigo.projeto", fetch = FetchType.LAZY)
+    @OneToMany (mappedBy = "codigo.projeto")
     private List<AlunoParticipante> alunos;
 
     public Projeto() {
@@ -86,6 +86,7 @@ public class Projeto implements Serializable {
     }
 
     public String getTitulo() {
+        System.out.println("getting information projeto");
         return titulo;
     }
 
@@ -145,23 +146,20 @@ public class Projeto implements Serializable {
         this.alunos = alunos;
     }
     
+    public void setAlunoParticipante(AlunoParticipante aluno) {
+        this.alunos.add(aluno);
+    }
+    
+    public void setAluno(Aluno aluno, Date dataEntrada, int cargaHorariaSemanal, double valorBolsa, boolean bolsista){    
+        AlunoParticipante alunoParticipante = new AlunoParticipante(aluno, this, dataEntrada, cargaHorariaSemanal, valorBolsa, bolsista);
+        this.setAlunoParticipante(alunoParticipante);
+    }
+    
     private String dateToString(Date data){
-        if(data == null) return "";
-        String pattern = "dd/MM/yyyy";
-        DateFormat df = new SimpleDateFormat(pattern);
-        String dataString = df.format(data);
-        return dataString;
+        return FormataData.dateToString(data);
     }
     
     private Date stringToDate(String dataString){
-        if(dataString.equals("")) return null;
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy"); 
-        try {
-            Date dataFormatada = formato.parse(dataString);
-            return dataFormatada;
-        } catch (ParseException ex) {
-            Logger.getLogger(Projeto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        return FormataData.stringToDate(dataString);
     }
 }
