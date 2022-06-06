@@ -6,7 +6,7 @@ package gerTarefas.gerInterface.Aluno;
 
 import gerTarefas.gerDominio.GerDominAluno;
 import gerTarefas.gerInterface.GerenciadorInterface;
-import gerTarefas.gerInterface.custom.GenericGerenciador;
+import gerTarefas.gerInterface.comum.GenericGerenciador;
 import interfaceGrafica.MainWindow;
 import interfaceGrafica.Alunos.FormularioAluno;
 import modelo.Aluno;

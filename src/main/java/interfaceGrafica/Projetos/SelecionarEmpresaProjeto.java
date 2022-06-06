@@ -4,6 +4,9 @@
  */
 package interfaceGrafica.Projetos;
 
+import gerTarefas.gerInterface.Projeto.GerenciadorEntidadesProjeto;
+import gerTarefas.gerInterface.Projeto.GerenciadorProjeto;
+
 
 /**
  *
@@ -11,18 +14,20 @@ package interfaceGrafica.Projetos;
  */
 public class SelecionarEmpresaProjeto extends javax.swing.JDialog {
 
-//    private final FormularioEmpresa formularioEmpresa;
+    private GerenciadorEntidadesProjeto gerenciador;
     
     /**
      * Creates new form SelecionarEmpresaProjeto
      * @param parent
      * @param modal
+     * @param gerenciador
      */
-    public SelecionarEmpresaProjeto(java.awt.Frame parent, boolean modal) {
+    public SelecionarEmpresaProjeto(java.awt.Frame parent, boolean modal, GerenciadorEntidadesProjeto gerenciador) {
         super(parent, modal);
         initComponents();
 
-//        formularioEmpresa = new FormularioEmpresa(parent, true, this);
+        this.gerenciador = gerenciador;
+        this.gerenciador.setTabelaPesquisa(listaEmpresas);
     }
 
     /**
@@ -119,7 +124,7 @@ public class SelecionarEmpresaProjeto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void filtrarEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarEmpresasActionPerformed
-//        formularioEmpresa.abrirModalFiltragem();
+        this.gerenciador.abrirFiltro();
     }//GEN-LAST:event_filtrarEmpresasActionPerformed
 
 

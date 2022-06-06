@@ -51,7 +51,7 @@ public class Projeto implements Serializable {
     )
     private List<Empresa> empresas;
     
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "Professor_Projeto",
         joinColumns = {@JoinColumn(name="projeto")},

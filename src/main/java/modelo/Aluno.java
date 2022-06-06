@@ -80,4 +80,8 @@ public class Aluno implements Serializable {
     public String getEmail(){
         return this.email;
     }
+    
+    public List<AlunoParticipante> getAlunos() {
+        return alunos;
+    }
 }

@@ -6,7 +6,7 @@ package gerTarefas.gerInterface.Empresa;
 
 import gerTarefas.gerDominio.GerDominEmpresa;
 import gerTarefas.gerInterface.GerenciadorInterface;
-import gerTarefas.gerInterface.custom.GenericGerenciador;
+import gerTarefas.gerInterface.comum.GenericGerenciador;
 import interfaceGrafica.Empresas.FormularioEmpresa;
 import interfaceGrafica.MainWindow;
 import modelo.Empresa;

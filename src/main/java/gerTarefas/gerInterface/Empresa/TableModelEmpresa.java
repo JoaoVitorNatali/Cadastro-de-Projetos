@@ -5,8 +5,8 @@
 package gerTarefas.gerInterface.Empresa;
 
 import modelo.Empresa;
-import gerTarefas.gerInterface.custom.CustomTableModel;
-import gerTarefas.gerInterface.custom.ValidaCnpj;
+import gerTarefas.gerInterface.comum.CustomTableModel;
+import gerTarefas.gerInterface.comum.ValidaCnpj;
 import java.util.ArrayList;
 import java.util.List;
 

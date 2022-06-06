@@ -100,4 +100,27 @@ public class GenericDao {
             throw new HibernateException(ex);
         }
     }
+    
+    public Object get(Class classe, int id){
+        Session sessao = null;
+        Object objReturn = null;
+        
+        try{
+            sessao = ConexaoHibernate.getSessionFactory().openSession();
+            sessao.getTransaction().begin();
+
+            objReturn = sessao.get(classe, id);
+
+            sessao.getTransaction().commit();
+            sessao.close();
+        } catch(HibernateException ex){
+            if(sessao != null){
+                sessao.getTransaction().rollback();
+                sessao.close();
+            }
+            throw new HibernateException(ex);
+        }
+        
+        return objReturn;
+    }
 }

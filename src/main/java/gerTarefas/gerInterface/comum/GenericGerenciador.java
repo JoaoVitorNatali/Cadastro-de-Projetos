@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package gerTarefas.gerInterface.custom;
+package gerTarefas.gerInterface.comum;
 
 import gerTarefas.gerDominio.GenericGerenciadorDominio;
 import gerTarefas.gerInterface.Constantes.TipoFormulario;
@@ -12,7 +12,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDialog;
 import javax.swing.JTable;
 
 /**
@@ -20,10 +19,10 @@ import javax.swing.JTable;
  * @author João Vitor
  * @param <Entidade>
  */
-public class GenericGerenciador<Entidade> {
+public class GenericGerenciador<Entidade> implements InterfGerenciadorInterface {
     
-    private JDialog formulario = null;
-    private CustomTableModel tabela = null;
+    private CustomFormularioInterface<Entidade> formulario = null;
+    private CustomTableModel tableModel = null;
     private GenericGerenciadorDominio gerenciadorDominio = null;
 
     // Contador de horas gastas aqui: 5
@@ -37,11 +36,11 @@ public class GenericGerenciador<Entidade> {
     ) {
         // Instanciando dinamicamente um JDialog de formulario generico
         try {
-            formulario = (JDialog) formularioGenerico.getConstructor(
+            formulario = (CustomFormularioInterface) formularioGenerico.getConstructor(
                     Frame.class,
                     boolean.class,
-                    GerenciadorInterface.class
-            ).newInstance(janelaPrincipal, true, gerInter);
+                    InterfGerenciadorInterface.class
+            ).newInstance(janelaPrincipal, true, this);
         } catch (
                 NoSuchMethodException | SecurityException | InvocationTargetException | IllegalArgumentException | IllegalAccessException | InstantiationException ex
                 ) {
@@ -49,7 +48,7 @@ public class GenericGerenciador<Entidade> {
         }
         // Instanciando dinamicamente uma tableModel generica
         try {
-            tabela = (CustomTableModel) tableModelGenerico.getConstructor().newInstance();
+            tableModel = (CustomTableModel) tableModelGenerico.getConstructor().newInstance();
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(GenericGerenciador.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -60,27 +59,31 @@ public class GenericGerenciador<Entidade> {
         } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
             Logger.getLogger(GenericGerenciador.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
     
     public GenericGerenciadorDominio getGerenciadorDominio(){
         return this.gerenciadorDominio;
     }
     
-    public void setTableModel(JTable tabelaEntidade){
-        tabelaEntidade.setModel(tabela);
+    public void setTabela(JTable tabelaEntidade){
+        tabelaEntidade.setModel(tableModel);
+        tableModel.setTabela(tabelaEntidade);
+    }
+    
+    public CustomTableModel getTableModel(){
+        return this.tableModel;
     }
     
     public void abrirModalCriacao(){
-        ((CustomFormularioInterface) formulario).abrirModalCriacao();
+        formulario.abrirModalCriacao();
     }
     
     public void abrirModalEdicao(int codigo){
-        ((CustomFormularioInterface) formulario).abrirModalEdicao(codigo);
+        formulario.abrirModalEdicao(codigo);
     }
         
     public void abrirModalFiltragem(){
-        ((CustomFormularioInterface) formulario).abrirModalFiltragem();
+        formulario.abrirModalFiltragem();
     }
     
     public void fecharModal(){
@@ -90,7 +93,7 @@ public class GenericGerenciador<Entidade> {
     
     public void listar() {
         ArrayList<Entidade> lista = (ArrayList) gerenciadorDominio.listar();
-        tabela.adicionar(lista);
+        tableModel.adicionar(lista);
     }
     
     public void inserir(Entidade entidade){
@@ -98,11 +101,12 @@ public class GenericGerenciador<Entidade> {
         fecharModal();
     }
     
+    @Override
     public void concluir(){
-        Entidade entidade = ((CustomFormularioInterface<Entidade>) formulario).toObject();
+        Entidade entidade = formulario.toObject();
         if(entidade == null) return;
         
-        TipoFormulario tipo = ((CustomFormularioInterface<Entidade>) formulario).getTipo();
+        TipoFormulario tipo = formulario.getTipo();
         
         if(null != tipo) switch (tipo) {
             case INSERIR:

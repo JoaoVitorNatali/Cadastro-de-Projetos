@@ -4,9 +4,8 @@
  */
 package interfaceGrafica.Projetos;
 
-import gerTarefas.gerInterface.Projeto.TableModelProfessoresProjeto;
-import gerTarefas.gerInterface.Projeto.TableModelAlunosProjeto;
-import gerTarefas.gerInterface.Projeto.TableModelEmpresasProjeto;
+import gerTarefas.gerInterface.Projeto.GerenciadorProjeto;
+import modelo.Projeto;
 
 /**
  *
@@ -14,38 +13,42 @@ import gerTarefas.gerInterface.Projeto.TableModelEmpresasProjeto;
  */
 public class DadosProjeto extends javax.swing.JDialog {
     
-    private final SelecionarAlunoProjeto listaAlunosSelecionar;
-    private final SelecionarProfessorProjeto listaProfessoresSelecionar;
-    private final SelecionarEmpresaProjeto listaEmpresasSelecionar;
+    private final GerenciadorProjeto gerenciador;
     
-    private TableModelAlunosProjeto alunosProjeto;
-    private TableModelProfessoresProjeto professoresProjeto;
-    private TableModelEmpresasProjeto empresasProjeto;
-    
+   
     /**
      * Creates new form DadosProjeto
      * @param parent
      * @param modal
+     * @param gerenciador
      */
-    public DadosProjeto(java.awt.Frame parent, boolean modal) {
+    public DadosProjeto(java.awt.Frame parent, boolean modal, GerenciadorProjeto gerenciador) {
         super(parent, modal);
         
-        listaAlunosSelecionar = new SelecionarAlunoProjeto(parent, true);
-        listaProfessoresSelecionar = new SelecionarProfessorProjeto(parent, true);
-        listaEmpresasSelecionar = new SelecionarEmpresaProjeto(parent, true);
+        this.gerenciador = gerenciador;
         
         initComponents();
         iniciarTabelas();
     }
     
     private void iniciarTabelas(){
-        alunosProjeto = new TableModelAlunosProjeto();
-        professoresProjeto = new TableModelProfessoresProjeto();
-        empresasProjeto = new TableModelEmpresasProjeto();
+        gerenciador.getAlunosProjeto().setTabelaProjeto(tabelaAlunos);
+        gerenciador.getProfessoresProjeto().setTabelaProjeto(tabelaProfessores);
+        gerenciador.getEmpresasProjeto().setTabelaProjeto(tabelaEmpresas);
+    }
+    
+    public void abrirProjeto(Projeto projeto){
+        popularCamposProjeto(projeto);
+        this.setVisible(true);
+    }
+    
+    public void popularCamposProjeto(Projeto projeto){
+        descricaoProjeto.setText(projeto.getDescricao());
+        tituloProjeto.setText(projeto.getTitulo());
         
-        tabelaAlunos.setModel(alunosProjeto);
-        tabelaProfessores.setModel(professoresProjeto);
-        tabelaEmpresas.setModel(empresasProjeto);
+//        gerenciador.getProjeto().listarAlunos();
+//        gerenciador.getProjeto().listarProfessores();
+//        gerenciador.getProjeto().listarEmpresas();
     }
 
     /**
@@ -57,7 +60,7 @@ public class DadosProjeto extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        tituloProjeto = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaAlunos = new javax.swing.JTable();
@@ -67,21 +70,21 @@ public class DadosProjeto extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         adicionarProfessor = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        descricaoProjeto = new javax.swing.JTextArea();
+        adicionarEmpresa = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tabelaEmpresas = new javax.swing.JTable();
         adicionarAluno = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        adicionarAluno1 = new javax.swing.JButton();
-        adicionarAluno2 = new javax.swing.JButton();
-        adicionarAluno3 = new javax.swing.JButton();
+        removerAluno = new javax.swing.JButton();
+        removerProfessor = new javax.swing.JButton();
+        removerEmpresa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Titulo do projeto");
+        tituloProjeto.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        tituloProjeto.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloProjeto.setText("Titulo do projeto");
 
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.X_AXIS));
 
@@ -147,17 +150,17 @@ public class DadosProjeto extends javax.swing.JDialog {
         jScrollPane3.setBorder(null);
         jScrollPane3.setEnabled(false);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setBorder(javax.swing.BorderFactory.createTitledBorder("Descrição"));
-        jScrollPane3.setViewportView(jTextArea1);
+        descricaoProjeto.setEditable(false);
+        descricaoProjeto.setColumns(20);
+        descricaoProjeto.setRows(5);
+        descricaoProjeto.setBorder(javax.swing.BorderFactory.createTitledBorder("Descrição"));
+        jScrollPane3.setViewportView(descricaoProjeto);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/add.png"))); // NOI18N
-        jButton1.setText("Adicionar Empresa");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        adicionarEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/add.png"))); // NOI18N
+        adicionarEmpresa.setText("Adicionar Empresa");
+        adicionarEmpresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                adicionarEmpresaActionPerformed(evt);
             }
         });
 
@@ -186,27 +189,27 @@ public class DadosProjeto extends javax.swing.JDialog {
 
         jLabel2.setText("Alunos do projeto:");
 
-        adicionarAluno1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
-        adicionarAluno1.setText("Remover");
-        adicionarAluno1.addActionListener(new java.awt.event.ActionListener() {
+        removerAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
+        removerAluno.setText("Remover");
+        removerAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adicionarAluno1ActionPerformed(evt);
+                removerAlunoActionPerformed(evt);
             }
         });
 
-        adicionarAluno2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
-        adicionarAluno2.setText("Remover");
-        adicionarAluno2.addActionListener(new java.awt.event.ActionListener() {
+        removerProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
+        removerProfessor.setText("Remover");
+        removerProfessor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adicionarAluno2ActionPerformed(evt);
+                removerProfessorActionPerformed(evt);
             }
         });
 
-        adicionarAluno3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
-        adicionarAluno3.setText("Remover");
-        adicionarAluno3.addActionListener(new java.awt.event.ActionListener() {
+        removerEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
+        removerEmpresa.setText("Remover");
+        removerEmpresa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adicionarAluno3ActionPerformed(evt);
+                removerEmpresaActionPerformed(evt);
             }
         });
 
@@ -217,7 +220,7 @@ public class DadosProjeto extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tituloProjeto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 799, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -231,19 +234,19 @@ public class DadosProjeto extends javax.swing.JDialog {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(adicionarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(adicionarAluno1, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(removerAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(152, 152, 152)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(adicionarProfessor)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(adicionarAluno2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(removerProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(419, 419, 419)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(adicionarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(adicionarAluno3, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(removerEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -251,22 +254,22 @@ public class DadosProjeto extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(tituloProjeto)
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(adicionarAluno3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(adicionarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(removerEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(10, 10, 10)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(adicionarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(adicionarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(adicionarAluno1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(adicionarAluno2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(removerAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removerProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
@@ -280,37 +283,34 @@ public class DadosProjeto extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void adicionarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarAlunoActionPerformed
-        listaAlunosSelecionar.setVisible(true);
+        gerenciador.getAlunosProjeto().abrirListagem();
     }//GEN-LAST:event_adicionarAlunoActionPerformed
 
     private void adicionarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarProfessorActionPerformed
-        listaProfessoresSelecionar.setVisible(true);
+        gerenciador.getProfessoresProjeto().abrirListagem();
     }//GEN-LAST:event_adicionarProfessorActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        listaEmpresasSelecionar.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void adicionarEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarEmpresaActionPerformed
+        gerenciador.getEmpresasProjeto().abrirListagem();
+    }//GEN-LAST:event_adicionarEmpresaActionPerformed
 
-    private void adicionarAluno1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarAluno1ActionPerformed
+    private void removerAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerAlunoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_adicionarAluno1ActionPerformed
+    }//GEN-LAST:event_removerAlunoActionPerformed
 
-    private void adicionarAluno2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarAluno2ActionPerformed
+    private void removerProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerProfessorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_adicionarAluno2ActionPerformed
+    }//GEN-LAST:event_removerProfessorActionPerformed
 
-    private void adicionarAluno3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarAluno3ActionPerformed
+    private void removerEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerEmpresaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_adicionarAluno3ActionPerformed
-
+    }//GEN-LAST:event_removerEmpresaActionPerformed
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adicionarAluno;
-    private javax.swing.JButton adicionarAluno1;
-    private javax.swing.JButton adicionarAluno2;
-    private javax.swing.JButton adicionarAluno3;
+    private javax.swing.JButton adicionarEmpresa;
     private javax.swing.JButton adicionarProfessor;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextArea descricaoProjeto;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
@@ -319,9 +319,12 @@ public class DadosProjeto extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JButton removerAluno;
+    private javax.swing.JButton removerEmpresa;
+    private javax.swing.JButton removerProfessor;
     private javax.swing.JTable tabelaAlunos;
     private javax.swing.JTable tabelaEmpresas;
     private javax.swing.JTable tabelaProfessores;
+    private javax.swing.JLabel tituloProjeto;
     // End of variables declaration//GEN-END:variables
 }

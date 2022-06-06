@@ -9,6 +9,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -17,6 +18,7 @@ import javax.persistence.TemporalType;
  * @author João Vitor
  */
 @Entity
+@Table(name = "aluno_participante")
 public class AlunoParticipante implements Serializable {
     @EmbeddedId
     private AlunoParticipantePk codigo;

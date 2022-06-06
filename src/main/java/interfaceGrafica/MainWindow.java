@@ -1,6 +1,7 @@
 package interfaceGrafica;
 
 import gerTarefas.gerInterface.GerenciadorInterface;
+import modelo.Projeto;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -27,10 +28,10 @@ public class MainWindow extends javax.swing.JFrame {
     }
     
     private void iniciarTabelas(){
-        this.gerenciadorInterface.getAluno().setTableModel(jtbListaAlunos);
-        this.gerenciadorInterface.getEmpresa().setTableModel(jtbListaEmpresas);
-        this.gerenciadorInterface.getProfessor().setTableModel(jtbListaProfessores);
-        this.gerenciadorInterface.getProjeto().setTableModel(jtbListaProjetos);
+        this.gerenciadorInterface.getAluno().setTabela(jtbListaAlunos);
+        this.gerenciadorInterface.getEmpresa().setTabela(jtbListaEmpresas);
+        this.gerenciadorInterface.getProfessor().setTabela(jtbListaProfessores);
+        this.gerenciadorInterface.getProjeto().setTabela(jtbListaProjetos);
     }
 
     /**
@@ -78,6 +79,11 @@ public class MainWindow extends javax.swing.JFrame {
         btnFiltrarEmpresas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -529,7 +535,9 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarEmpresaActionPerformed
 
     private void btnAbrirProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirProjetoActionPerformed
-//        this.gerenciadorInterface.getProjeto().abrirProjeto();
+        Projeto projeto = (Projeto) this.gerenciadorInterface.getProjeto().getTableModel().getSelected();
+        if(projeto != null)
+            this.gerenciadorInterface.getProjeto().abrirProjeto(projeto);
     }//GEN-LAST:event_btnAbrirProjetoActionPerformed
 
     private void jPanel4ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel4ComponentShown
@@ -547,6 +555,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void jPanel1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentShown
         this.gerenciadorInterface.getProjeto().listar();
     }//GEN-LAST:event_jPanel1ComponentShown
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.gerenciadorInterface.getProjeto().listar();
+    }//GEN-LAST:event_formComponentShown
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

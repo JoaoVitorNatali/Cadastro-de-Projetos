@@ -6,9 +6,9 @@ import gerTarefas.gerInterface.Constantes.TipoFormulario;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.EDITAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
-import gerTarefas.gerInterface.GerenciadorInterface;
-import gerTarefas.gerInterface.custom.CustomFormularioInterface;
-import gerTarefas.gerInterface.custom.ValidaCampoForm;
+import gerTarefas.gerInterface.comum.CustomFormularioInterface;
+import gerTarefas.gerInterface.comum.InterfGerenciadorInterface;
+import gerTarefas.gerInterface.comum.ValidaCampoForm;
 import modelo.Aluno;
 
 
@@ -24,7 +24,7 @@ import modelo.Aluno;
  */
 public class FormularioAluno extends javax.swing.JDialog implements CustomFormularioInterface {
     private TipoFormulario tipo;
-    private GerenciadorInterface gerenciador;
+    private InterfGerenciadorInterface gerenciador;
 
     /**
      * Creates new form CadastroAluno
@@ -32,7 +32,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
      * @param modal
      * @param gerenciador
      */
-    public FormularioAluno(java.awt.Frame parent, boolean modal, GerenciadorInterface gerenciador) {
+    public FormularioAluno(java.awt.Frame parent, boolean modal, InterfGerenciadorInterface gerenciador) {
         super(parent, modal);
         this.gerenciador = gerenciador;
         this.tipo = INSERIR;
@@ -251,7 +251,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        gerenciador.getAluno().concluir();        
+        gerenciador.concluir();        
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown

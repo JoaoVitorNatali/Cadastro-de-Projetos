@@ -5,6 +5,8 @@
 package interfaceGrafica.Projetos;
 
 import gerTarefas.gerInterface.Professor.TableModelProfessor;
+import gerTarefas.gerInterface.Projeto.GerenciadorEntidadesProjeto;
+import gerTarefas.gerInterface.Projeto.GerenciadorProjeto;
 
 /**
  *
@@ -12,22 +14,21 @@ import gerTarefas.gerInterface.Professor.TableModelProfessor;
  */
 public class SelecionarProfessorProjeto extends javax.swing.JDialog {
     
-//    private final FormularioProfessor formularioProfessor;
-    private TableModelProfessor tabelaProfessores;
+    private final GerenciadorEntidadesProjeto gerenciador;
 
     /**
      * Creates new form SelecionarProfessor
      * @param parent
      * @param modal
+     * @param gerenciador
      */
-    public SelecionarProfessorProjeto(java.awt.Frame parent, boolean modal) {
+    public SelecionarProfessorProjeto(java.awt.Frame parent, boolean modal, GerenciadorEntidadesProjeto gerenciador) {
         super(parent, modal);
+        this.gerenciador = gerenciador;
+        
         initComponents();
         
-//        formularioProfessor = new FormularioProfessor(parent, true);
-        tabelaProfessores = new TableModelProfessor();
-        
-        listaProfessores.setModel(tabelaProfessores);
+        gerenciador.setTabelaPesquisa(listaProfessores);
     }
 
 
@@ -125,7 +126,7 @@ public class SelecionarProfessorProjeto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void filtrarProfessoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarProfessoresActionPerformed
-//        formularioProfessor.abrirModalFiltragem();
+        this.gerenciador.abrirFiltro();
     }//GEN-LAST:event_filtrarProfessoresActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

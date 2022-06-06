@@ -5,7 +5,7 @@
 package gerTarefas.gerInterface.Aluno;
 
 import modelo.Aluno;
-import gerTarefas.gerInterface.custom.CustomTableModel;
+import gerTarefas.gerInterface.comum.CustomTableModel;
 import java.util.ArrayList;
 import java.util.List;
 

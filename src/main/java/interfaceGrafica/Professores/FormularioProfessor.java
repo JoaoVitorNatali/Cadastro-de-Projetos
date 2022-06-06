@@ -5,9 +5,9 @@ import gerTarefas.gerInterface.Constantes.TipoFormulario;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.EDITAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
-import gerTarefas.gerInterface.GerenciadorInterface;
-import gerTarefas.gerInterface.custom.CustomFormularioInterface;
-import gerTarefas.gerInterface.custom.ValidaCampoForm;
+import gerTarefas.gerInterface.comum.CustomFormularioInterface;
+import gerTarefas.gerInterface.comum.InterfGerenciadorInterface;
+import gerTarefas.gerInterface.comum.ValidaCampoForm;
 import modelo.Professor;
 
 
@@ -24,7 +24,7 @@ import modelo.Professor;
 public class FormularioProfessor extends javax.swing.JDialog implements CustomFormularioInterface{
 
     private TipoFormulario tipo;
-    private GerenciadorInterface gerenciador;
+    private InterfGerenciadorInterface gerenciador;
     
     /**
      * Creates new form CadastroProfessor
@@ -32,7 +32,7 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
      * @param modal
      * @param gerenciador
      */
-    public FormularioProfessor(java.awt.Frame parent, boolean modal, GerenciadorInterface gerenciador) {
+    public FormularioProfessor(java.awt.Frame parent, boolean modal, InterfGerenciadorInterface gerenciador) {
         super(parent, modal);
         this.tipo = INSERIR;
         this.gerenciador = gerenciador;
@@ -190,7 +190,7 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        gerenciador.getProfessor().concluir();
+        gerenciador.concluir();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -270,7 +270,7 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
         Coordenadoria coordenadoria = (Coordenadoria) ValidaCampoForm.getValue(coordenadoriaSelect, this);
         String email = ValidaCampoForm.getTexto(emailProfessor, this, "Insira um nome válido");;
         
-        if(nome.equals("") || siape.equals("") || coordenadoria.equals("") || email.equals("")){
+        if(nome.equals("") || siape.equals("") || email.equals("")){
             return null;
         }
         

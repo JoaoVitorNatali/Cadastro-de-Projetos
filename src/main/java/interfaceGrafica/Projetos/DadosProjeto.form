@@ -26,7 +26,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" max="32767" attributes="0"/>
+                  <Component id="tituloProjeto" max="32767" attributes="0"/>
                   <Component id="jPanel1" pref="799" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jScrollPane3" min="-2" pref="370" max="-2" attributes="0"/>
@@ -41,7 +41,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="adicionarAluno" min="-2" pref="147" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="adicionarAluno1" min="-2" pref="102" max="-2" attributes="0"/>
+                                      <Component id="removerAluno" min="-2" pref="102" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
@@ -50,15 +50,15 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="adicionarProfessor" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="adicionarAluno2" min="-2" pref="102" max="-2" attributes="0"/>
+                                      <Component id="removerProfessor" min="-2" pref="102" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="419" max="-2" attributes="0"/>
-                              <Component id="jButton1" min="-2" pref="147" max="-2" attributes="0"/>
+                              <Component id="adicionarEmpresa" min="-2" pref="147" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="adicionarAluno3" min="-2" pref="102" max="-2" attributes="0"/>
+                              <Component id="removerEmpresa" min="-2" pref="102" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -72,25 +72,25 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="tituloProjeto" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButton1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="adicionarAluno3" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="adicionarEmpresa" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="removerEmpresa" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                       <Component id="jScrollPane4" min="-2" pref="96" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jScrollPane3" min="-2" pref="139" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="19" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="adicionarAluno" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
                   <Component id="adicionarProfessor" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="adicionarAluno1" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="adicionarAluno2" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="removerAluno" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="removerProfessor" alignment="3" min="-2" pref="34" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -105,7 +105,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="tituloProjeto">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Arial" size="24" style="0"/>
@@ -223,7 +223,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="descricaoProjeto">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
@@ -237,7 +237,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="adicionarEmpresa">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/interfaceGrafica/imagens/add.png"/>
@@ -245,7 +245,7 @@
         <Property name="text" type="java.lang.String" value="Adicionar Empresa"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adicionarEmpresaActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane4">
@@ -290,7 +290,7 @@
         <Property name="text" type="java.lang.String" value="Alunos do projeto:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="adicionarAluno1">
+    <Component class="javax.swing.JButton" name="removerAluno">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/interfaceGrafica/imagens/remove.png"/>
@@ -298,10 +298,10 @@
         <Property name="text" type="java.lang.String" value="Remover"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adicionarAluno1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removerAlunoActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="adicionarAluno2">
+    <Component class="javax.swing.JButton" name="removerProfessor">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/interfaceGrafica/imagens/remove.png"/>
@@ -309,10 +309,10 @@
         <Property name="text" type="java.lang.String" value="Remover"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adicionarAluno2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removerProfessorActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="adicionarAluno3">
+    <Component class="javax.swing.JButton" name="removerEmpresa">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/interfaceGrafica/imagens/remove.png"/>
@@ -320,7 +320,7 @@
         <Property name="text" type="java.lang.String" value="Remover"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adicionarAluno3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removerEmpresaActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

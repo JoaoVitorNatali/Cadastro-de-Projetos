@@ -4,7 +4,7 @@
  */
 package interfaceGrafica.Projetos;
 
-import gerTarefas.gerInterface.Aluno.TableModelAluno;
+import gerTarefas.gerInterface.Projeto.GerenciadorEntidadesProjeto;
 
 
 /**
@@ -13,19 +13,20 @@ import gerTarefas.gerInterface.Aluno.TableModelAluno;
  */
 public class SelecionarAlunoProjeto extends javax.swing.JDialog {
     
-    private TableModelAluno tabelaAlunos;
+    private GerenciadorEntidadesProjeto gerenciador;
 
     /**
      * Creates new form SelecionarAluno
      * @param parent
      * @param modal
+     * @param gerenciador
      */
-    public SelecionarAlunoProjeto(java.awt.Frame parent, boolean modal) {
+    public SelecionarAlunoProjeto(java.awt.Frame parent, boolean modal, GerenciadorEntidadesProjeto gerenciador) {
         super(parent, modal);
         initComponents();
         
-        tabelaAlunos = new TableModelAluno();
-        listaAlunos.setModel(tabelaAlunos);
+        this.gerenciador = gerenciador;
+        this.gerenciador.setTabelaPesquisa(listaAlunos);
     }
     
 
@@ -123,7 +124,7 @@ public class SelecionarAlunoProjeto extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void filtrarAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarAlunosActionPerformed
-//        formularioAluno.abrirModalFiltragem();
+        this.gerenciador.abrirFiltro();
     }//GEN-LAST:event_filtrarAlunosActionPerformed
 
 

@@ -6,7 +6,7 @@ package gerTarefas.gerInterface.Professor;
 
 import gerTarefas.gerDominio.GerDominProfessor;
 import gerTarefas.gerInterface.GerenciadorInterface;
-import gerTarefas.gerInterface.custom.GenericGerenciador;
+import gerTarefas.gerInterface.comum.GenericGerenciador;
 import interfaceGrafica.MainWindow;
 import interfaceGrafica.Professores.FormularioProfessor;
 import modelo.Professor;
