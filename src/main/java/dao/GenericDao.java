@@ -6,6 +6,7 @@ package dao;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -23,8 +24,12 @@ public class GenericDao {
             sessao = ConexaoHibernate.getSessionFactory().openSession();
             sessao.getTransaction().begin();
 
-            Criteria consulta = sessao.createCriteria(classe);
-            lista = consulta.list();
+//            Criteria consulta = sessao.createCriteria(classe);
+//            lista = consulta.list();
+
+            CriteriaQuery consulta = sessao.getCriteriaBuilder().createQuery(classe);
+            consulta.from(classe);
+            lista = sessao.createQuery(consulta).getResultList();
             
             System.out.println(lista.get(0).toString());
 
