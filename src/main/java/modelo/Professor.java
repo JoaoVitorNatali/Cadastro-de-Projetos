@@ -25,8 +25,8 @@ import javax.persistence.ManyToMany;
 public class Professor implements Serializable {
     @Id
     @GeneratedValue ( strategy = GenerationType.IDENTITY )
-    private int Codigo;
-    @Column(nullable=false, unique=true)
+    private int codigo;
+    @Column(nullable=false, unique=true, length=9)
     private String siape;
     @Column(nullable=false)
     private String nome;
@@ -35,7 +35,7 @@ public class Professor implements Serializable {
     @Column(nullable=false, unique=true)
     private String email;
     
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
         name = "Professor_Projeto",
         joinColumns = {@JoinColumn(name="professor")},
@@ -51,6 +51,23 @@ public class Professor implements Serializable {
         this.nome = nome;
         this.coordenadoria = coordenadoria;
         this.email = email;
+    }
+    
+    public Professor(String siape, String nome, Coordenadoria coordenadoria, String email, List<Projeto> projetos) {
+        this.siape = siape;
+        this.nome = nome;
+        this.coordenadoria = coordenadoria;
+        this.email = email;
+        this.projetos = projetos;
+    }
+
+    public Professor(int codigo, String siape, String nome, Coordenadoria coordenadoria, String email, List<Projeto> projetos) {
+        this.codigo = codigo;
+        this.siape = siape;
+        this.nome = nome;
+        this.coordenadoria = coordenadoria;
+        this.email = email;
+        this.projetos = projetos;
     }
 
     public String getSiape() {
@@ -68,6 +85,12 @@ public class Professor implements Serializable {
     public String getEmail() {
         return email;
     }
-    
-    
+
+    public List<Projeto> getProjetos() {
+        return projetos;
+    }
+
+    public void setProjetos(List<Projeto> projetos) {
+        this.projetos = projetos;
+    }
 }

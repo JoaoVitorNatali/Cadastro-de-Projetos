@@ -51,6 +51,25 @@ public class Aluno implements Serializable {
         this.telefone = telefone;
         this.email = email;
     }
+
+    public Aluno(int codigo, String nome, String matricula, Coordenadoria curso, String telefone, String email, List<AlunoParticipante> alunos) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.matricula = matricula;
+        this.curso = curso;
+        this.telefone = telefone;
+        this.email = email;
+        this.alunos = alunos;
+    }
+
+    public Aluno(int codigo, String nome, String matricula, Coordenadoria curso, String telefone, String email) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.matricula = matricula;
+        this.curso = curso;
+        this.telefone = telefone;
+        this.email = email;
+    }
     
     public int getCodigo() {
         return codigo;

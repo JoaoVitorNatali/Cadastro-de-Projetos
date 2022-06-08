@@ -13,11 +13,14 @@ import java.awt.Frame;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JTable;
 import modelo.Aluno;
+import modelo.Empresa;
+import modelo.Professor;
 
 
 /**
@@ -76,30 +79,39 @@ public class GerenciadorEntidadesProjeto<Entidade> implements InterfGerenciadorI
         listagemEntidades.setVisible(true);
     }
     
-    public void listarEntidades(){
+    public void listarEntidadesPesquisa(){
         ArrayList<Entidade> entidades = (ArrayList) this.gerenciadorDominio.listar();
         this.tableModelPesquisa.adicionar(entidades);
     }
     
+    public void listarEntidadesProjeto(List<Entidade> entidades){
+        this.tableModelProjeto.adicionar(entidades);
+    }
+    
     public void fecharListagem(){
         listagemEntidades.setVisible(false);
+        this.gerenciadorProjeto.listarTabelas();
     }
     
     public void adicionarAluno(Date dataEntrada, int cargaHoraria, boolean bolsista, double valorBolsa){
-        Aluno entidade = (Aluno) this.tableModelPesquisa.getSelected();
-        this.gerenciadorProjeto.adicionarAluno(entidade, dataEntrada, cargaHoraria, valorBolsa, bolsista);
+        if(this.tableModelPesquisa.getSelectedRow() != -1){
+            Aluno entidade = (Aluno) this.tableModelPesquisa.getSelected();
+            this.gerenciadorProjeto.adicionarAluno(entidade, dataEntrada, cargaHoraria, valorBolsa, bolsista);
+        }
     }
     
     public void adicionarEmpresa(){
-        
+        if(this.tableModelPesquisa.getSelectedRow() != -1){
+            Empresa entidade = (Empresa) this.tableModelPesquisa.getSelected();
+            this.gerenciadorProjeto.adicionarEmpresa(entidade);
+        }
     }
         
     public void adicionarProfessor(){
-        
-    }
-    
-    public void adicionarEntidade(){
-
+        if(this.tableModelPesquisa.getSelectedRow() != -1){
+            Professor entidade = (Professor) this.tableModelPesquisa.getSelected();
+            this.gerenciadorProjeto.adicionarProfessor(entidade);
+        }
     }
     
     public void abrirFiltro(){

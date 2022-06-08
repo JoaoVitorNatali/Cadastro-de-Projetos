@@ -13,7 +13,7 @@ import java.util.List;
  * @param <Entidade>
  */
 public abstract class GenericGerenciadorDominio<Entidade> {
-    private GenericDao genericDao = null;
+    protected GenericDao genericDao = null;
 
     public GenericGerenciadorDominio() {
         genericDao = new GenericDao();

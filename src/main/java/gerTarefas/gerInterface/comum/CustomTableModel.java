@@ -2,6 +2,7 @@ package gerTarefas.gerInterface.comum;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
 
@@ -16,7 +17,7 @@ import javax.swing.table.AbstractTableModel;
  * @param <Model>
  */
 public abstract class CustomTableModel<Model> extends AbstractTableModel{
-    private ArrayList<Model> entidades = new ArrayList<>();
+    private List<Model> entidades = new ArrayList<>();
     private ArrayList<String> colunas;
     private JTable tabela;
     
@@ -51,7 +52,7 @@ public abstract class CustomTableModel<Model> extends AbstractTableModel{
         fireTableDataChanged();   
     }
     
-    public void adicionar(ArrayList<Model> entidades){
+    public void adicionar(List<Model> entidades){
         this.entidades = entidades;
         fireTableDataChanged();
     }

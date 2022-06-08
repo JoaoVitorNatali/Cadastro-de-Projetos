@@ -4,9 +4,7 @@
  */
 package interfaceGrafica.Projetos;
 
-import gerTarefas.gerInterface.Professor.TableModelProfessor;
 import gerTarefas.gerInterface.Projeto.GerenciadorEntidadesProjeto;
-import gerTarefas.gerInterface.Projeto.GerenciadorProjeto;
 
 /**
  *
@@ -140,7 +138,7 @@ public class SelecionarProfessorProjeto extends javax.swing.JDialog {
     }//GEN-LAST:event_filtrarProfessoresActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        this.gerenciador.listarEntidades();
+        this.gerenciador.listarEntidadesPesquisa();
     }//GEN-LAST:event_formComponentShown
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed

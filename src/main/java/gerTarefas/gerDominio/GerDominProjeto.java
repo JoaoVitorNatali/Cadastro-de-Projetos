@@ -4,6 +4,7 @@
  */
 package gerTarefas.gerDominio;
 
+import dao.ProjetoDao;
 import java.util.List;
 import modelo.Projeto;
 
@@ -12,6 +13,10 @@ import modelo.Projeto;
  * @author João Vitor
  */
 public class GerDominProjeto extends GenericGerenciadorDominio<Projeto>{
+    
+    public GerDominProjeto() {
+        this.genericDao = new ProjetoDao();
+    }
 
     @Override
     public List<Projeto> listar() {

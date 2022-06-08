@@ -22,8 +22,10 @@ import interfaceGrafica.Projetos.FormularioProjeto;
 import interfaceGrafica.Projetos.SelecionarAlunoProjeto;
 import interfaceGrafica.Projetos.SelecionarEmpresaProjeto;
 import interfaceGrafica.Projetos.SelecionarProfessorProjeto;
+import java.util.ArrayList;
 import java.util.Date;
 import modelo.Aluno;
+import modelo.AlunoParticipante;
 import modelo.Empresa;
 import modelo.Professor;
 import modelo.Projeto;
@@ -64,7 +66,7 @@ public class GerenciadorProjeto extends GenericGerenciador<Projeto> {
                 new GerDominEmpresa()
         );
 
-        alunosProjeto = new GerenciadorEntidadesProjeto<Aluno>(
+        alunosProjeto = new GerenciadorEntidadesProjeto<AlunoParticipante>(
                 janelaPrincipal,
                 new TableModelAlunosProjeto(),
                 new TableModelAluno(),
@@ -78,16 +80,38 @@ public class GerenciadorProjeto extends GenericGerenciador<Projeto> {
     }
     
     public void abrirProjeto(Projeto projeto){
+        this.projeto = detalharProjeto(projeto.getCodigo());
         dadosProjeto.abrirProjeto(projeto);
-        this.projeto = projeto;
     }
-
-    public void listarAlunos() {
-        this.getGerenciadorDominio().getGenericDao().get(Projeto.class, projeto.getCodigo());
+    
+    public Projeto detalharProjeto(int codigo){
+        return (Projeto) this.getGerenciadorDominio().getGenericDao().get(Projeto.class, codigo);
+    }
+    
+    public void listarTabelas(){
+        this.projeto = (Projeto) this.getGerenciadorDominio().getGenericDao().get(Projeto.class, projeto.getCodigo());
+        this.professoresProjeto.listarEntidadesProjeto(this.projeto.getProfessores());
+        this.alunosProjeto.listarEntidadesProjeto(this.projeto.getAlunosParticipantes());
+        this.empresasProjeto.listarEntidadesProjeto(this.projeto.getEmpresas());
     }
     
     public void adicionarAluno(Aluno aluno, Date dataEntrada, int cargaHoraria, double valorBolsa, boolean bolsista){
-        this.projeto.setAluno(aluno, dataEntrada, cargaHoraria, valorBolsa, bolsista);
+        this.projeto.addAluno(aluno, dataEntrada, cargaHoraria, valorBolsa, bolsista);
+        System.out.println(this.projeto.getAlunosParticipantes());
+        atualizarObjeto();
+        this.getAlunosProjeto().fecharListagem();
+    }
+    
+    public void adicionarEmpresa(Empresa entidade) {
+        this.projeto.addEmpresa(entidade);
+        atualizarObjeto();
+        this.getEmpresasProjeto().fecharListagem();
+    }
+    
+    public void adicionarProfessor(Professor entidade) {
+        this.projeto.addProfessor(entidade);
+        atualizarObjeto();
+        this.getProfessoresProjeto().fecharListagem();
     }
     
     public void atualizarObjeto(){
@@ -105,6 +129,8 @@ public class GerenciadorProjeto extends GenericGerenciador<Projeto> {
     public GerenciadorEntidadesProjeto getAlunosProjeto() {
         return alunosProjeto;
     }
+
+
     
     
 }

@@ -265,7 +265,7 @@ public class SelecionarAlunoProjeto extends javax.swing.JDialog {
     }//GEN-LAST:event_filtrarAlunosActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        this.gerenciador.listarEntidades();
+        this.gerenciador.listarEntidadesPesquisa();
     }//GEN-LAST:event_formComponentShown
 
     private void btnSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelecionarActionPerformed

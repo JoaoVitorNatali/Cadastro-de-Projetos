@@ -44,10 +44,15 @@ public class DadosProjeto extends javax.swing.JDialog {
     public void popularCamposProjeto(Projeto projeto){
         descricaoProjeto.setText(projeto.getDescricao());
         tituloProjeto.setText(projeto.getTitulo());
+        listarTabelas();
         
 //        gerenciador.getProjeto().listarAlunos();
 //        gerenciador.getProjeto().listarProfessores();
 //        gerenciador.getProjeto().listarEmpresas();
+    }
+    
+    private void listarTabelas(){
+        gerenciador.listarTabelas();
     }
 
     /**

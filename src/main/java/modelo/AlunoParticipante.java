@@ -54,6 +54,10 @@ public class AlunoParticipante implements Serializable {
         this.bolsista = bolsista;
     }
 
+    public AlunoParticipantePk getCodigo() {
+        return codigo;
+    }
+
     public Date getDataEntrada() {
         return dataEntrada;
     }

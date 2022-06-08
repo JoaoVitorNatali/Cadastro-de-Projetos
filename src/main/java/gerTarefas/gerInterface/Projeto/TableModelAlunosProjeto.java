@@ -4,16 +4,16 @@
  */
 package gerTarefas.gerInterface.Projeto;
 
-import modelo.Aluno;
 import gerTarefas.gerInterface.comum.CustomTableModel;
 import java.util.ArrayList;
 import java.util.List;
+import modelo.AlunoParticipante;
 
 /**
  *
  * @author João Vitor
  */
-public class TableModelAlunosProjeto extends CustomTableModel<Aluno>{
+public class TableModelAlunosProjeto extends CustomTableModel<AlunoParticipante>{
 
     public TableModelAlunosProjeto(){
         ArrayList<String> nomeColunas = new ArrayList<>(
@@ -26,10 +26,10 @@ public class TableModelAlunosProjeto extends CustomTableModel<Aluno>{
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return this.detalhar(rowIndex).getNome();
+                return this.detalhar(rowIndex).getCodigo().getAluno().getNome();
             
             case 1:
-                return this.detalhar(rowIndex).getMatricula();
+                return this.detalhar(rowIndex).getCodigo().getAluno().getMatricula();
                 
             default:
                 return this.detalhar(rowIndex);
