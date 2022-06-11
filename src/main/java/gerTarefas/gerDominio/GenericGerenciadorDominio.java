@@ -34,4 +34,8 @@ public abstract class GenericGerenciadorDominio<Entidade> {
     public void alterar(Entidade entidade) throws HibernateException, PersistenceException{
         genericDao.alterar(entidade);
     }
+    
+    public void excluir(Entidade entidade) {
+        genericDao.excluir(entidade);
+    }
 }

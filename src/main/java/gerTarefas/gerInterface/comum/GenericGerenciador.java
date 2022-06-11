@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.PersistenceException;
-import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import org.hibernate.HibernateException;
 
@@ -122,6 +121,20 @@ public class GenericGerenciador<Entidade> implements InterfGerenciadorInterface 
             AlertaErro.showErro(framePrincipal, ex.getCause().toString());
         } catch (PersistenceException ex){
             AlertaErro.showErro(framePrincipal, "Erro ao editar. Verifique se está tentando inserir um valor repetido no banco de dados");
+        }
+    }
+    
+    public void excluir(){
+        Entidade entidade = (Entidade) tableModel.getSelected();
+        if(entidade == null){
+            AlertaErro.showErro(framePrincipal, "Primeiro selecione uma linha da tabela");
+        } else {
+            try{
+                gerenciadorDominio.excluir(entidade);
+                listar();
+            } catch (PersistenceException ex){
+                AlertaErro.showErro(framePrincipal, "Verifique se essa entidade que tentou excluir está cadastrada em algum projeto");
+            }
         }
     }
     

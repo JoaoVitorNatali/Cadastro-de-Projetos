@@ -52,7 +52,7 @@ public class MainWindow extends javax.swing.JFrame {
         listagemProjetos = new javax.swing.JScrollPane();
         jtbListaProjetos = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        excluirProjeto = new javax.swing.JButton();
         btnEditarProjeto = new javax.swing.JButton();
         btnAbrirProjeto = new javax.swing.JButton();
         btnFiltrarProjetos = new javax.swing.JButton();
@@ -61,7 +61,7 @@ public class MainWindow extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbListaAlunos = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        excluirAluno = new javax.swing.JButton();
         btnEditarAluno = new javax.swing.JButton();
         btnFiltrarAlunos = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -69,7 +69,7 @@ public class MainWindow extends javax.swing.JFrame {
         containerprofessores = new javax.swing.JScrollPane();
         jtbListaProfessores = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
-        jButton7 = new javax.swing.JButton();
+        excluirProfessor = new javax.swing.JButton();
         btnEditarProfessor = new javax.swing.JButton();
         btnFiltrarProfessores = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -77,7 +77,7 @@ public class MainWindow extends javax.swing.JFrame {
         containerempresas = new javax.swing.JScrollPane();
         jtbListaEmpresas = new javax.swing.JTable();
         jPanel8 = new javax.swing.JPanel();
-        jButton9 = new javax.swing.JButton();
+        excluirEmpresa = new javax.swing.JButton();
         btnEditarEmpresa = new javax.swing.JButton();
         btnFiltrarEmpresas = new javax.swing.JButton();
 
@@ -114,8 +114,13 @@ public class MainWindow extends javax.swing.JFrame {
 
         jPanel1.add(listagemProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 800, 280));
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
-        jButton1.setText("Excluir");
+        excluirProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
+        excluirProjeto.setText("Excluir");
+        excluirProjeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excluirProjetoActionPerformed(evt);
+            }
+        });
 
         btnEditarProjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/botao-editar.png"))); // NOI18N
         btnEditarProjeto.setText("Editar");
@@ -142,7 +147,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 299, Short.MAX_VALUE)
                 .addComponent(btnEditarProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(excluirProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -152,7 +157,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnAbrirProjeto, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                     .addComponent(btnEditarProjeto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(excluirProjeto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -195,8 +200,13 @@ public class MainWindow extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtbListaAlunos);
 
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
-        jButton4.setText("Excluir");
+        excluirAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
+        excluirAluno.setText("Excluir");
+        excluirAluno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excluirAlunoActionPerformed(evt);
+            }
+        });
 
         btnEditarAluno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/botao-editar.png"))); // NOI18N
         btnEditarAluno.setText("Editar");
@@ -214,7 +224,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(468, Short.MAX_VALUE)
                 .addComponent(btnEditarAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(excluirAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -223,7 +233,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnEditarAluno, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(excluirAluno, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -295,8 +305,13 @@ public class MainWindow extends javax.swing.JFrame {
         ));
         containerprofessores.setViewportView(jtbListaProfessores);
 
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
-        jButton7.setText("Excluir");
+        excluirProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
+        excluirProfessor.setText("Excluir");
+        excluirProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excluirProfessorActionPerformed(evt);
+            }
+        });
 
         btnEditarProfessor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/botao-editar.png"))); // NOI18N
         btnEditarProfessor.setText("Editar");
@@ -314,7 +329,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(468, Short.MAX_VALUE)
                 .addComponent(btnEditarProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(excluirProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -323,7 +338,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnEditarProfessor, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(excluirProfessor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -395,8 +410,13 @@ public class MainWindow extends javax.swing.JFrame {
         ));
         containerempresas.setViewportView(jtbListaEmpresas);
 
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
-        jButton9.setText("Excluir");
+        excluirEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/remove.png"))); // NOI18N
+        excluirEmpresa.setText("Excluir");
+        excluirEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excluirEmpresaActionPerformed(evt);
+            }
+        });
 
         btnEditarEmpresa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/botao-editar.png"))); // NOI18N
         btnEditarEmpresa.setText("Editar");
@@ -414,7 +434,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap(468, Short.MAX_VALUE)
                 .addComponent(btnEditarEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(excluirEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -423,7 +443,7 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnEditarEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(excluirEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -553,6 +573,22 @@ public class MainWindow extends javax.swing.JFrame {
         if(this.carregou) this.gerenciadorInterface.getProjeto().listar();
     }//GEN-LAST:event_jPanel1ComponentShown
 
+    private void excluirEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirEmpresaActionPerformed
+        this.gerenciadorInterface.getEmpresa().excluir();
+    }//GEN-LAST:event_excluirEmpresaActionPerformed
+
+    private void excluirProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirProfessorActionPerformed
+        this.gerenciadorInterface.getProfessor().excluir();
+    }//GEN-LAST:event_excluirProfessorActionPerformed
+
+    private void excluirAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirAlunoActionPerformed
+        this.gerenciadorInterface.getAluno().excluir();
+    }//GEN-LAST:event_excluirAlunoActionPerformed
+
+    private void excluirProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirProjetoActionPerformed
+        this.gerenciadorInterface.getProjeto().excluir();
+    }//GEN-LAST:event_excluirProjetoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirProjeto;
@@ -570,10 +606,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton btnNovoProjeto;
     private javax.swing.JScrollPane containerempresas;
     private javax.swing.JScrollPane containerprofessores;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton excluirAluno;
+    private javax.swing.JButton excluirEmpresa;
+    private javax.swing.JButton excluirProfessor;
+    private javax.swing.JButton excluirProjeto;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
