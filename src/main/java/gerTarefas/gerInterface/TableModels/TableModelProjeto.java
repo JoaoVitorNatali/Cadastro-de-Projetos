@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package gerTarefas.gerInterface.Aluno;
+package gerTarefas.gerInterface.TableModels;
 
-import modelo.Aluno;
-import gerTarefas.gerInterface.comum.CustomTableModel;
+import modelo.Projeto;
+import gerTarefas.gerInterface.TableModels.CustomTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +13,12 @@ import java.util.List;
  *
  * @author João Vitor
  */
-public class TableModelAluno extends CustomTableModel<Aluno>{
-    
-    public TableModelAluno(){
+public class TableModelProjeto extends CustomTableModel<Projeto>{
+
+    public TableModelProjeto() {
+        System.out.println("table model projeto");
         ArrayList<String> nomeColunas = new ArrayList<>(
-                List.of("Nome", "E-mail", "Matricula", "Curso", "Telefone")
+            List.of("Título", "Data de Início", "Data de Finalização")
         ); 
         this.setColunas(nomeColunas);
     }
@@ -26,22 +27,16 @@ public class TableModelAluno extends CustomTableModel<Aluno>{
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return this.detalhar(rowIndex).getNome();
+                return this.detalhar(rowIndex).getTitulo();
             
             case 1:
-                return this.detalhar(rowIndex).getEmail();
+                return this.detalhar(rowIndex).getDataInicio();
                 
             case 2:
-                return this.detalhar(rowIndex).getMatricula();
-                
-            case 3:
-                return this.detalhar(rowIndex).getCurso();
-                
-            case 4:
-                return this.detalhar(rowIndex).getTelefone();
+                return this.detalhar(rowIndex).getDataFim();
                 
             default:
                 return this.detalhar(rowIndex);
         }
-    }    
+    }
 }

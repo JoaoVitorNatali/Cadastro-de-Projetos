@@ -2,23 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package gerTarefas.gerInterface.Projeto;
+package gerTarefas.gerInterface.TableModels;
 
-import modelo.Projeto;
-import gerTarefas.gerInterface.comum.CustomTableModel;
+import gerTarefas.gerInterface.TableModels.CustomTableModel;
 import java.util.ArrayList;
 import java.util.List;
+import modelo.Empresa;
 
 /**
  *
  * @author João Vitor
  */
-public class TableModelProjeto extends CustomTableModel<Projeto>{
-
-    public TableModelProjeto() {
-        System.out.println("table model projeto");
+public class TableModelEmpresasProjeto extends CustomTableModel<Empresa>{
+    public TableModelEmpresasProjeto(){
         ArrayList<String> nomeColunas = new ArrayList<>(
-            List.of("Título", "Data de Início", "Data de Finalização")
+                List.of("Nome", "CNPJ")
         ); 
         this.setColunas(nomeColunas);
     }
@@ -27,13 +25,10 @@ public class TableModelProjeto extends CustomTableModel<Projeto>{
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return this.detalhar(rowIndex).getTitulo();
+                return this.detalhar(rowIndex).getNomeFantasia();
             
             case 1:
-                return this.detalhar(rowIndex).getDataInicio();
-                
-            case 2:
-                return this.detalhar(rowIndex).getDataFim();
+                return this.detalhar(rowIndex).getCnpj();
                 
             default:
                 return this.detalhar(rowIndex);

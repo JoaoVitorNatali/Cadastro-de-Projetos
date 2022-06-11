@@ -2,24 +2,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package gerTarefas.gerInterface.Projeto;
+package gerTarefas.gerInterface;
 
+import gerTarefas.gerInterface.GerenciadorEntidadesProjeto;
+import gerTarefas.gerInterface.TableModels.TableModelEmpresasProjeto;
+import gerTarefas.gerInterface.TableModels.TableModelProfessoresProjeto;
+import gerTarefas.gerInterface.TableModels.TableModelAlunosProjeto;
+import gerTarefas.gerInterface.TableModels.TableModelProjeto;
 import gerTarefas.gerDominio.GerDominAluno;
 import gerTarefas.gerDominio.GerDominEmpresa;
 import gerTarefas.gerDominio.GerDominProfessor;
 import gerTarefas.gerDominio.GerDominProjeto;
-import gerTarefas.gerInterface.Aluno.TableModelAluno;
-import gerTarefas.gerInterface.Empresa.TableModelEmpresa;
+import gerTarefas.gerInterface.TableModels.TableModelAluno;
+import gerTarefas.gerInterface.TableModels.TableModelEmpresa;
 import gerTarefas.gerInterface.GerenciadorInterface;
-import gerTarefas.gerInterface.Professor.TableModelProfessor;
+import gerTarefas.gerInterface.TableModels.TableModelProfessor;
 import gerTarefas.gerInterface.comum.AlertaErro;
 import gerTarefas.gerInterface.comum.GenericGerenciador;
-import interfaceGrafica.Alunos.FormularioAluno;
-import interfaceGrafica.Empresas.FormularioEmpresa;
+import interfaceGrafica.Formularios.FormularioAluno;
+import interfaceGrafica.Formularios.FormularioEmpresa;
 import interfaceGrafica.MainWindow;
-import interfaceGrafica.Professores.FormularioProfessor;
+import interfaceGrafica.Formularios.FormularioProfessor;
 import interfaceGrafica.Projetos.DadosProjeto;
-import interfaceGrafica.Projetos.FormularioProjeto;
+import interfaceGrafica.Formularios.FormularioProjeto;
 import interfaceGrafica.Projetos.SelecionarAlunoProjeto;
 import interfaceGrafica.Projetos.SelecionarEmpresaProjeto;
 import interfaceGrafica.Projetos.SelecionarProfessorProjeto;

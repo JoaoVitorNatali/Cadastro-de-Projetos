@@ -1,4 +1,4 @@
-package gerTarefas.gerInterface.comum;
+package gerTarefas.gerInterface.TableModels;
 
 
 import java.util.ArrayList;

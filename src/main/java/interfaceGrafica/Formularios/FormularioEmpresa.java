@@ -1,4 +1,4 @@
-package interfaceGrafica.Empresas;
+package interfaceGrafica.Formularios;
 
 import gerTarefas.gerInterface.Constantes.TipoFormulario;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.EDITAR;

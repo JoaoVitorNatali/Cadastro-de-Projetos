@@ -1,4 +1,4 @@
-package interfaceGrafica.Professores;
+package interfaceGrafica.Formularios;
 
 import gerTarefas.gerInterface.Constantes.Coordenadoria;
 import gerTarefas.gerInterface.Constantes.TipoFormulario;

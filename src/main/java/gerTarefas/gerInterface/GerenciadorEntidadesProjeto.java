@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package gerTarefas.gerInterface.Projeto;
+package gerTarefas.gerInterface;
 
 import gerTarefas.gerDominio.GenericGerenciadorDominio;
 import gerTarefas.gerInterface.comum.CustomFormularioInterface;
-import gerTarefas.gerInterface.comum.CustomTableModel;
+import gerTarefas.gerInterface.TableModels.CustomTableModel;
 import gerTarefas.gerInterface.comum.InterfGerenciadorInterface;
 import interfaceGrafica.MainWindow;
 import java.awt.Frame;

@@ -1,7 +1,5 @@
-package interfaceGrafica.Alunos;
+package interfaceGrafica.Formularios;
 
-
-import gerTarefas.gerInterface.Constantes.Coordenadoria;
 import gerTarefas.gerInterface.Constantes.TipoFormulario;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.EDITAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
@@ -9,7 +7,7 @@ import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
 import gerTarefas.gerInterface.comum.CustomFormularioInterface;
 import gerTarefas.gerInterface.comum.InterfGerenciadorInterface;
 import gerTarefas.gerInterface.comum.ValidaCampoForm;
-import modelo.Aluno;
+import modelo.Projeto;
 
 
 
@@ -22,74 +20,22 @@ import modelo.Aluno;
  *
  * @author João Vitor
  */
-public class FormularioAluno extends javax.swing.JDialog implements CustomFormularioInterface<Aluno> {
-    private Aluno aluno;
+public class FormularioProjeto extends javax.swing.JDialog implements CustomFormularioInterface<Projeto> {
     private TipoFormulario tipo;
-    private InterfGerenciadorInterface gerenciador;
+    private InterfGerenciadorInterface gerenciadorInterface;
+    private Projeto projeto = null;
 
     /**
-     * Creates new form CadastroAluno
+     * Creates new form CadastroProjeto
      * @param parent
      * @param modal
-     * @param gerenciador
+     * @param gerenciadorInterface
      */
-    public FormularioAluno(java.awt.Frame parent, boolean modal, InterfGerenciadorInterface gerenciador) {
+    public FormularioProjeto(java.awt.Frame parent, boolean modal, InterfGerenciadorInterface gerenciadorInterface) {
         super(parent, modal);
-        this.gerenciador = gerenciador;
         this.tipo = INSERIR;
+        this.gerenciadorInterface = gerenciadorInterface;
         initComponents();
-    }
-
-
-    @Override
-    public void abrirModalEdicao(Aluno aluno) {
-        this.aluno = aluno;
-        this.tipo = EDITAR;
-        alterarTituloModal();
-        
-        nomeAluno.setText(aluno.getNome());
-        matriculaAluno.setText(aluno.getMatricula());
-        cursoAluno.setSelectedItem(aluno.getCurso());
-        telefoneAluno.setText(aluno.getTelefone());
-        emailAluno.setText(aluno.getEmail());
-        
-        this.setVisible(true);
-    }
-
-    @Override
-    public void abrirModalCriacao(){
-        this.aluno = null;
-        this.tipo = INSERIR;
-        alterarTituloModal();
-        this.setVisible(true);
-    }
-    
-    @Override
-    public void abrirModalFiltragem() {
-        this.aluno = null;
-        this.tipo = FILTRAR;
-        alterarTituloModal();
-        this.setVisible(true);
-    }
-
-    @Override
-    public void alterarTituloModal(){
-        String titulo = "";
-        if(null != this.tipo) switch (this.tipo) {
-            case INSERIR:
-                titulo = "Novo Aluno";
-                break;
-            case EDITAR:
-                titulo = "Editar Aluno";
-                break;
-            case FILTRAR:
-                titulo = "Filtrar Aluno";
-                break;
-            default:
-                break;
-        }
-        
-        tituloModal.setText(titulo);
     }
 
     /**
@@ -103,61 +49,66 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
 
         tituloModal = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        nomeAluno = new javax.swing.JTextField();
+        tituloProjeto = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        matriculaAluno = new javax.swing.JFormattedTextField();
+        dataInicio = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        cursoAluno = new javax.swing.JComboBox<>();
+        dataFim = new javax.swing.JFormattedTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descricaoProjeto = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
         btnCadastrar = new javax.swing.JButton();
-        emailAluno = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        telefoneAluno = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                formComponentShown(evt);
-            }
-        });
 
         tituloModal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tituloModal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        tituloModal.setText("Novo Aluno");
+        tituloModal.setText("Novo Projeto");
         tituloModal.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
-        jLabel2.setText("Nome do aluno:");
+        jLabel2.setText("Título do projeto:");
 
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel3.setText("Matrícula:");
+        jLabel3.setText("Início:");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 244, 24));
 
         try {
-            matriculaAluno.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#############")));
+            dataInicio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        jPanel3.add(matriculaAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 230, 30));
+        dataInicio.setActionCommand("<Not Set>");
+        jPanel3.add(dataInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 240, 30));
 
         jPanel2.add(jPanel3);
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel4.setText("Curso:");
+        jLabel4.setText("Fim (opcional):");
         jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 20));
-        jPanel4.add(cursoAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 230, 30));
+
+        try {
+            dataFim.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        jPanel4.add(dataFim, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 230, 30));
 
         jPanel2.add(jPanel4);
 
-        jLabel5.setText("Telefone:");
+        descricaoProjeto.setColumns(20);
+        descricaoProjeto.setRows(5);
+        jScrollPane1.setViewportView(descricaoProjeto);
+
+        jLabel5.setText("Descrição:");
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -173,14 +124,6 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
             }
         });
 
-        jLabel6.setText("E-mail:");
-
-        try {
-            telefoneAluno.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) #####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -188,25 +131,16 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(telefoneAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(emailAluno))
+                    .addComponent(tituloProjeto)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addComponent(nomeAluno))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -215,18 +149,14 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
                 .addGap(24, 24, 24)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nomeAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tituloProjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(emailAluno, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(telefoneAluno))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                     .addComponent(btnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -263,70 +193,110 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        gerenciador.concluir();        
+        this.gerenciadorInterface.concluir();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        cursoAluno.removeAllItems();
-        for(Coordenadoria item : Coordenadoria.values()){
-            cursoAluno.addItem(item);
-        }
-    }//GEN-LAST:event_formComponentShown
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JFormattedTextField dataFim;
+    private javax.swing.JFormattedTextField dataInicio;
+    private javax.swing.JTextArea descricaoProjeto;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel tituloModal;
+    private javax.swing.JTextField tituloProjeto;
+    // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void abrirModalEdicao(Projeto projeto) {
+        this.projeto = projeto;
+        this.tipo = EDITAR;
+        alterarTituloModal();
+        
+        tituloProjeto.setText(projeto.getTitulo());
+        dataInicio.setText(projeto.getDataInicio());
+        if(projeto.getDataFim() != null) dataFim.setText(projeto.getDataFim());
+        descricaoProjeto.setText(projeto.getDescricao());
+        
+        this.setVisible(true);
+    }
+
+    @Override
+    public void abrirModalCriacao() {
+        this.projeto = null;
+        this.tipo = INSERIR;
+        alterarTituloModal();
+        this.setVisible(true);
+    }
     
+    @Override
+    public void abrirModalFiltragem() {
+        this.projeto = null;
+        this.tipo = FILTRAR;
+        alterarTituloModal();
+        this.setVisible(true);
+    }
+
+    @Override
+    public void alterarTituloModal() {
+        String titulo = "";
+        if(null != this.tipo) switch (this.tipo) {
+            case INSERIR:
+                titulo = "Novo Projeto";
+                break;
+            case EDITAR:
+                titulo = "Editar Projeto";
+                break;
+            case FILTRAR:
+                titulo = "Filtrar Projeto";
+                break;
+            default:
+                break;
+        }
+        
+        tituloModal.setText(titulo);
+    }
+
     @Override
     public void closeModal() {
         this.dispose();
     }
     
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCadastrar;
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JComboBox<Object> cursoAluno;
-    private javax.swing.JTextField emailAluno;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JFormattedTextField matriculaAluno;
-    private javax.swing.JTextField nomeAluno;
-    private javax.swing.JFormattedTextField telefoneAluno;
-    private javax.swing.JLabel tituloModal;
-    // End of variables declaration//GEN-END:variables
-
-    
-    private Aluno getAluno(){
-        return new Aluno(
-                nomeAluno.getText(),
-                matriculaAluno.getText(),
-                (Coordenadoria) cursoAluno.getSelectedItem(),
-                telefoneAluno.getText(),
-                emailAluno.getText()
+    private Projeto getProjeto(){
+        return new Projeto(
+                tituloProjeto.getText(),
+                dataInicio.getText().replace("  /  /    ", ""),
+                dataFim.getText().replace("  /  /    ", ""),
+                descricaoProjeto.getText()
         );
     }
-    
+
     @Override
-    public Aluno toObject() {
-        if(this.tipo == FILTRAR) return getAluno();
+    public Projeto toObject() {
+        if(this.tipo == FILTRAR) return getProjeto();
         
-        String nome = ValidaCampoForm.getTexto(nomeAluno, this, "Insira um nome válido");
-        String matricula = ValidaCampoForm.getTexto(matriculaAluno, this, "Insira uma matricula válida");
-        Coordenadoria curso = (Coordenadoria) ValidaCampoForm.getValue(cursoAluno, this);
-        String telefone = ValidaCampoForm.getTelefone(telefoneAluno, this, "Insira um telefone válido");
-        String email = ValidaCampoForm.getEmail(emailAluno, this, "Insira um e-mail válido");
+        String titulo = ValidaCampoForm.getTexto(tituloProjeto, this, "Insira um titulo válido");
+        String inicio = ValidaCampoForm.getTexto(dataInicio, this, "Insira uma data de início válida");
+        String fim = dataFim.getText();
+        String descricao = ValidaCampoForm.getTexto(descricaoProjeto, this, "Insira um titulo válido");
         
-        if(nome.equals("") || matricula.equals("") || telefone.equals("") || email.equals("")){
-            return null;
-        }
+        if(fim.equals("  /  /    ")) fim = "";
         
-        Aluno alu;
-        if(this.tipo == EDITAR) alu = new Aluno(aluno.getCodigo(), nome, matricula, curso, telefone, email);
-        else alu = new Aluno(nome, matricula, curso, telefone, email);
-        return alu;
+        if(titulo.equals("") || inicio.equals("") || descricao.equals("")) return null;
+        
+        Projeto obj;
+        if(this.tipo == EDITAR) obj = new Projeto(projeto.getCodigo(),titulo, inicio, fim, descricao);
+        else obj = new Projeto(titulo, inicio, fim, descricao);
+        return obj;
     }
 
     @Override
@@ -336,10 +306,9 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
 
     @Override
     public void limparCampos() {
-        nomeAluno.setText("");
-        matriculaAluno.setText("");
-        cursoAluno.setSelectedIndex(0);
-        telefoneAluno.setText("");
-        emailAluno.setText("");
+        tituloProjeto.setText("");
+        dataInicio.setText("");
+        dataFim.setText("");
+        descricaoProjeto.setText("");
     }
 }

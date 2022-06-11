@@ -4,7 +4,7 @@
  */
 package interfaceGrafica.Projetos;
 
-import gerTarefas.gerInterface.Projeto.GerenciadorEntidadesProjeto;
+import gerTarefas.gerInterface.GerenciadorEntidadesProjeto;
 
 /**
  *

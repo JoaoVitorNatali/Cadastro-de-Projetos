@@ -4,6 +4,7 @@
  */
 package gerTarefas.gerInterface.comum;
 
+import gerTarefas.gerInterface.TableModels.CustomTableModel;
 import gerTarefas.gerDominio.GenericGerenciadorDominio;
 import gerTarefas.gerInterface.Constantes.TipoFormulario;
 import gerTarefas.gerInterface.GerenciadorInterface;

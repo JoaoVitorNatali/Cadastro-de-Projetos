@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package gerTarefas.gerInterface.Professor;
+package gerTarefas.gerInterface.TableModels;
 
-import modelo.Professor;
-import gerTarefas.gerInterface.comum.CustomTableModel;
+import modelo.Aluno;
+import gerTarefas.gerInterface.TableModels.CustomTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,33 +13,35 @@ import java.util.List;
  *
  * @author João Vitor
  */
-public class TableModelProfessor extends CustomTableModel<Professor>{
-
-    public TableModelProfessor() {
+public class TableModelAluno extends CustomTableModel<Aluno>{
+    
+    public TableModelAluno(){
         ArrayList<String> nomeColunas = new ArrayList<>(
-            List.of("SIAPE", "Nome", "Coordenadoria", "E-mail")
+                List.of("Nome", "E-mail", "Matricula", "Curso", "Telefone")
         ); 
         this.setColunas(nomeColunas);
     }
-
+    
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return this.detalhar(rowIndex).getSiape();
+                return this.detalhar(rowIndex).getNome();
             
             case 1:
-                return this.detalhar(rowIndex).getNome();
+                return this.detalhar(rowIndex).getEmail();
                 
             case 2:
-                return this.detalhar(rowIndex).getCoordenadoria();
-            
+                return this.detalhar(rowIndex).getMatricula();
+                
             case 3:
-                return this.detalhar(rowIndex).getEmail();
+                return this.detalhar(rowIndex).getCurso();
+                
+            case 4:
+                return this.detalhar(rowIndex).getTelefone();
                 
             default:
                 return this.detalhar(rowIndex);
         }
-    }
-    
+    }    
 }

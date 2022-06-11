@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package gerTarefas.gerInterface.Projeto;
+package gerTarefas.gerInterface.TableModels;
 
-import gerTarefas.gerInterface.comum.CustomTableModel;
+import gerTarefas.gerInterface.TableModels.CustomTableModel;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.AlunoParticipante;

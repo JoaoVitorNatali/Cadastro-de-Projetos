@@ -4,7 +4,7 @@
  */
 package interfaceGrafica.Projetos;
 
-import gerTarefas.gerInterface.Projeto.GerenciadorEntidadesProjeto;
+import gerTarefas.gerInterface.GerenciadorEntidadesProjeto;
 import gerTarefas.gerInterface.comum.AlertaErro;
 import gerTarefas.gerInterface.comum.FormataData;
 import gerTarefas.gerInterface.comum.ValidaCampoForm;

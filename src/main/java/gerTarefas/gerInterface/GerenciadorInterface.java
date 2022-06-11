@@ -4,10 +4,6 @@
  */
 package gerTarefas.gerInterface;
 import gerTarefas.gerDominio.GerenciadorDominio;
-import gerTarefas.gerInterface.Aluno.GerenciadorAluno;
-import gerTarefas.gerInterface.Empresa.GerenciadorEmpresa;
-import gerTarefas.gerInterface.Professor.GerenciadorProfessor;
-import gerTarefas.gerInterface.Projeto.GerenciadorProjeto;
 import interfaceGrafica.MainWindow;
 
 /**

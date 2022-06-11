@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package gerTarefas.gerInterface.Projeto;
+package gerTarefas.gerInterface.TableModels;
 
 import modelo.Professor;
-import gerTarefas.gerInterface.comum.CustomTableModel;
+import gerTarefas.gerInterface.TableModels.CustomTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,26 +13,33 @@ import java.util.List;
  *
  * @author João Vitor
  */
-public class TableModelProfessoresProjeto extends CustomTableModel<Professor>{
-    public TableModelProfessoresProjeto() {
+public class TableModelProfessor extends CustomTableModel<Professor>{
+
+    public TableModelProfessor() {
         ArrayList<String> nomeColunas = new ArrayList<>(
-            List.of("Nome", "SIAPE")
+            List.of("SIAPE", "Nome", "Coordenadoria", "E-mail")
         ); 
         this.setColunas(nomeColunas);
     }
-    
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
+                return this.detalhar(rowIndex).getSiape();
+            
+            case 1:
                 return this.detalhar(rowIndex).getNome();
                 
-            case 1:
-                return this.detalhar(rowIndex).getSiape();
-
+            case 2:
+                return this.detalhar(rowIndex).getCoordenadoria();
+            
+            case 3:
+                return this.detalhar(rowIndex).getEmail();
+                
             default:
                 return this.detalhar(rowIndex);
         }
     }
+    
 }
