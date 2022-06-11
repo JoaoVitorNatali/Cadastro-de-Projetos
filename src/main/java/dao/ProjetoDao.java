@@ -4,27 +4,10 @@
  */
 package dao;
 
-import java.util.ArrayList;
 import java.util.List;
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Fetch;
-import javax.persistence.criteria.Join;
-import javax.persistence.criteria.JoinType;
-import javax.persistence.criteria.ParameterExpression;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
-import javax.persistence.metamodel.ListAttribute;
-import modelo.Aluno;
-import modelo.AlunoParticipante;
-import modelo.Empresa;
-import modelo.Professor;
 import modelo.Projeto;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.sql.Update;
 
 /**
  *

@@ -517,25 +517,24 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_btnFiltrarEmpresasActionPerformed
 
     private void btnEditarProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProjetoActionPerformed
-        this.gerenciadorInterface.getProjeto().abrirModalEdicao(1);
+        this.gerenciadorInterface.getProjeto().abrirModalEdicao();
     }//GEN-LAST:event_btnEditarProjetoActionPerformed
 
     private void btnEditarAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarAlunoActionPerformed
-        gerenciadorInterface.getAluno().abrirModalEdicao(1);
+        gerenciadorInterface.getAluno().abrirModalEdicao();
     }//GEN-LAST:event_btnEditarAlunoActionPerformed
 
     private void btnEditarProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProfessorActionPerformed
-        this.gerenciadorInterface.getProfessor().abrirModalEdicao(1);
+        this.gerenciadorInterface.getProfessor().abrirModalEdicao();
     }//GEN-LAST:event_btnEditarProfessorActionPerformed
 
     private void btnEditarEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarEmpresaActionPerformed
-        this.gerenciadorInterface.getEmpresa().abrirModalEdicao(1);
+        this.gerenciadorInterface.getEmpresa().abrirModalEdicao();
     }//GEN-LAST:event_btnEditarEmpresaActionPerformed
 
     private void btnAbrirProjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirProjetoActionPerformed
         Projeto projeto = (Projeto) this.gerenciadorInterface.getProjeto().getTableModel().getSelected();
-        if(projeto != null)
-            this.gerenciadorInterface.getProjeto().abrirProjeto(projeto);
+        if(projeto != null) this.gerenciadorInterface.getProjeto().abrirProjeto(projeto);
     }//GEN-LAST:event_btnAbrirProjetoActionPerformed
 
     private void jPanel4ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel4ComponentShown

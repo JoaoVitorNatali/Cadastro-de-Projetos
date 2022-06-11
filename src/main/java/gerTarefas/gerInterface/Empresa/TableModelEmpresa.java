@@ -27,7 +27,7 @@ public class TableModelEmpresa extends CustomTableModel<Empresa>{
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return this.detalhar(rowIndex).getNomeFantasia();
+                return this.detalhar(rowIndex).getRazaoSocial();
             
             case 1:
                 return ValidaCnpj.imprimeCNPJ(this.detalhar(rowIndex).getCnpj());

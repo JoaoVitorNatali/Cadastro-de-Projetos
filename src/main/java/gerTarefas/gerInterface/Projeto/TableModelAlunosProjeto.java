@@ -17,7 +17,7 @@ public class TableModelAlunosProjeto extends CustomTableModel<AlunoParticipante>
 
     public TableModelAlunosProjeto(){
         ArrayList<String> nomeColunas = new ArrayList<>(
-                List.of("Nome", "Matricula")
+                List.of("Nome", "Valor bolsa")
         ); 
         this.setColunas(nomeColunas);
     }
@@ -29,7 +29,7 @@ public class TableModelAlunosProjeto extends CustomTableModel<AlunoParticipante>
                 return this.detalhar(rowIndex).getCodigo().getAluno().getNome();
             
             case 1:
-                return this.detalhar(rowIndex).getCodigo().getAluno().getMatricula();
+                return this.detalhar(rowIndex).getValorBolsa();
                 
             default:
                 return this.detalhar(rowIndex);

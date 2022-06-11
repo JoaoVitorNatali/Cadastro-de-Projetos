@@ -13,7 +13,7 @@ import gerTarefas.gerInterface.Constantes.TipoFormulario;
  */
 public interface CustomFormularioInterface<Entidade> {
 
-    public void abrirModalEdicao(int codigo);
+    public void abrirModalEdicao(Entidade entidade);
 
     public void abrirModalCriacao();
 

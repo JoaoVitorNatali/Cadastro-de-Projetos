@@ -6,6 +6,7 @@ package dao;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.PersistenceException;
 import javax.persistence.criteria.CriteriaQuery;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -84,7 +85,7 @@ public class GenericDao {
         }
     }
     
-    public void alterar(Object object) throws HibernateException{
+    public void alterar(Object object) throws HibernateException, PersistenceException{
         Session sessao = null;
         
         try{

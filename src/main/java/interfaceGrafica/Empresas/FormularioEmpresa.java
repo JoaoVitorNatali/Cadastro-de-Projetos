@@ -21,7 +21,7 @@ import modelo.Empresa;
  * @author João Vitor
  */
 public class FormularioEmpresa extends javax.swing.JDialog implements CustomFormularioInterface<Empresa> {
-
+    private Empresa empresa;
     private TipoFormulario tipo;
     InterfGerenciadorInterface gerenciador;
     
@@ -241,9 +241,18 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void abrirModalEdicao(int codigo) {
+    public void abrirModalEdicao(Empresa empresa) {
+        this.empresa = empresa;
         this.tipo = EDITAR;
         alterarTituloModal();
+        
+        razaoSocial.setText(empresa.getRazaoSocial());
+        nomeFantasia.setText(empresa.getNomeFantasia());
+        cnpjEmpresa.setText(empresa.getCnpj());
+        telefoneEmpresa.setText(empresa.getTelefone());
+        nomeContatoEmpresa.setText(empresa.getNomeContato());
+        emailEmpresa.setText(empresa.getEmail());
+        
         this.setVisible(true);
     }
 
@@ -299,8 +308,10 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
             return null;
         }
         
-        Empresa empresa = new Empresa(razao, nomeF, cnpj,email, telefone, nomeContato);
-        return empresa;
+        Empresa emp;
+        if(this.tipo == EDITAR) emp = new Empresa(empresa.getCodigo(), razao, nomeF, cnpj,email, telefone, nomeContato);
+        else emp = new Empresa(empresa.getCodigo(), razao, nomeF, cnpj,email, telefone, nomeContato);
+        return emp;
     }
 
     @Override

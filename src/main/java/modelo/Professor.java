@@ -70,6 +70,20 @@ public class Professor implements Serializable {
         this.projetos = projetos;
     }
 
+    public Professor(int codigo, String siape, String nome, Coordenadoria coordenadoria, String email) {
+        this.codigo = codigo;
+        this.siape = siape;
+        this.nome = nome;
+        this.coordenadoria = coordenadoria;
+        this.email = email;
+    }
+    
+    
+
+    public int getCodigo() {
+        return codigo;
+    }
+
     public String getSiape() {
         return siape;
     }

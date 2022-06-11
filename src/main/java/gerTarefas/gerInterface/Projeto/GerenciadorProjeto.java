@@ -12,6 +12,7 @@ import gerTarefas.gerInterface.Aluno.TableModelAluno;
 import gerTarefas.gerInterface.Empresa.TableModelEmpresa;
 import gerTarefas.gerInterface.GerenciadorInterface;
 import gerTarefas.gerInterface.Professor.TableModelProfessor;
+import gerTarefas.gerInterface.comum.AlertaErro;
 import gerTarefas.gerInterface.comum.GenericGerenciador;
 import interfaceGrafica.Alunos.FormularioAluno;
 import interfaceGrafica.Empresas.FormularioEmpresa;
@@ -22,13 +23,13 @@ import interfaceGrafica.Projetos.FormularioProjeto;
 import interfaceGrafica.Projetos.SelecionarAlunoProjeto;
 import interfaceGrafica.Projetos.SelecionarEmpresaProjeto;
 import interfaceGrafica.Projetos.SelecionarProfessorProjeto;
-import java.util.ArrayList;
 import java.util.Date;
 import modelo.Aluno;
 import modelo.AlunoParticipante;
 import modelo.Empresa;
 import modelo.Professor;
 import modelo.Projeto;
+import org.hibernate.HibernateException;
 /**
  *
  * @author João Vitor
@@ -96,25 +97,38 @@ public class GerenciadorProjeto extends GenericGerenciador<Projeto> {
     }
     
     public void adicionarAluno(Aluno aluno, Date dataEntrada, int cargaHoraria, double valorBolsa, boolean bolsista){
+        
         this.projeto.addAluno(aluno, dataEntrada, cargaHoraria, valorBolsa, bolsista);
-        System.out.println(this.projeto.getAlunosParticipantes());
-        atualizarObjeto();
-        this.getAlunosProjeto().fecharListagem();
+        try{
+            atualizarObjeto();
+            this.getAlunosProjeto().fecharListagem();
+        } catch (HibernateException ex){
+            AlertaErro.showErro(this.getFramePrincipal(), "Esse aluno já está cadastrado no projeto");
+            this.projeto = detalharProjeto(this.projeto.getCodigo()); // ajustar objeto de objeto para não repetir os dados
+        }   
     }
     
     public void adicionarEmpresa(Empresa entidade) {
         this.projeto.addEmpresa(entidade);
-        atualizarObjeto();
-        this.getEmpresasProjeto().fecharListagem();
+        try{
+            atualizarObjeto();
+            this.getEmpresasProjeto().fecharListagem();
+        } catch (HibernateException ex){
+            AlertaErro.showErro(this.getFramePrincipal(), "Essa empresa já está cadastrada no projeto");
+        }
     }
     
     public void adicionarProfessor(Professor entidade) {
         this.projeto.addProfessor(entidade);
-        atualizarObjeto();
-        this.getProfessoresProjeto().fecharListagem();
+        try{
+            atualizarObjeto();
+            this.getProfessoresProjeto().fecharListagem();
+        } catch (HibernateException ex){
+            AlertaErro.showErro(this.getFramePrincipal(), "Esse professor já está cadastrado no projeto");
+        }
     }
     
-    public void atualizarObjeto(){
+    public void atualizarObjeto() throws HibernateException{
         this.getGerenciadorDominio().alterar(this.projeto);
     }
 

@@ -58,6 +58,18 @@ public class Empresa implements Serializable {
         this.nomeContato = nomeContato;
     }
 
+    public Empresa(int codigo, String razaoSocial, String nomeFantasia, String cnpj, String email, String telefone, String nomeContato) {
+        this.codigo = codigo;
+        this.razaoSocial = razaoSocial;
+        this.nomeFantasia = nomeFantasia;
+        this.cnpj = cnpj;
+        this.email = email;
+        this.telefone = telefone;
+        this.nomeContato = nomeContato;
+    }
+    
+    
+
     public int getCodigo() {
         return codigo;
     }    

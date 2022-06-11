@@ -5,6 +5,7 @@
 package interfaceGrafica.Projetos;
 
 import gerTarefas.gerInterface.Projeto.GerenciadorEntidadesProjeto;
+import gerTarefas.gerInterface.comum.AlertaErro;
 import gerTarefas.gerInterface.comum.FormataData;
 import gerTarefas.gerInterface.comum.ValidaCampoForm;
 import java.util.Date;
@@ -273,10 +274,15 @@ public class SelecionarAlunoProjeto extends javax.swing.JDialog {
             
             String dataEntrada = ValidaCampoForm.getTexto(entrada, this, "Digite uma data de entrada válida");
             String cargaHoraria = ValidaCampoForm.getTexto(horasSemana, this, "Digite uma carga horária válida");
+            
+            if(cargaHoraria.trim().equals("")) return;
+            if(dataEntrada.equals("  /  /    ")) AlertaErro.showErro(this, "Insira uma data válida");
+            
+            
             int tipo = tipoAluno.getSelection().getMnemonic();
             double valor = 0;
             
-            if(tipo == 'b'){
+            if(tipo == 66){
                 String val = ValidaCampoForm.getTexto(valorBolsa, this, "Digite um valor válido para bolsa");
                 if(val.equals("")) return;
                 

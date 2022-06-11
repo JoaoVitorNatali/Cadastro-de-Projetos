@@ -21,8 +21,8 @@ import modelo.Professor;
  *
  * @author João Vitor
  */
-public class FormularioProfessor extends javax.swing.JDialog implements CustomFormularioInterface{
-
+public class FormularioProfessor extends javax.swing.JDialog implements CustomFormularioInterface<Professor>{
+    private Professor professor;
     private TipoFormulario tipo;
     private InterfGerenciadorInterface gerenciador;
     
@@ -194,6 +194,7 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        coordenadoriaSelect.removeAllItems();
         for(Coordenadoria item : Coordenadoria.values()){
             coordenadoriaSelect.addItem(item);
         }
@@ -218,9 +219,15 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void abrirModalEdicao(int codigo) {
+    public void abrirModalEdicao(Professor professor) {
+        this.professor = professor;
         this.tipo = EDITAR;
         alterarTituloModal();
+        
+        nomeProfessor.setText(professor.getNome());
+        siapeProfessor.setText(professor.getSiape());
+        coordenadoriaSelect.setSelectedItem(professor.getCoordenadoria());
+        emailProfessor.setText(professor.getEmail());
         this.setVisible(true);
     }
 
@@ -274,8 +281,10 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
             return null;
         }
         
-        Professor professor = new Professor(siape, nome, coordenadoria, email);
-        return professor;
+        Professor prof;
+        if(this.tipo == EDITAR) prof = new Professor(professor.getCodigo(), siape, nome, coordenadoria, email);
+        else prof = new Professor(siape, nome, coordenadoria, email);
+        return prof;
     }
 
     @Override

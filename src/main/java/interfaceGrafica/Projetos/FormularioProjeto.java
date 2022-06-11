@@ -20,9 +20,10 @@ import modelo.Projeto;
  *
  * @author João Vitor
  */
-public class FormularioProjeto extends javax.swing.JDialog implements CustomFormularioInterface {
+public class FormularioProjeto extends javax.swing.JDialog implements CustomFormularioInterface<Projeto> {
     private TipoFormulario tipo;
     private InterfGerenciadorInterface gerenciadorInterface;
+    private Projeto projeto = null;
 
     /**
      * Creates new form CadastroProjeto
@@ -216,14 +217,22 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void abrirModalEdicao(int codigo) {
+    public void abrirModalEdicao(Projeto projeto) {
+        this.projeto = projeto;
         this.tipo = EDITAR;
         alterarTituloModal();
+        
+        tituloProjeto.setText(projeto.getTitulo());
+        dataInicio.setText(projeto.getDataInicio());
+        if(projeto.getDataFim() != null) dataFim.setText(projeto.getDataFim());
+        descricaoProjeto.setText(projeto.getDescricao());
+        
         this.setVisible(true);
     }
 
     @Override
     public void abrirModalCriacao() {
+        this.projeto = null;
         this.tipo = INSERIR;
         alterarTituloModal();
         this.setVisible(true);
@@ -231,6 +240,7 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
     
     @Override
     public void abrirModalFiltragem() {
+        this.projeto = null;
         this.tipo = FILTRAR;
         alterarTituloModal();
         this.setVisible(true);
@@ -272,8 +282,10 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
         
         if(titulo.equals("") || inicio.equals("") || descricao.equals("")) return null;
         
-        Projeto projeto = new Projeto(titulo, inicio, fim, descricao);
-        return projeto;
+        Projeto obj;
+        if(this.tipo == EDITAR) obj = new Projeto(projeto.getCodigo(),titulo, inicio, fim, descricao);
+        else obj = new Projeto(titulo, inicio, fim, descricao);
+        return obj;
     }
 
     @Override

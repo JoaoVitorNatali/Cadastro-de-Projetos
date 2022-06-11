@@ -6,6 +6,8 @@ package gerTarefas.gerDominio;
 
 import dao.GenericDao;
 import java.util.List;
+import javax.persistence.PersistenceException;
+import org.hibernate.HibernateException;
 
 /**
  *
@@ -29,7 +31,7 @@ public abstract class GenericGerenciadorDominio<Entidade> {
         genericDao.inserir(entidade);
     }
     
-    public void alterar(Entidade entidade){
+    public void alterar(Entidade entidade) throws HibernateException, PersistenceException{
         genericDao.alterar(entidade);
     }
 }

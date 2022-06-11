@@ -22,7 +22,8 @@ import modelo.Aluno;
  *
  * @author João Vitor
  */
-public class FormularioAluno extends javax.swing.JDialog implements CustomFormularioInterface {
+public class FormularioAluno extends javax.swing.JDialog implements CustomFormularioInterface<Aluno> {
+    private Aluno aluno;
     private TipoFormulario tipo;
     private InterfGerenciadorInterface gerenciador;
 
@@ -39,15 +40,25 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
         initComponents();
     }
 
+
     @Override
-    public void abrirModalEdicao(int codigoAluno){
+    public void abrirModalEdicao(Aluno aluno) {
+        this.aluno = aluno;
         this.tipo = EDITAR;
         alterarTituloModal();
+        
+        nomeAluno.setText(aluno.getNome());
+        matriculaAluno.setText(aluno.getMatricula());
+        cursoAluno.setSelectedItem(aluno.getCurso());
+        telefoneAluno.setText(aluno.getTelefone());
+        emailAluno.setText(aluno.getEmail());
+        
         this.setVisible(true);
     }
 
     @Override
     public void abrirModalCriacao(){
+        this.aluno = null;
         this.tipo = INSERIR;
         alterarTituloModal();
         this.setVisible(true);
@@ -55,6 +66,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
     
     @Override
     public void abrirModalFiltragem() {
+        this.aluno = null;
         this.tipo = FILTRAR;
         alterarTituloModal();
         this.setVisible(true);
@@ -255,6 +267,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        cursoAluno.removeAllItems();
         for(Coordenadoria item : Coordenadoria.values()){
             cursoAluno.addItem(item);
         }
@@ -297,8 +310,10 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
             return null;
         }
         
-        Aluno aluno = new Aluno(nome, matricula, curso, telefone, email);
-        return aluno;
+        Aluno alu;
+        if(this.tipo == EDITAR) alu = new Aluno(aluno.getCodigo(), nome, matricula, curso, telefone, email);
+        else alu = new Aluno(nome, matricula, curso, telefone, email);
+        return alu;
     }
 
     @Override

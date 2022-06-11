@@ -76,6 +76,14 @@ public class Projeto implements Serializable {
         this.descricao = descricao;
     }
     
+    public Projeto(int codigo, String titulo, String dataInicio, String dataFim, String descricao) {
+        this.codigo = codigo;
+        this.titulo = titulo;
+        this.dataInicio = stringToDate(dataInicio);
+        this.dataFim = stringToDate(dataFim);
+        this.descricao = descricao;
+    }
+    
     public Projeto(String titulo, Date dataInicio, Date dataFim, String descricao, List<Professor> professores, List<Empresa> empresas) {
         this.titulo = titulo;
         this.dataInicio = dataInicio;
