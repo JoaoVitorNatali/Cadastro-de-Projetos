@@ -294,9 +294,22 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
     public void closeModal() {
         this.dispose();
     }
+    
+    private Empresa getEmpresa(){
+        return new Empresa(
+                razaoSocial.getText(),
+                nomeFantasia.getText(),
+                cnpjEmpresa.getText(),
+                emailEmpresa.getText(),
+                telefoneEmpresa.getText(),
+                nomeContatoEmpresa.getText()
+        );
+    }
 
     @Override
     public Empresa toObject() {
+        if(this.tipo == FILTRAR) return getEmpresa();
+        
         String razao = ValidaCampoForm.getTexto(razaoSocial, this, "Digite uma razão social válida");
         String nomeF = ValidaCampoForm.getTexto(nomeFantasia, this, "Digite um nome fantasia válido");
         String cnpj = ValidaCampoForm.getCnpj(cnpjEmpresa, this, "Digite um CNPJ válido");
@@ -310,7 +323,7 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
         
         Empresa emp;
         if(this.tipo == EDITAR) emp = new Empresa(empresa.getCodigo(), razao, nomeF, cnpj,email, telefone, nomeContato);
-        else emp = new Empresa(empresa.getCodigo(), razao, nomeF, cnpj,email, telefone, nomeContato);
+        else emp = new Empresa(empresa.getCodigo(), razao, nomeF, cnpj, email, telefone, nomeContato);
         return emp;
     }
 

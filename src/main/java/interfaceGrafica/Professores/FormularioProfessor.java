@@ -269,9 +269,20 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
     public void closeModal() {
         this.dispose();
     }
+    
+    private Professor getProfessor(){
+        return new Professor(
+                siapeProfessor.getText(),
+                nomeProfessor.getText(),
+                (Coordenadoria) coordenadoriaSelect.getSelectedItem(),
+                emailProfessor.getText()
+        );
+    }
 
     @Override
     public Professor toObject() {
+        if(this.tipo == FILTRAR) return getProfessor();
+        
         String nome = ValidaCampoForm.getTexto(nomeProfessor, this, "Insira um nome válido");
         String siape = ValidaCampoForm.getTexto(siapeProfessor, this, "Insira um nome válido");;
         Coordenadoria coordenadoria = (Coordenadoria) ValidaCampoForm.getValue(coordenadoriaSelect, this);

@@ -270,9 +270,20 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
     public void closeModal() {
         this.dispose();
     }
+    
+    private Projeto getProjeto(){
+        return new Projeto(
+                tituloProjeto.getText(),
+                dataInicio.getText().replace("  /  /    ", ""),
+                dataFim.getText().replace("  /  /    ", ""),
+                descricaoProjeto.getText()
+        );
+    }
 
     @Override
     public Projeto toObject() {
+        if(this.tipo == FILTRAR) return getProjeto();
+        
         String titulo = ValidaCampoForm.getTexto(tituloProjeto, this, "Insira um titulo válido");
         String inicio = ValidaCampoForm.getTexto(dataInicio, this, "Insira uma data de início válida");
         String fim = dataFim.getText();

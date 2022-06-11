@@ -298,8 +298,21 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
     private javax.swing.JLabel tituloModal;
     // End of variables declaration//GEN-END:variables
 
+    
+    private Aluno getAluno(){
+        return new Aluno(
+                nomeAluno.getText(),
+                matriculaAluno.getText(),
+                (Coordenadoria) cursoAluno.getSelectedItem(),
+                telefoneAluno.getText(),
+                emailAluno.getText()
+        );
+    }
+    
     @Override
     public Aluno toObject() {
+        if(this.tipo == FILTRAR) return getAluno();
+        
         String nome = ValidaCampoForm.getTexto(nomeAluno, this, "Insira um nome válido");
         String matricula = ValidaCampoForm.getTexto(matriculaAluno, this, "Insira uma matricula válida");
         Coordenadoria curso = (Coordenadoria) ValidaCampoForm.getValue(cursoAluno, this);
