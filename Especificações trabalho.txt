@@ -1,0 +1,58 @@
+Cadatro de projetos leds:
+
+- cadastrar projetos
+- cadastrar alunos
+- cadastrar professores
+- cadastrar empresas
+
+
+ALUNOS:
+- nome
+- matricula
+- curso
+- telefone
+- email
+
+
+PROFESSORES:
+- SIAPE
+- nome
+- coordenadoria (classe enum)
+- email
+
+
+EMPRESAS:
+- razao social
+- nome fantasia
+- cnpj
+- email
+- telefone
+- nome de contato
+
+
+PROJETOS:
+- Titulo do projeto
+- inicio e fim
+- Descrição do projeto
+
+
+ALUNO X PROJETO (INTERMEDIARIA)
+- aluno
+- projeto
+- data de entrada
+- data de saida
+- carga horaria semanal
+- valor da bolsa
+- bolsista ou voluntario (numero inteiro para definir)
+
+
+EMPRESA X PROJETO (INTERMEDIARIA)
+- empresa
+- projeto
+
+
+PROFESSOR X PROJETO (INTERMEDIARIA)
+- professor
+- projeto
+
+
