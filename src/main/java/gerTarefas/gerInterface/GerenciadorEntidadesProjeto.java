@@ -129,10 +129,11 @@ public class GerenciadorEntidadesProjeto<Entidade> implements InterfGerenciadorI
 
     @Override
     public void concluir() {
-        // funcao chamada pelo modal de filtro das entidades do projeto
-        // formularioFiltro.toObject();
-        // objter dados para filtrar
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        // função chamada pelo botao de concluir do filtro da listagem usada para inserir entidades no projeto
+        Entidade entidade = this.formularioFiltro.toObject();
+        List<Entidade> entidades = this.gerenciadorDominio.filtrar(entidade);
+        this.formularioFiltro.closeModal();
+        this.tableModelPesquisa.adicionar(entidades);
     }
 
     public void removerAluno() {
