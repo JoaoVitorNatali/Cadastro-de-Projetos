@@ -38,8 +38,8 @@ public class ProjetoDao extends GenericDao{
                 );
                 
                 if(!projeto.getAlunosParticipantes().isEmpty())projeto.getAlunosParticipantes().get(0).getCodigo().getAluno();
-                if(!projeto.getProfessores().isEmpty()) projeto.getProfessores().get(0).getEmail();
-                if(!projeto.getEmpresas().isEmpty()) projeto.getEmpresas().get(0).getCnpj();
+                if(!projeto.getProfessores().isEmpty()) projeto.getProfessores().get(0).getCodigo().getProfessor().getEmail();
+                if(!projeto.getEmpresas().isEmpty()) projeto.getEmpresas().get(0).getCodigo().getEmpresa().getCnpj();
             }
 
             sessao.getTransaction().commit();

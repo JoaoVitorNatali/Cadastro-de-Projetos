@@ -8,12 +8,13 @@ import gerTarefas.gerInterface.TableModels.CustomTableModel;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Empresa;
+import modelo.EmpresaProjeto;
 
 /**
  *
  * @author João Vitor
  */
-public class TableModelEmpresasProjeto extends CustomTableModel<Empresa>{
+public class TableModelEmpresasProjeto extends CustomTableModel<EmpresaProjeto>{
     public TableModelEmpresasProjeto(){
         ArrayList<String> nomeColunas = new ArrayList<>(
                 List.of("Nome", "CNPJ")
@@ -25,10 +26,10 @@ public class TableModelEmpresasProjeto extends CustomTableModel<Empresa>{
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return this.detalhar(rowIndex).getNomeFantasia();
+                return this.detalhar(rowIndex).getCodigo().getEmpresa().getNomeFantasia();
             
             case 1:
-                return this.detalhar(rowIndex).getCnpj();
+                return this.detalhar(rowIndex).getCodigo().getEmpresa().getCnpj();
                 
             default:
                 return this.detalhar(rowIndex);

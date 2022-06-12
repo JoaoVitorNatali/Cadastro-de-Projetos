@@ -5,7 +5,6 @@
 package gerTarefas.gerInterface.TableModels;
 
 import modelo.Professor;
-import gerTarefas.gerInterface.TableModels.CustomTableModel;
 import java.util.ArrayList;
 import java.util.List;
 

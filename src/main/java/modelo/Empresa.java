@@ -12,9 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -38,13 +36,8 @@ public class Empresa implements Serializable {
     @Column(nullable=false)
     private String nomeContato;
     
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "Empresa_Projeto",
-        joinColumns = {@JoinColumn(name="empresa")},
-        inverseJoinColumns = {@JoinColumn(name="projeto")}
-    )
-    private List<Projeto> projetos;
+    @OneToMany (mappedBy = "codigo.empresa", fetch = FetchType.LAZY)
+    private List<EmpresaProjeto> projetos;
 
     public Empresa() {
     }
@@ -67,8 +60,17 @@ public class Empresa implements Serializable {
         this.telefone = telefone;
         this.nomeContato = nomeContato;
     }
-    
-    
+
+    public Empresa(int codigo, String razaoSocial, String nomeFantasia, String cnpj, String email, String telefone, String nomeContato, List<EmpresaProjeto> projetos) {
+        this.codigo = codigo;
+        this.razaoSocial = razaoSocial;
+        this.nomeFantasia = nomeFantasia;
+        this.cnpj = cnpj;
+        this.email = email;
+        this.telefone = telefone;
+        this.nomeContato = nomeContato;
+        this.projetos = projetos;
+    }
 
     public int getCodigo() {
         return codigo;
@@ -98,7 +100,7 @@ public class Empresa implements Serializable {
         return nomeContato;
     }
     
-    public List<Projeto> getProjetos() {
+    public List<EmpresaProjeto> getProjetos() {
         return projetos;
     }
 
@@ -130,7 +132,7 @@ public class Empresa implements Serializable {
         this.nomeContato = nomeContato;
     }
 
-    public void setProjetos(List<Projeto> projetos) {
+    public void setProjetos(List<EmpresaProjeto> projetos) {
         this.projetos = projetos;
     }
 }

@@ -120,6 +120,7 @@ public class GerenciadorProjeto extends GenericGerenciador<Projeto> {
             this.getEmpresasProjeto().fecharListagem();
         } catch (HibernateException ex){
             AlertaErro.showErro(this.getFramePrincipal(), "Essa empresa já está cadastrada no projeto");
+            this.projeto = detalharProjeto(this.projeto.getCodigo()); // ajustar objeto de objeto para não repetir os dados
         }
     }
     
@@ -130,6 +131,7 @@ public class GerenciadorProjeto extends GenericGerenciador<Projeto> {
             this.getProfessoresProjeto().fecharListagem();
         } catch (HibernateException ex){
             AlertaErro.showErro(this.getFramePrincipal(), "Esse professor já está cadastrado no projeto");
+            this.projeto = detalharProjeto(this.projeto.getCodigo()); // ajustar objeto de objeto para não repetir os dados
         }
     }
     

@@ -40,21 +40,11 @@ public class Projeto implements Serializable {
     @Column(nullable=false)
     private String descricao;
     
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "Empresa_Projeto",
-        joinColumns = {@JoinColumn(name="projeto")},
-        inverseJoinColumns = {@JoinColumn(name="empresa")}
-    )
-    private List<Empresa> empresas;
+    @OneToMany (mappedBy = "codigo.projeto", cascade = CascadeType.ALL)
+    private List<EmpresaProjeto> empresas;
     
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "Professor_Projeto",
-        joinColumns = {@JoinColumn(name="projeto")},
-        inverseJoinColumns = {@JoinColumn(name="professor")}
-    )
-    private List<Professor> professores;
+    @OneToMany (mappedBy = "codigo.projeto", cascade = CascadeType.ALL)
+    private List<ProfessorProjeto> professores;
     
     @OneToMany (mappedBy = "codigo.projeto", cascade = CascadeType.ALL)
     private List<AlunoParticipante> alunos;
@@ -84,7 +74,7 @@ public class Projeto implements Serializable {
         this.descricao = descricao;
     }
     
-    public Projeto(String titulo, Date dataInicio, Date dataFim, String descricao, List<Professor> professores, List<Empresa> empresas) {
+    public Projeto(String titulo, Date dataInicio, Date dataFim, String descricao, List<ProfessorProjeto> professores, List<EmpresaProjeto> empresas) {
         this.titulo = titulo;
         this.dataInicio = dataInicio;
         this.dataFim = dataFim;
@@ -93,7 +83,7 @@ public class Projeto implements Serializable {
         this.empresas = empresas;
     }
 
-    public Projeto(int codigo, String titulo, Date dataInicio, Date dataFim, String descricao, List<Empresa> empresas, List<Professor> professores, List<AlunoParticipante> alunos) {
+    public Projeto(int codigo, String titulo, Date dataInicio, Date dataFim, String descricao, List<EmpresaProjeto> empresas, List<ProfessorProjeto> professores, List<AlunoParticipante> alunos) {
         this.codigo = codigo;
         this.titulo = titulo;
         this.dataInicio = dataInicio;
@@ -104,7 +94,7 @@ public class Projeto implements Serializable {
         this.alunos = alunos;
     }
     
-    public Projeto(int codigo, String titulo, String dataInicio, String dataFim, String descricao, List<Empresa> empresas, List<Professor> professores, List<AlunoParticipante> alunos) {
+    public Projeto(int codigo, String titulo, String dataInicio, String dataFim, String descricao, List<EmpresaProjeto> empresas, List<ProfessorProjeto> professores, List<AlunoParticipante> alunos) {
         this.codigo = codigo;
         this.titulo = titulo;
         this.dataInicio = stringToDate(dataInicio);
@@ -136,11 +126,11 @@ public class Projeto implements Serializable {
         return descricao;
     }
 
-    public List<Empresa> getEmpresas() {
+    public List<EmpresaProjeto> getEmpresas() {
         return empresas;
     }
 
-    public List<Professor> getProfessores() {
+    public List<ProfessorProjeto> getProfessores() {
         return professores;
     }
     
@@ -168,11 +158,11 @@ public class Projeto implements Serializable {
         this.descricao = descricao;
     }
 
-    public void setEmpresas(List<Empresa> empresas) {
+    public void setEmpresas(List<EmpresaProjeto> empresas) {
         this.empresas = empresas;
     }
 
-    public void setProfessores(List<Professor> professores) {
+    public void setProfessores(List<ProfessorProjeto> professores) {
         this.professores = professores;
     }
 
@@ -189,12 +179,14 @@ public class Projeto implements Serializable {
         this.setAlunoParticipante(alunoParticipante);
     }
     
-    public void addEmpresa(Empresa entidade) {
-        this.empresas.add(entidade);
+    public void addEmpresa(Empresa empresa) {
+        EmpresaProjeto empProj = new EmpresaProjeto(empresa, this);
+        this.empresas.add(empProj);
     }
     
-    public void addProfessor(Professor entidade) {
-        this.professores.add(entidade);
+    public void addProfessor(Professor professor) {
+        ProfessorProjeto prof = new ProfessorProjeto(professor, this);
+        this.professores.add(prof);
     }
     
     private String dateToString(Date data){

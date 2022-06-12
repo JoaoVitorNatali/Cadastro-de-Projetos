@@ -4,16 +4,15 @@
  */
 package gerTarefas.gerInterface.TableModels;
 
-import modelo.Professor;
-import gerTarefas.gerInterface.TableModels.CustomTableModel;
 import java.util.ArrayList;
 import java.util.List;
+import modelo.ProfessorProjeto;
 
 /**
  *
  * @author João Vitor
  */
-public class TableModelProfessoresProjeto extends CustomTableModel<Professor>{
+public class TableModelProfessoresProjeto extends CustomTableModel<ProfessorProjeto>{
     public TableModelProfessoresProjeto() {
         ArrayList<String> nomeColunas = new ArrayList<>(
             List.of("Nome", "SIAPE")
@@ -26,10 +25,10 @@ public class TableModelProfessoresProjeto extends CustomTableModel<Professor>{
     public Object getValueAt(int rowIndex, int columnIndex) {
         switch(columnIndex){
             case 0:
-                return this.detalhar(rowIndex).getNome();
+                return this.detalhar(rowIndex).getCodigo().getProfessor().getNome();
                 
             case 1:
-                return this.detalhar(rowIndex).getSiape();
+                return this.detalhar(rowIndex).getCodigo().getProfessor().getSiape();
 
             default:
                 return this.detalhar(rowIndex);

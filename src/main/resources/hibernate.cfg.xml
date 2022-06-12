@@ -54,5 +54,9 @@ Contributor(s):
     <mapping class="modelo.Projeto"/>
     <mapping class="modelo.AlunoParticipante"/>
     <mapping class="modelo.AlunoParticipantePk"/>
+    <mapping class="modelo.EmpresaProjeto"/>
+    <mapping class="modelo.EmpresaProjetoPk"/>
+    <mapping class="modelo.ProfessorProjeto"/>
+    <mapping class="modelo.ProfessorProjetoPk"/>
   </session-factory>
 </hibernate-configuration>
