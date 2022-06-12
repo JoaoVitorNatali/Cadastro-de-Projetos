@@ -56,6 +56,7 @@ public class MainWindow extends javax.swing.JFrame {
         btnEditarProjeto = new javax.swing.JButton();
         btnAbrirProjeto = new javax.swing.JButton();
         btnFiltrarProjetos = new javax.swing.JButton();
+        limparFiltroProjetos = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         btnNovoAluno = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -64,6 +65,7 @@ public class MainWindow extends javax.swing.JFrame {
         excluirAluno = new javax.swing.JButton();
         btnEditarAluno = new javax.swing.JButton();
         btnFiltrarAlunos = new javax.swing.JButton();
+        limparFiltroAlunos = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         btnNovoProfessor = new javax.swing.JButton();
         containerprofessores = new javax.swing.JScrollPane();
@@ -72,6 +74,7 @@ public class MainWindow extends javax.swing.JFrame {
         excluirProfessor = new javax.swing.JButton();
         btnEditarProfessor = new javax.swing.JButton();
         btnFiltrarProfessores = new javax.swing.JButton();
+        limparFiltroProfessores = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         btnNovaEmpresa = new javax.swing.JButton();
         containerempresas = new javax.swing.JScrollPane();
@@ -80,6 +83,7 @@ public class MainWindow extends javax.swing.JFrame {
         excluirEmpresa = new javax.swing.JButton();
         btnEditarEmpresa = new javax.swing.JButton();
         btnFiltrarEmpresas = new javax.swing.JButton();
+        limparFiltroEmpresas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -172,6 +176,15 @@ public class MainWindow extends javax.swing.JFrame {
         });
         jPanel1.add(btnFiltrarProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, 170, 40));
 
+        limparFiltroProjetos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/clear-filter.png"))); // NOI18N
+        limparFiltroProjetos.setText("Limpar filtros");
+        limparFiltroProjetos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparFiltroProjetosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(limparFiltroProjetos, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 10, -1, 40));
+
         jTabbedPane1.addTab("Projetos", jPanel1);
 
         jPanel2.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -245,6 +258,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        limparFiltroAlunos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/clear-filter.png"))); // NOI18N
+        limparFiltroAlunos.setText("Limpar filtros");
+        limparFiltroAlunos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparFiltroAlunosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -257,9 +278,11 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(btnNovoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addComponent(btnFiltrarAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(limparFiltroAlunos)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 2, Short.MAX_VALUE)
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -269,12 +292,13 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGap(13, 13, 13)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnFiltrarAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNovoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnNovoAluno, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(limparFiltroAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(9, 9, 9))
         );
 
         jTabbedPane1.addTab("Alunos", jPanel2);
@@ -350,6 +374,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        limparFiltroProfessores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/clear-filter.png"))); // NOI18N
+        limparFiltroProfessores.setText("Limpar filtros");
+        limparFiltroProfessores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparFiltroProfessoresActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -358,13 +390,15 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(btnNovoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(btnNovoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnFiltrarProfessores, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(limparFiltroProfessores)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(containerprofessores)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 2, Short.MAX_VALUE)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -372,14 +406,17 @@ public class MainWindow extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnNovoProfessor, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
-                    .addComponent(btnFiltrarProfessores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnFiltrarProfessores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(limparFiltroProfessores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnNovoProfessor, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(containerprofessores, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
 
         jTabbedPane1.addTab("Professores", jPanel3);
@@ -455,6 +492,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        limparFiltroEmpresas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/interfaceGrafica/imagens/clear-filter.png"))); // NOI18N
+        limparFiltroEmpresas.setText("Limpar filtros");
+        limparFiltroEmpresas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                limparFiltroEmpresasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -467,24 +512,29 @@ public class MainWindow extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(btnNovaEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnFiltrarEmpresas, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnFiltrarEmpresas, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(limparFiltroEmpresas))
                             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 2, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnNovaEmpresa, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(btnNovaEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(limparFiltroEmpresas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnFiltrarEmpresas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(containerempresas, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
 
         jTabbedPane1.addTab("Empresas", jPanel4);
@@ -589,6 +639,22 @@ public class MainWindow extends javax.swing.JFrame {
         this.gerenciadorInterface.getProjeto().excluir();
     }//GEN-LAST:event_excluirProjetoActionPerformed
 
+    private void limparFiltroEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparFiltroEmpresasActionPerformed
+        this.gerenciadorInterface.getEmpresa().listar();
+    }//GEN-LAST:event_limparFiltroEmpresasActionPerformed
+
+    private void limparFiltroProfessoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparFiltroProfessoresActionPerformed
+        this.gerenciadorInterface.getProfessor().listar();
+    }//GEN-LAST:event_limparFiltroProfessoresActionPerformed
+
+    private void limparFiltroAlunosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparFiltroAlunosActionPerformed
+        this.gerenciadorInterface.getAluno().listar();
+    }//GEN-LAST:event_limparFiltroAlunosActionPerformed
+
+    private void limparFiltroProjetosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_limparFiltroProjetosActionPerformed
+        this.gerenciadorInterface.getProjeto().listar();
+    }//GEN-LAST:event_limparFiltroProjetosActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirProjeto;
@@ -624,6 +690,10 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JTable jtbListaEmpresas;
     private javax.swing.JTable jtbListaProfessores;
     private javax.swing.JTable jtbListaProjetos;
+    private javax.swing.JButton limparFiltroAlunos;
+    private javax.swing.JButton limparFiltroEmpresas;
+    private javax.swing.JButton limparFiltroProfessores;
+    private javax.swing.JButton limparFiltroProjetos;
     private javax.swing.JScrollPane listagemProjetos;
     // End of variables declaration//GEN-END:variables
 }
