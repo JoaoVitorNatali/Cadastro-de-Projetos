@@ -19,8 +19,11 @@ import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JTable;
 import modelo.Aluno;
+import modelo.AlunoParticipante;
 import modelo.Empresa;
+import modelo.EmpresaProjeto;
 import modelo.Professor;
+import modelo.ProfessorProjeto;
 
 
 /**
@@ -73,6 +76,7 @@ public class GerenciadorEntidadesProjeto<Entidade> implements InterfGerenciadorI
     
     public void setTabelaProjeto(JTable tabela){
         tabela.setModel(tableModelProjeto);
+        tableModelProjeto.setTabela(tabela);
     }
 
     public void abrirListagem(){
@@ -129,6 +133,30 @@ public class GerenciadorEntidadesProjeto<Entidade> implements InterfGerenciadorI
         // formularioFiltro.toObject();
         // objter dados para filtrar
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void removerAluno() {
+        if(this.tableModelProjeto.getSelectedRow() != -1){
+            AlunoParticipante entidade = (AlunoParticipante) this.tableModelProjeto.getSelected();
+            this.gerenciadorProjeto.removerAluno(entidade);
+            this.fecharListagem();
+        }
+    }
+
+    public void removerProfessor() {
+        if(this.tableModelProjeto.getSelectedRow() != -1){
+            ProfessorProjeto entidade = (ProfessorProjeto) this.tableModelProjeto.getSelected();
+            this.gerenciadorProjeto.removerProfessor(entidade);
+            this.fecharListagem();
+        }
+    }
+
+    public void removerEmpresa() {
+        if(this.tableModelProjeto.getSelectedRow() != -1){
+            EmpresaProjeto entidade = (EmpresaProjeto) this.tableModelProjeto.getSelected();
+            this.gerenciadorProjeto.removerEmpresa(entidade);
+            this.fecharListagem();
+        }
     }
     
     

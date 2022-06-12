@@ -48,6 +48,7 @@ Contributor(s):
     <property name="hibernate.connection.password">123</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.show_sql">true</property>
     <mapping class="modelo.Aluno"/>
     <mapping class="modelo.Empresa"/>
     <mapping class="modelo.Professor"/>

@@ -6,6 +6,9 @@ package gerTarefas.gerDominio;
 
 import dao.ProjetoDao;
 import java.util.List;
+import modelo.AlunoParticipante;
+import modelo.EmpresaProjeto;
+import modelo.ProfessorProjeto;
 import modelo.Projeto;
 
 /**
@@ -23,4 +26,15 @@ public class GerDominProjeto extends GenericGerenciadorDominio<Projeto>{
         return getGenericDao().listar(Projeto.class);
     }
     
+    public void removerAluno(AlunoParticipante aluno){
+        this.getGenericDao().excluir(aluno);
+    }
+    
+    public void removerProfessor(ProfessorProjeto professor){
+        this.getGenericDao().excluir(professor);
+    }
+    
+    public void removerEmpresa(EmpresaProjeto empresa){
+        this.getGenericDao().excluir(empresa);
+    }
 }

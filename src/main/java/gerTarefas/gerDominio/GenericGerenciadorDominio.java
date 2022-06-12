@@ -7,6 +7,7 @@ package gerTarefas.gerDominio;
 import dao.GenericDao;
 import java.util.List;
 import javax.persistence.PersistenceException;
+import modelo.AlunoParticipante;
 import org.hibernate.HibernateException;
 
 /**

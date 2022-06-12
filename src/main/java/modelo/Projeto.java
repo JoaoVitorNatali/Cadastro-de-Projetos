@@ -11,13 +11,9 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -195,5 +191,17 @@ public class Projeto implements Serializable {
     
     private Date stringToDate(String dataString){
         return FormataData.stringToDate(dataString);
+    }
+
+    public void removeAluno(AlunoParticipante entidade) {
+        this.alunos.remove(entidade);
+    }
+
+    public void removeProfessor(ProfessorProjeto entidade) {
+        this.professores.remove(entidade);
+    }
+
+    public void removeEmpresa(EmpresaProjeto entidade) {
+        this.empresas.remove(entidade);
     }
 }

@@ -299,15 +299,15 @@ public class DadosProjeto extends javax.swing.JDialog {
     }//GEN-LAST:event_adicionarEmpresaActionPerformed
 
     private void removerAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerAlunoActionPerformed
-        // TODO add your handling code here:
+        gerenciador.getAlunosProjeto().removerAluno();
     }//GEN-LAST:event_removerAlunoActionPerformed
 
     private void removerProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerProfessorActionPerformed
-        // TODO add your handling code here:
+        gerenciador.getProfessoresProjeto().removerProfessor();
     }//GEN-LAST:event_removerProfessorActionPerformed
 
     private void removerEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerEmpresaActionPerformed
-        // TODO add your handling code here:
+        gerenciador.getEmpresasProjeto().removerEmpresa();
     }//GEN-LAST:event_removerEmpresaActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

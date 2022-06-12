@@ -4,7 +4,6 @@
  */
 package gerTarefas.gerInterface;
 
-import gerTarefas.gerInterface.GerenciadorEntidadesProjeto;
 import gerTarefas.gerInterface.TableModels.TableModelEmpresasProjeto;
 import gerTarefas.gerInterface.TableModels.TableModelProfessoresProjeto;
 import gerTarefas.gerInterface.TableModels.TableModelAlunosProjeto;
@@ -15,7 +14,6 @@ import gerTarefas.gerDominio.GerDominProfessor;
 import gerTarefas.gerDominio.GerDominProjeto;
 import gerTarefas.gerInterface.TableModels.TableModelAluno;
 import gerTarefas.gerInterface.TableModels.TableModelEmpresa;
-import gerTarefas.gerInterface.GerenciadorInterface;
 import gerTarefas.gerInterface.TableModels.TableModelProfessor;
 import gerTarefas.gerInterface.comum.AlertaErro;
 import gerTarefas.gerInterface.comum.GenericGerenciador;
@@ -32,7 +30,9 @@ import java.util.Date;
 import modelo.Aluno;
 import modelo.AlunoParticipante;
 import modelo.Empresa;
+import modelo.EmpresaProjeto;
 import modelo.Professor;
+import modelo.ProfessorProjeto;
 import modelo.Projeto;
 import org.hibernate.HibernateException;
 /**
@@ -151,7 +151,15 @@ public class GerenciadorProjeto extends GenericGerenciador<Projeto> {
         return alunosProjeto;
     }
 
+    void removerAluno(AlunoParticipante entidade) {
+        ((GerDominProjeto) this.getGerenciadorDominio()).removerAluno(entidade);
+    }
 
-    
-    
+    void removerProfessor(ProfessorProjeto entidade) {
+        ((GerDominProjeto) this.getGerenciadorDominio()).removerProfessor(entidade);
+    }
+
+    void removerEmpresa(EmpresaProjeto entidade) {
+        ((GerDominProjeto) this.getGerenciadorDominio()).removerEmpresa(entidade);
+    }
 }
