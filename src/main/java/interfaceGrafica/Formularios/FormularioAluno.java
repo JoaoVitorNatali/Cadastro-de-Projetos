@@ -304,7 +304,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
                 nomeAluno.getText(),
                 matriculaAluno.getText(),
                 (Coordenadoria) cursoAluno.getSelectedItem(),
-                telefoneAluno.getText(),
+                ValidaCampoForm.removeMascara(telefoneAluno.getText()),
                 emailAluno.getText()
         );
     }

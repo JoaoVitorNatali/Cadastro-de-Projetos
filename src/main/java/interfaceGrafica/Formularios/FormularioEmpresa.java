@@ -299,9 +299,9 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
         return new Empresa(
                 razaoSocial.getText(),
                 nomeFantasia.getText(),
-                cnpjEmpresa.getText(),
+                ValidaCampoForm.removeMascara(cnpjEmpresa.getText()),
                 emailEmpresa.getText(),
-                telefoneEmpresa.getText(),
+                ValidaCampoForm.removeMascara(telefoneEmpresa.getText()),
                 nomeContatoEmpresa.getText()
         );
     }

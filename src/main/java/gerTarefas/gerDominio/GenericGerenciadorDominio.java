@@ -7,7 +7,6 @@ package gerTarefas.gerDominio;
 import dao.GenericDao;
 import java.util.List;
 import javax.persistence.PersistenceException;
-import modelo.AlunoParticipante;
 import org.hibernate.HibernateException;
 
 /**
@@ -16,27 +15,29 @@ import org.hibernate.HibernateException;
  * @param <Entidade>
  */
 public abstract class GenericGerenciadorDominio<Entidade> {
-    protected GenericDao genericDao = null;
+    protected GenericDao dao = null;
 
-    public GenericGerenciadorDominio() {
-        genericDao = new GenericDao();
+    public GenericGerenciadorDominio(GenericDao gerenciador) {
+        dao = gerenciador;
     }
     
     public GenericDao getGenericDao(){
-        return this.genericDao;
+        return this.dao;
     }
     
     public abstract List<Entidade> listar();
     
+    public abstract List<Entidade> filtrar(Entidade entidade);
+    
     public void inserir(Entidade entidade){
-        genericDao.inserir(entidade);
+        dao.inserir(entidade);
     }
     
     public void alterar(Entidade entidade) throws HibernateException, PersistenceException{
-        genericDao.alterar(entidade);
+        dao.alterar(entidade);
     }
     
     public void excluir(Entidade entidade) {
-        genericDao.excluir(entidade);
+        dao.excluir(entidade);
     }
 }

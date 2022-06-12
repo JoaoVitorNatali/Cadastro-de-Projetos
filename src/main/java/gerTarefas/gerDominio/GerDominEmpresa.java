@@ -4,6 +4,7 @@
  */
 package gerTarefas.gerDominio;
 
+import dao.EmpresaDao;
 import java.util.List;
 import modelo.Empresa;
 
@@ -13,8 +14,17 @@ import modelo.Empresa;
  */
 public class GerDominEmpresa extends GenericGerenciadorDominio<Empresa> {
 
+    public GerDominEmpresa() {
+        super(new EmpresaDao());
+    }
+    
     @Override
     public List<Empresa> listar(){
         return getGenericDao().listar(Empresa.class);
+    }
+
+    @Override
+    public List<Empresa> filtrar(Empresa entidade) {
+        return getGenericDao().filtrar(Empresa.class, entidade);
     }
 }

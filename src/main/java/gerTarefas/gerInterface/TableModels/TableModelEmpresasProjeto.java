@@ -4,10 +4,8 @@
  */
 package gerTarefas.gerInterface.TableModels;
 
-import gerTarefas.gerInterface.TableModels.CustomTableModel;
 import java.util.ArrayList;
 import java.util.List;
-import modelo.Empresa;
 import modelo.EmpresaProjeto;
 
 /**

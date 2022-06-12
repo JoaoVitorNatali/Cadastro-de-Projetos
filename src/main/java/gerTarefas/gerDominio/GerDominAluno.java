@@ -4,6 +4,7 @@
  */
 package gerTarefas.gerDominio;
 
+import dao.AlunoDao;
 import java.util.List;
 import modelo.Aluno;
 
@@ -13,8 +14,17 @@ import modelo.Aluno;
  */
 public class GerDominAluno extends GenericGerenciadorDominio<Aluno>{
 
+    public GerDominAluno() {
+        super(new AlunoDao());
+    }
+
     @Override
     public List<Aluno> listar() {
         return getGenericDao().listar(Aluno.class);
+    }
+
+    @Override
+    public List<Aluno> filtrar(Aluno entidade) {
+        return this.getGenericDao().filtrar(Aluno.class, entidade);
     }
 }

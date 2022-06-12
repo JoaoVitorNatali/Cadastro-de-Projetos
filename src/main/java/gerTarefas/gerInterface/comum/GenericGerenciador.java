@@ -124,6 +124,13 @@ public class GenericGerenciador<Entidade> implements InterfGerenciadorInterface 
         }
     }
     
+    private void filtrar(Entidade entidade){
+        ArrayList<Entidade> lista = (ArrayList) gerenciadorDominio.filtrar(entidade);
+        tableModel.adicionar(lista);
+        this.formulario.closeModal();
+        this.formulario.limparCampos();
+    }
+    
     public void excluir(){
         Entidade entidade = (Entidade) tableModel.getSelected();
         if(entidade == null){
@@ -153,6 +160,7 @@ public class GenericGerenciador<Entidade> implements InterfGerenciadorInterface 
                 alterar(entidade);
                 break;
             case FILTRAR:
+                filtrar(entidade);
                 break;
             default:
                 break;

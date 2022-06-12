@@ -18,7 +18,7 @@ import modelo.Projeto;
 public class GerDominProjeto extends GenericGerenciadorDominio<Projeto>{
     
     public GerDominProjeto() {
-        this.genericDao = new ProjetoDao();
+        super(new ProjetoDao());
     }
 
     @Override
@@ -36,5 +36,10 @@ public class GerDominProjeto extends GenericGerenciadorDominio<Projeto>{
     
     public void removerEmpresa(EmpresaProjeto empresa){
         this.getGenericDao().excluir(empresa);
+    }
+
+    @Override
+    public List<Projeto> filtrar(Projeto entidade) {
+        return this.getGenericDao().filtrar(Projeto.class, entidade);
     }
 }

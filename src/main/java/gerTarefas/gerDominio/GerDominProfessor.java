@@ -4,6 +4,7 @@
  */
 package gerTarefas.gerDominio;
 
+import dao.ProfessorDao;
 import java.util.List;
 import modelo.Professor;
 
@@ -13,9 +14,18 @@ import modelo.Professor;
  */
 public class GerDominProfessor extends GenericGerenciadorDominio<Professor>{
 
+    public GerDominProfessor() {
+        super(new ProfessorDao());
+    }
+    
     @Override
     public List<Professor> listar() {
         return getGenericDao().listar(Professor.class);
+    }
+
+    @Override
+    public List<Professor> filtrar(Professor entidade) {
+        return getGenericDao().filtrar(Professor.class, entidade);
     }
     
 }

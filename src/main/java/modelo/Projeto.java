@@ -117,6 +117,14 @@ public class Projeto implements Serializable {
     public String getDataFim() {
         return dateToString(dataFim);
     }
+    
+    public Date getDateDataInicio(){
+        return this.dataInicio;
+    }
+    
+    public Date getDateDataFim(){
+        return this.dataFim;
+    }
 
     public String getDescricao() {
         return descricao;

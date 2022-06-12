@@ -15,7 +15,7 @@ import org.hibernate.Session;
  *
  * @author João Vitor
  */
-public class GenericDao {
+public abstract class GenericDao {
     public List listar(Class classe) throws HibernateException{
         Session sessao = null;
         List lista = null;
@@ -125,4 +125,6 @@ public class GenericDao {
         
         return objReturn;
     }
+    
+    public abstract List filtrar(Class classe, Object object);
 }
