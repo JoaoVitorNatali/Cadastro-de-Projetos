@@ -323,7 +323,7 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
         
         Empresa emp;
         if(this.tipo == EDITAR) emp = new Empresa(empresa.getCodigo(), razao, nomeF, cnpj,email, telefone, nomeContato);
-        else emp = new Empresa(empresa.getCodigo(), razao, nomeF, cnpj, email, telefone, nomeContato);
+        else emp = new Empresa(razao, nomeF, cnpj, email, telefone, nomeContato);
         return emp;
     }
 
