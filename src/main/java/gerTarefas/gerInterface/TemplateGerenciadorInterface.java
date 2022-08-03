@@ -19,17 +19,15 @@ import org.hibernate.HibernateException;
 /**
  *
  * @author João Vitor
- * @param <Entidade>
+ * @param <ENTIDADE>
  */
-public abstract class TemplateGerenciadorInterface<Entidade> implements InterfGerenciadorInterface {
+public abstract class TemplateGerenciadorInterface<ENTIDADE> implements InterfGerenciadorInterface {
     
-    protected CustomFormularioInterface<Entidade> formulario = null;
+    protected CustomFormularioInterface<ENTIDADE> formulario = null;
     private final CustomTableModel tableModel;
     private final GenericGerenciadorDominio gerenciadorDominio;
     private final Frame framePrincipal;
 
-    // Contador de horas gastas aqui: 6
-    // Caso for alterar, aumente o contador
     public TemplateGerenciadorInterface(
             java.awt.Frame janelaPrincipal,
             CustomTableModel tableModel,
@@ -65,7 +63,7 @@ public abstract class TemplateGerenciadorInterface<Entidade> implements InterfGe
     }
     
     public void abrirModalEdicao(){
-        Entidade entidade = (Entidade) tableModel.getSelected();
+        ENTIDADE entidade = (ENTIDADE) tableModel.getSelected();
         if(entidade != null) {
             formulario.setTipo(TipoFormulario.EDITAR);
             formulario.setEntidadeSelecionada(entidade);
@@ -90,16 +88,16 @@ public abstract class TemplateGerenciadorInterface<Entidade> implements InterfGe
     }
     
     public void listar() {
-        ArrayList<Entidade> lista = (ArrayList) gerenciadorDominio.listar();
+        ArrayList<ENTIDADE> lista = (ArrayList) gerenciadorDominio.listar();
         tableModel.adicionar(lista);
     }
     
-    private void inserir(Entidade entidade){
+    private void inserir(ENTIDADE entidade){
         gerenciadorDominio.inserir(entidade);
         fecharModal();
     }
     
-    private void alterar(Entidade entidade){
+    private void alterar(ENTIDADE entidade){
         try{
             gerenciadorDominio.alterar(entidade);
             fecharModal();
@@ -110,15 +108,15 @@ public abstract class TemplateGerenciadorInterface<Entidade> implements InterfGe
         }
     }
     
-    private void filtrar(Entidade entidade){
-        ArrayList<Entidade> lista = (ArrayList) gerenciadorDominio.filtrar(entidade);
+    private void filtrar(ENTIDADE entidade){
+        ArrayList<ENTIDADE> lista = (ArrayList) gerenciadorDominio.filtrar(entidade);
         tableModel.adicionar(lista);
         this.formulario.closeModal();
         this.formulario.limparCampos();
     }
     
     public void excluir(){
-        Entidade entidade = (Entidade) tableModel.getSelected();
+        ENTIDADE entidade = (ENTIDADE) tableModel.getSelected();
         if(entidade == null){
             AlertaErro.showErro(framePrincipal, "Primeiro selecione uma linha da tabela");
         } else {
@@ -133,7 +131,7 @@ public abstract class TemplateGerenciadorInterface<Entidade> implements InterfGe
     
     @Override
     public void concluir(){
-        Entidade entidade = formulario.toObject();
+        ENTIDADE entidade = formulario.toObject();
         if(entidade == null) return;
         
         TipoFormulario tipo = formulario.getTipo();
