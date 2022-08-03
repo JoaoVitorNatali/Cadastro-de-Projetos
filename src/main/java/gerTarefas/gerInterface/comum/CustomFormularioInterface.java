@@ -9,24 +9,24 @@ import gerTarefas.gerInterface.Constantes.TipoFormulario;
 /**
  *
  * @author João Vitor
- * @param <ENTIDADE>
+ * @param <ENTITY>
  */
-public interface CustomFormularioInterface<ENTIDADE> {
+public interface CustomFormularioInterface<ENTITY> {
     public void alterarTituloModal();
     
     public TipoFormulario getTipo();
     
     public void setTipo(TipoFormulario tipo);
     
-    public void setEntidadeSelecionada(ENTIDADE entidade);
+    public void setEntidadeSelecionada(ENTITY entidade);
     
     public void closeModal();
     
     public void showModal();
     
-    public ENTIDADE toObject();
+    public ENTITY toObject();
     
-    public void setCamposFormulario(ENTIDADE entidade);
+    public void setCamposFormulario(ENTITY entidade);
     
     public void limparCampos();
 }

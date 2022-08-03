@@ -12,7 +12,7 @@ import modelo.EmpresaProjeto;
  *
  * @author João Vitor
  */
-public class TableModelEmpresasProjeto extends CustomTableModel<EmpresaProjeto>{
+public class TableModelEmpresasProjeto extends TemplateTableModel<EmpresaProjeto>{
     public TableModelEmpresasProjeto(){
         ArrayList<String> nomeColunas = new ArrayList<>(
                 List.of("Nome", "CNPJ")

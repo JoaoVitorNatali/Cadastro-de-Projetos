@@ -12,7 +12,7 @@ import modelo.Professor;
  *
  * @author João Vitor
  */
-public class GerDominProfessor extends GenericGerenciadorDominio<Professor>{
+public class GerDominProfessor extends TemplateGerenciadorDominio<Professor>{
 
     public GerDominProfessor() {
         super(new ProfessorDao());

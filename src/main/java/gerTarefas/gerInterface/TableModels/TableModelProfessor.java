@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author João Vitor
  */
-public class TableModelProfessor extends CustomTableModel<Professor>{
+public class TableModelProfessor extends TemplateTableModel<Professor>{
 
     public TableModelProfessor() {
         ArrayList<String> nomeColunas = new ArrayList<>(

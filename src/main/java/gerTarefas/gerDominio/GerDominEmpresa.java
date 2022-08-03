@@ -12,7 +12,7 @@ import modelo.Empresa;
  *
  * @author João Vitor
  */
-public class GerDominEmpresa extends GenericGerenciadorDominio<Empresa> {
+public class GerDominEmpresa extends TemplateGerenciadorDominio<Empresa> {
 
     public GerDominEmpresa() {
         super(new EmpresaDao());

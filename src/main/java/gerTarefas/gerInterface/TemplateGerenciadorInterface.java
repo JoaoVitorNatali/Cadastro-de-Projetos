@@ -4,8 +4,8 @@
  */
 package gerTarefas.gerInterface;
 
-import gerTarefas.gerInterface.TableModels.CustomTableModel;
-import gerTarefas.gerDominio.GenericGerenciadorDominio;
+import gerTarefas.gerInterface.TableModels.TemplateTableModel;
+import gerTarefas.gerDominio.TemplateGerenciadorDominio;
 import gerTarefas.gerInterface.Constantes.TipoFormulario;
 import gerTarefas.gerInterface.comum.AlertaErro;
 import gerTarefas.gerInterface.comum.CustomFormularioInterface;
@@ -19,20 +19,20 @@ import org.hibernate.HibernateException;
 /**
  *
  * @author João Vitor
- * @param <ENTIDADE>
+ * @param <ENTITY>
  */
-public abstract class TemplateGerenciadorInterface<ENTIDADE> implements InterfGerenciadorInterface {
+public abstract class TemplateGerenciadorInterface<ENTITY> implements InterfGerenciadorInterface {
     
-    protected CustomFormularioInterface<ENTIDADE> formulario = null;
-    private final CustomTableModel tableModel;
-    private final GenericGerenciadorDominio gerenciadorDominio;
+    protected CustomFormularioInterface<ENTITY> formulario = null;
+    private final TemplateTableModel tableModel;
+    private final TemplateGerenciadorDominio gerenciadorDominio;
     private final Frame framePrincipal;
 
     public TemplateGerenciadorInterface(
             java.awt.Frame janelaPrincipal,
-            CustomTableModel tableModel,
+            TemplateTableModel tableModel,
             GerenciadorInterface gerInter,
-            GenericGerenciadorDominio gerenciadorDominio
+            TemplateGerenciadorDominio gerenciadorDominio
     ) {
         this.framePrincipal = janelaPrincipal;
         this.tableModel = tableModel;
@@ -43,7 +43,7 @@ public abstract class TemplateGerenciadorInterface<ENTIDADE> implements InterfGe
         return framePrincipal;
     }
     
-    public GenericGerenciadorDominio getGerenciadorDominio(){
+    public TemplateGerenciadorDominio getGerenciadorDominio(){
         return this.gerenciadorDominio;
     }
     
@@ -52,7 +52,7 @@ public abstract class TemplateGerenciadorInterface<ENTIDADE> implements InterfGe
         tableModel.setTabela(tabelaEntidade);
     }
     
-    public CustomTableModel getTableModel(){
+    public TemplateTableModel getTableModel(){
         return this.tableModel;
     }
     
@@ -63,7 +63,7 @@ public abstract class TemplateGerenciadorInterface<ENTIDADE> implements InterfGe
     }
     
     public void abrirModalEdicao(){
-        ENTIDADE entidade = (ENTIDADE) tableModel.getSelected();
+        ENTITY entidade = (ENTITY) tableModel.getSelected();
         if(entidade != null) {
             formulario.setTipo(TipoFormulario.EDITAR);
             formulario.setEntidadeSelecionada(entidade);
@@ -88,16 +88,16 @@ public abstract class TemplateGerenciadorInterface<ENTIDADE> implements InterfGe
     }
     
     public void listar() {
-        ArrayList<ENTIDADE> lista = (ArrayList) gerenciadorDominio.listar();
+        ArrayList<ENTITY> lista = (ArrayList) gerenciadorDominio.listar();
         tableModel.adicionar(lista);
     }
     
-    private void inserir(ENTIDADE entidade){
+    private void inserir(ENTITY entidade){
         gerenciadorDominio.inserir(entidade);
         fecharModal();
     }
     
-    private void alterar(ENTIDADE entidade){
+    private void alterar(ENTITY entidade){
         try{
             gerenciadorDominio.alterar(entidade);
             fecharModal();
@@ -108,15 +108,15 @@ public abstract class TemplateGerenciadorInterface<ENTIDADE> implements InterfGe
         }
     }
     
-    private void filtrar(ENTIDADE entidade){
-        ArrayList<ENTIDADE> lista = (ArrayList) gerenciadorDominio.filtrar(entidade);
+    private void filtrar(ENTITY entidade){
+        ArrayList<ENTITY> lista = (ArrayList) gerenciadorDominio.filtrar(entidade);
         tableModel.adicionar(lista);
         this.formulario.closeModal();
         this.formulario.limparCampos();
     }
     
     public void excluir(){
-        ENTIDADE entidade = (ENTIDADE) tableModel.getSelected();
+        ENTITY entidade = (ENTITY) tableModel.getSelected();
         if(entidade == null){
             AlertaErro.showErro(framePrincipal, "Primeiro selecione uma linha da tabela");
         } else {
@@ -131,7 +131,7 @@ public abstract class TemplateGerenciadorInterface<ENTIDADE> implements InterfGe
     
     @Override
     public void concluir(){
-        ENTIDADE entidade = formulario.toObject();
+        ENTITY entidade = formulario.toObject();
         if(entidade == null) return;
         
         TipoFormulario tipo = formulario.getTipo();

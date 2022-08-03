@@ -5,7 +5,7 @@
 package gerTarefas.gerInterface.TableModels;
 
 import modelo.Empresa;
-import gerTarefas.gerInterface.TableModels.CustomTableModel;
+import gerTarefas.gerInterface.TableModels.TemplateTableModel;
 import gerTarefas.gerInterface.comum.ValidaCnpj;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author João Vitor
  */
-public class TableModelEmpresa extends CustomTableModel<Empresa>{
+public class TableModelEmpresa extends TemplateTableModel<Empresa>{
 
     public TableModelEmpresa() {
         ArrayList<String> nomeColunas = new ArrayList<>(

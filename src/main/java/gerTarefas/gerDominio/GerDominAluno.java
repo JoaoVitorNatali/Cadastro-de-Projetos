@@ -12,7 +12,7 @@ import modelo.Aluno;
  *
  * @author João Vitor
  */
-public class GerDominAluno extends GenericGerenciadorDominio<Aluno>{
+public class GerDominAluno extends TemplateGerenciadorDominio<Aluno>{
 
     public GerDominAluno() {
         super(new AlunoDao());

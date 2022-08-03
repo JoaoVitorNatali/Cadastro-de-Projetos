@@ -5,7 +5,7 @@
 package gerTarefas.gerInterface.TableModels;
 
 import modelo.Projeto;
-import gerTarefas.gerInterface.TableModels.CustomTableModel;
+import gerTarefas.gerInterface.TableModels.TemplateTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author João Vitor
  */
-public class TableModelProjeto extends CustomTableModel<Projeto>{
+public class TableModelProjeto extends TemplateTableModel<Projeto>{
 
     public TableModelProjeto() {
         System.out.println("table model projeto");

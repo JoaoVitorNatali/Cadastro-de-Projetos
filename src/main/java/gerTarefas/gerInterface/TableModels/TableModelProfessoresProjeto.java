@@ -12,7 +12,7 @@ import modelo.ProfessorProjeto;
  *
  * @author João Vitor
  */
-public class TableModelProfessoresProjeto extends CustomTableModel<ProfessorProjeto>{
+public class TableModelProfessoresProjeto extends TemplateTableModel<ProfessorProjeto>{
     public TableModelProfessoresProjeto() {
         ArrayList<String> nomeColunas = new ArrayList<>(
             List.of("Nome", "SIAPE")

@@ -15,7 +15,7 @@ import modelo.Projeto;
  *
  * @author João Vitor
  */
-public class GerDominProjeto extends GenericGerenciadorDominio<Projeto>{
+public class GerDominProjeto extends TemplateGerenciadorDominio<Projeto>{
     
     public GerDominProjeto() {
         super(new ProjetoDao());

@@ -4,7 +4,7 @@
  */
 package gerTarefas.gerInterface.TableModels;
 
-import gerTarefas.gerInterface.TableModels.CustomTableModel;
+import gerTarefas.gerInterface.TableModels.TemplateTableModel;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.AlunoParticipante;
@@ -13,7 +13,7 @@ import modelo.AlunoParticipante;
  *
  * @author João Vitor
  */
-public class TableModelAlunosProjeto extends CustomTableModel<AlunoParticipante>{
+public class TableModelAlunosProjeto extends TemplateTableModel<AlunoParticipante>{
 
     public TableModelAlunosProjeto(){
         ArrayList<String> nomeColunas = new ArrayList<>(

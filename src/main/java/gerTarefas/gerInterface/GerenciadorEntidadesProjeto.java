@@ -4,10 +4,10 @@
  */
 package gerTarefas.gerInterface;
 
-import gerTarefas.gerDominio.GenericGerenciadorDominio;
+import gerTarefas.gerDominio.TemplateGerenciadorDominio;
 import gerTarefas.gerInterface.Constantes.TipoFormulario;
 import gerTarefas.gerInterface.comum.CustomFormularioInterface;
-import gerTarefas.gerInterface.TableModels.CustomTableModel;
+import gerTarefas.gerInterface.TableModels.TemplateTableModel;
 import gerTarefas.gerInterface.comum.InterfGerenciadorInterface;
 import interfaceGrafica.MainWindow;
 import java.awt.Frame;
@@ -30,24 +30,24 @@ import modelo.ProfessorProjeto;
 /**
  *
  * @author João Vitor
- * @param <Entidade>
+ * @param <ENTITY>
  */
-public class GerenciadorEntidadesProjeto<Entidade> {
-    CustomTableModel tableModelProjeto;
-    CustomTableModel tableModelPesquisa;
+public class GerenciadorEntidadesProjeto<ENTITY> {
+    TemplateTableModel tableModelProjeto;
+    TemplateTableModel tableModelPesquisa;
     JDialog listagemEntidades;
-    CustomFormularioInterface<Entidade> formularioFiltro;
-    GenericGerenciadorDominio gerenciadorDominio;
+    CustomFormularioInterface<ENTITY> formularioFiltro;
+    TemplateGerenciadorDominio gerenciadorDominio;
     GerenciadorProjeto gerenciadorProjeto;
 
     GerenciadorEntidadesProjeto(
             MainWindow janelaPrincipal,
-            CustomTableModel tableModelProjeto,
-            CustomTableModel tableModelPesquisa,
+            TemplateTableModel tableModelProjeto,
+            TemplateTableModel tableModelPesquisa,
             Class listagemEntidades,
             Class formularioFiltro,
             GerenciadorProjeto gerenciador,
-            GenericGerenciadorDominio gerenciadorDominio
+            TemplateGerenciadorDominio gerenciadorDominio
     ) {
         this.tableModelProjeto = tableModelProjeto;
         this.tableModelPesquisa = tableModelPesquisa;
@@ -65,7 +65,7 @@ public class GerenciadorEntidadesProjeto<Entidade> {
         }
 
         try {
-            this.formularioFiltro = (CustomFormularioInterface<Entidade>) formularioFiltro.getConstructor(
+            this.formularioFiltro = (CustomFormularioInterface<ENTITY>) formularioFiltro.getConstructor(
                     Frame.class,
                     boolean.class,
                     InterfGerenciadorInterface.class
@@ -85,11 +85,11 @@ public class GerenciadorEntidadesProjeto<Entidade> {
     }
     
     public void listarEntidadesPesquisa(){
-        ArrayList<Entidade> entidades = (ArrayList) this.gerenciadorDominio.listar();
+        ArrayList<ENTITY> entidades = (ArrayList) this.gerenciadorDominio.listar();
         this.tableModelPesquisa.adicionar(entidades);
     }
     
-    public void listarEntidadesProjeto(List<Entidade> entidades){
+    public void listarEntidadesProjeto(List<ENTITY> entidades){
         this.tableModelProjeto.adicionar(entidades);
     }
     
@@ -132,8 +132,8 @@ public class GerenciadorEntidadesProjeto<Entidade> {
 
     public void concluir() {
         // função chamada pelo botao de concluir do filtro da listagem usada para inserir entidades no projeto
-        Entidade entidade = this.formularioFiltro.toObject();
-        List<Entidade> entidades = this.gerenciadorDominio.filtrar(entidade);
+        ENTITY entidade = this.formularioFiltro.toObject();
+        List<ENTITY> entidades = this.gerenciadorDominio.filtrar(entidade);
         this.formularioFiltro.closeModal();
         this.tableModelPesquisa.adicionar(entidades);
     }
