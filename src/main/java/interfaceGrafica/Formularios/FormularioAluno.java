@@ -8,7 +8,6 @@ import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
 import gerTarefas.gerInterface.GerenciadorAluno;
 import gerTarefas.gerInterface.comum.CustomFormularioInterface;
-import gerTarefas.gerInterface.comum.InterfGerenciadorInterface;
 import gerTarefas.gerInterface.comum.ValidaCampoForm;
 import modelo.Aluno;
 
@@ -24,9 +23,9 @@ import modelo.Aluno;
  * @author João Vitor
  */
 public class FormularioAluno extends javax.swing.JDialog implements CustomFormularioInterface<Aluno> {
-    private Aluno aluno;
+    private Aluno alunoSelecionado;
     private TipoFormulario tipo;
-    private GerenciadorAluno gerenciador;
+    private final GerenciadorAluno gerenciador;
 
     /**
      * Creates new form CadastroAluno
@@ -40,37 +39,19 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
         this.tipo = INSERIR;
         initComponents();
     }
-
-
+    
     @Override
-    public void abrirModalEdicao(Aluno aluno) {
-        this.aluno = aluno;
-        this.tipo = EDITAR;
-        alterarTituloModal();
-        
+    public void setEntidadeSelecionada(Aluno entidade) {
+        this.alunoSelecionado = entidade;
+    }
+    
+    @Override
+    public void setCamposFormulario(Aluno aluno) {
         nomeAluno.setText(aluno.getNome());
         matriculaAluno.setText(aluno.getMatricula());
         cursoAluno.setSelectedItem(aluno.getCurso());
         telefoneAluno.setText(aluno.getTelefone());
         emailAluno.setText(aluno.getEmail());
-        
-        this.setVisible(true);
-    }
-
-    @Override
-    public void abrirModalCriacao(){
-        this.aluno = null;
-        this.tipo = INSERIR;
-        alterarTituloModal();
-        this.setVisible(true);
-    }
-    
-    @Override
-    public void abrirModalFiltragem() {
-        this.aluno = null;
-        this.tipo = FILTRAR;
-        alterarTituloModal();
-        this.setVisible(true);
     }
 
     @Override
@@ -279,6 +260,12 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
         this.dispose();
     }
     
+    @Override
+    public void showModal(){
+        this.setVisible(true);
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
@@ -325,7 +312,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
         }
         
         Aluno alu;
-        if(this.tipo == EDITAR) alu = new Aluno(aluno.getCodigo(), nome, matricula, curso, telefone, email);
+        if(this.tipo == EDITAR) alu = new Aluno(alunoSelecionado.getCodigo(), nome, matricula, curso, telefone, email);
         else alu = new Aluno(nome, matricula, curso, telefone, email);
         return alu;
     }
@@ -333,6 +320,11 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
     @Override
     public TipoFormulario getTipo() {
         return this.tipo;
+    }
+    
+    @Override
+    public void setTipo(TipoFormulario tipo) {
+        this.tipo = tipo;
     }
 
     @Override

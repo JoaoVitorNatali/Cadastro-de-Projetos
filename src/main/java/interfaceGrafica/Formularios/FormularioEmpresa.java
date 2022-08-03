@@ -6,7 +6,6 @@ import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
 import gerTarefas.gerInterface.GerenciadorEmpresa;
 import gerTarefas.gerInterface.comum.CustomFormularioInterface;
-import gerTarefas.gerInterface.comum.InterfGerenciadorInterface;
 import gerTarefas.gerInterface.comum.ValidaCampoForm;
 import modelo.Empresa;
 
@@ -22,7 +21,7 @@ import modelo.Empresa;
  * @author João Vitor
  */
 public class FormularioEmpresa extends javax.swing.JDialog implements CustomFormularioInterface<Empresa> {
-    private Empresa empresa;
+    private Empresa empresaSelecionada;
     private TipoFormulario tipo;
     GerenciadorEmpresa gerenciador;
     
@@ -241,34 +240,20 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
     private javax.swing.JLabel tituloModal;
     // End of variables declaration//GEN-END:variables
 
+    
     @Override
-    public void abrirModalEdicao(Empresa empresa) {
-        this.empresa = empresa;
-        this.tipo = EDITAR;
-        alterarTituloModal();
-        
+    public void setEntidadeSelecionada(Empresa entidade) {
+        this.empresaSelecionada = entidade;
+    }
+    
+    @Override
+    public void setCamposFormulario(Empresa empresa) {
         razaoSocial.setText(empresa.getRazaoSocial());
         nomeFantasia.setText(empresa.getNomeFantasia());
         cnpjEmpresa.setText(empresa.getCnpj());
         telefoneEmpresa.setText(empresa.getTelefone());
         nomeContatoEmpresa.setText(empresa.getNomeContato());
         emailEmpresa.setText(empresa.getEmail());
-        
-        this.setVisible(true);
-    }
-
-    @Override
-    public void abrirModalCriacao() {
-        this.tipo = INSERIR;
-        alterarTituloModal();
-        this.setVisible(true);
-    }
-    
-    @Override
-    public void abrirModalFiltragem() {
-        this.tipo = FILTRAR;
-        alterarTituloModal();
-        this.setVisible(true);
     }
 
     @Override
@@ -294,6 +279,11 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
     @Override
     public void closeModal() {
         this.dispose();
+    }
+    
+    @Override
+    public void showModal(){
+        this.setVisible(true);
     }
     
     private Empresa getEmpresa(){
@@ -323,7 +313,7 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
         }
         
         Empresa emp;
-        if(this.tipo == EDITAR) emp = new Empresa(empresa.getCodigo(), razao, nomeF, cnpj,email, telefone, nomeContato);
+        if(this.tipo == EDITAR) emp = new Empresa(empresaSelecionada.getCodigo(), razao, nomeF, cnpj,email, telefone, nomeContato);
         else emp = new Empresa(razao, nomeF, cnpj, email, telefone, nomeContato);
         return emp;
     }
@@ -331,6 +321,11 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
     @Override
     public TipoFormulario getTipo() {
         return this.tipo;
+    }
+    
+    @Override
+    public void setTipo(TipoFormulario tipo) {
+        this.tipo = tipo;
     }
 
     @Override

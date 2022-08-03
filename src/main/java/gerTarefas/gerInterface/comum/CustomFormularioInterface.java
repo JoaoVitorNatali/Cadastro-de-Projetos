@@ -12,20 +12,21 @@ import gerTarefas.gerInterface.Constantes.TipoFormulario;
  * @param <Entidade>
  */
 public interface CustomFormularioInterface<Entidade> {
-
-    public void abrirModalEdicao(Entidade entidade);
-
-    public void abrirModalCriacao();
-
-    public void abrirModalFiltragem();
-
     public void alterarTituloModal();
     
     public TipoFormulario getTipo();
     
+    public void setTipo(TipoFormulario tipo);
+    
+    public void setEntidadeSelecionada(Entidade entidade);
+    
     public void closeModal();
     
+    public void showModal();
+    
     public Entidade toObject();
+    
+    public void setCamposFormulario(Entidade entidade);
     
     public void limparCampos();
 }

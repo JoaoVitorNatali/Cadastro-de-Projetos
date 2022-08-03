@@ -6,8 +6,8 @@ import static gerTarefas.gerInterface.Constantes.TipoFormulario.EDITAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
 import gerTarefas.gerInterface.GerenciadorProfessor;
+import gerTarefas.gerInterface.comum.AlertaErro;
 import gerTarefas.gerInterface.comum.CustomFormularioInterface;
-import gerTarefas.gerInterface.comum.InterfGerenciadorInterface;
 import gerTarefas.gerInterface.comum.ValidaCampoForm;
 import modelo.Professor;
 
@@ -23,9 +23,9 @@ import modelo.Professor;
  * @author João Vitor
  */
 public class FormularioProfessor extends javax.swing.JDialog implements CustomFormularioInterface<Professor>{
-    private Professor professor;
+    private Professor professorSelecionado;
     private TipoFormulario tipo;
-    private GerenciadorProfessor gerenciador;
+    private final GerenciadorProfessor gerenciador;
     
     /**
      * Creates new form CadastroProfessor
@@ -85,6 +85,12 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
 
         jLabel9.setText("Siape:");
         jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 244, 24));
+
+        siapeProfessor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                siapeProfessorKeyReleased(evt);
+            }
+        });
         jPanel7.add(siapeProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 240, 30));
 
         jPanel6.add(jPanel7);
@@ -195,6 +201,14 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
         }
     }//GEN-LAST:event_formComponentShown
 
+    private void siapeProfessorKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_siapeProfessorKeyReleased
+        String siape = this.siapeProfessor.getText();
+        if(siape.length() > 9){
+            siape = siape.substring(0, 9);
+            this.siapeProfessor.setText(siape);
+        }
+    }//GEN-LAST:event_siapeProfessorKeyReleased
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCancelar;
@@ -214,32 +228,18 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void abrirModalEdicao(Professor professor) {
-        this.professor = professor;
-        this.tipo = EDITAR;
-        alterarTituloModal();
-        
+    public void setEntidadeSelecionada(Professor entidade) {
+        this.professorSelecionado = entidade;
+    }
+
+    @Override
+    public void setCamposFormulario(Professor professor) {
         nomeProfessor.setText(professor.getNome());
         siapeProfessor.setText(professor.getSiape());
         coordenadoriaSelect.setSelectedItem(professor.getCoordenadoria());
         emailProfessor.setText(professor.getEmail());
-        this.setVisible(true);
-    }
-
-    @Override
-    public void abrirModalCriacao() {
-        this.tipo = INSERIR;
-        alterarTituloModal();
-        this.setVisible(true);
     }
     
-    @Override
-    public void abrirModalFiltragem() {
-        this.tipo = FILTRAR;
-        alterarTituloModal();
-        this.setVisible(true);
-    }
-
     @Override
     public void alterarTituloModal() {
         String titulo = "";
@@ -265,6 +265,11 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
         this.dispose();
     }
     
+    @Override
+    public void showModal(){
+        this.setVisible(true);
+    }
+    
     private Professor getProfessor(){
         return new Professor(
                 siapeProfessor.getText(),
@@ -279,16 +284,19 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
         if(this.tipo == FILTRAR) return getProfessor();
         
         String nome = ValidaCampoForm.getTexto(nomeProfessor, this, "Insira um nome válido");
-        String siape = ValidaCampoForm.getTexto(siapeProfessor, this, "Insira um nome válido");;
+        String siape = ValidaCampoForm.getTexto(siapeProfessor, this, "Insira um siape válido");
         Coordenadoria coordenadoria = (Coordenadoria) ValidaCampoForm.getValue(coordenadoriaSelect, this);
-        String email = ValidaCampoForm.getTexto(emailProfessor, this, "Insira um nome válido");;
+        String email = ValidaCampoForm.getTexto(emailProfessor, this, "Insira um e-mail válido");
         
         if(nome.equals("") || siape.equals("") || email.equals("")){
+            return null;
+        } else if(siape.length() < 9) {
+            AlertaErro.showErro(this, "Siape deve conter 9 digitos");
             return null;
         }
         
         Professor prof;
-        if(this.tipo == EDITAR) prof = new Professor(professor.getCodigo(), siape, nome, coordenadoria, email);
+        if(this.tipo == EDITAR) prof = new Professor(professorSelecionado.getCodigo(), siape, nome, coordenadoria, email);
         else prof = new Professor(siape, nome, coordenadoria, email);
         return prof;
     }
@@ -296,6 +304,11 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
     @Override
     public TipoFormulario getTipo() {
         return this.tipo;
+    }
+
+    @Override
+    public void setTipo(TipoFormulario tipo) {
+        this.tipo = tipo;
     }
 
     @Override

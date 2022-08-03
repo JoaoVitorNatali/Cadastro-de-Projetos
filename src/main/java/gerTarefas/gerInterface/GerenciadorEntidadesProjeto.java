@@ -5,6 +5,7 @@
 package gerTarefas.gerInterface;
 
 import gerTarefas.gerDominio.GenericGerenciadorDominio;
+import gerTarefas.gerInterface.Constantes.TipoFormulario;
 import gerTarefas.gerInterface.comum.CustomFormularioInterface;
 import gerTarefas.gerInterface.TableModels.CustomTableModel;
 import gerTarefas.gerInterface.comum.InterfGerenciadorInterface;
@@ -31,7 +32,7 @@ import modelo.ProfessorProjeto;
  * @author João Vitor
  * @param <Entidade>
  */
-public class GerenciadorEntidadesProjeto<Entidade> implements InterfGerenciadorInterface {
+public class GerenciadorEntidadesProjeto<Entidade> {
     CustomTableModel tableModelProjeto;
     CustomTableModel tableModelPesquisa;
     JDialog listagemEntidades;
@@ -110,7 +111,7 @@ public class GerenciadorEntidadesProjeto<Entidade> implements InterfGerenciadorI
             this.gerenciadorProjeto.adicionarEmpresa(entidade);
         }
     }
-        
+
     public void adicionarProfessor(){
         if(this.tableModelPesquisa.getSelectedRow() != -1){
             Professor entidade = (Professor) this.tableModelPesquisa.getSelected();
@@ -119,7 +120,9 @@ public class GerenciadorEntidadesProjeto<Entidade> implements InterfGerenciadorI
     }
     
     public void abrirFiltro(){
-        formularioFiltro.abrirModalFiltragem();
+        formularioFiltro.setTipo(TipoFormulario.FILTRAR);
+        formularioFiltro.alterarTituloModal();
+        formularioFiltro.showModal();
     }
     
     public void setTabelaPesquisa(JTable tabela){
@@ -127,7 +130,6 @@ public class GerenciadorEntidadesProjeto<Entidade> implements InterfGerenciadorI
         this.tableModelPesquisa.setTabela(tabela);
     }
 
-    @Override
     public void concluir() {
         // função chamada pelo botao de concluir do filtro da listagem usada para inserir entidades no projeto
         Entidade entidade = this.formularioFiltro.toObject();

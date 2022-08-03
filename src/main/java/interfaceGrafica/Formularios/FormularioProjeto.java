@@ -6,7 +6,6 @@ import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
 import gerTarefas.gerInterface.GerenciadorProjeto;
 import gerTarefas.gerInterface.comum.CustomFormularioInterface;
-import gerTarefas.gerInterface.comum.InterfGerenciadorInterface;
 import gerTarefas.gerInterface.comum.ValidaCampoForm;
 import modelo.Projeto;
 
@@ -23,8 +22,8 @@ import modelo.Projeto;
  */
 public class FormularioProjeto extends javax.swing.JDialog implements CustomFormularioInterface<Projeto> {
     private TipoFormulario tipo;
-    private GerenciadorProjeto gerenciadorInterface;
-    private Projeto projeto = null;
+    private final GerenciadorProjeto gerenciadorInterface;
+    private Projeto projetoSelecionado = null;
 
     /**
      * Creates new form CadastroProjeto
@@ -218,33 +217,16 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void abrirModalEdicao(Projeto projeto) {
-        this.projeto = projeto;
-        this.tipo = EDITAR;
-        alterarTituloModal();
-        
+    public void setEntidadeSelecionada(Projeto entidade) {
+        this.projetoSelecionado = entidade;
+    }
+
+    @Override
+    public void setCamposFormulario(Projeto projeto) {
         tituloProjeto.setText(projeto.getTitulo());
         dataInicio.setText(projeto.getDataInicio());
         if(projeto.getDataFim() != null) dataFim.setText(projeto.getDataFim());
         descricaoProjeto.setText(projeto.getDescricao());
-        
-        this.setVisible(true);
-    }
-
-    @Override
-    public void abrirModalCriacao() {
-        this.projeto = null;
-        this.tipo = INSERIR;
-        alterarTituloModal();
-        this.setVisible(true);
-    }
-    
-    @Override
-    public void abrirModalFiltragem() {
-        this.projeto = null;
-        this.tipo = FILTRAR;
-        alterarTituloModal();
-        this.setVisible(true);
     }
 
     @Override
@@ -272,6 +254,11 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
         this.dispose();
     }
     
+    @Override
+    public void showModal(){
+        this.setVisible(true);
+    }
+    
     private Projeto getProjeto(){
         return new Projeto(
                 tituloProjeto.getText(),
@@ -295,7 +282,7 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
         if(titulo.equals("") || inicio.equals("") || descricao.equals("")) return null;
         
         Projeto obj;
-        if(this.tipo == EDITAR) obj = new Projeto(projeto.getCodigo(),titulo, inicio, fim, descricao);
+        if(this.tipo == EDITAR) obj = new Projeto(projetoSelecionado.getCodigo(),titulo, inicio, fim, descricao);
         else obj = new Projeto(titulo, inicio, fim, descricao);
         return obj;
     }
@@ -303,6 +290,11 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
     @Override
     public TipoFormulario getTipo() {
         return this.tipo;
+    }
+
+    @Override
+    public void setTipo(TipoFormulario tipo) {
+        this.tipo = tipo;
     }
 
     @Override

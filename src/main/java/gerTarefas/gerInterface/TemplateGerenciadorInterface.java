@@ -7,15 +7,11 @@ package gerTarefas.gerInterface;
 import gerTarefas.gerInterface.TableModels.CustomTableModel;
 import gerTarefas.gerDominio.GenericGerenciadorDominio;
 import gerTarefas.gerInterface.Constantes.TipoFormulario;
-import gerTarefas.gerInterface.GerenciadorInterface;
 import gerTarefas.gerInterface.comum.AlertaErro;
 import gerTarefas.gerInterface.comum.CustomFormularioInterface;
 import gerTarefas.gerInterface.comum.InterfGerenciadorInterface;
 import java.awt.Frame;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.persistence.PersistenceException;
 import javax.swing.JTable;
 import org.hibernate.HibernateException;
@@ -25,14 +21,14 @@ import org.hibernate.HibernateException;
  * @author João Vitor
  * @param <Entidade>
  */
-public class TemplateGerenciadorInterface<Entidade> implements InterfGerenciadorInterface {
+public abstract class TemplateGerenciadorInterface<Entidade> implements InterfGerenciadorInterface {
     
     protected CustomFormularioInterface<Entidade> formulario = null;
-    private CustomTableModel tableModel = null;
-    private GenericGerenciadorDominio gerenciadorDominio = null;
-    private Frame framePrincipal;
+    private final CustomTableModel tableModel;
+    private final GenericGerenciadorDominio gerenciadorDominio;
+    private final Frame framePrincipal;
 
-    // Contador de horas gastas aqui: 5
+    // Contador de horas gastas aqui: 6
     // Caso for alterar, aumente o contador
     public TemplateGerenciadorInterface(
             java.awt.Frame janelaPrincipal,
@@ -63,22 +59,33 @@ public class TemplateGerenciadorInterface<Entidade> implements InterfGerenciador
     }
     
     public void abrirModalCriacao(){
-        formulario.abrirModalCriacao();
+        formulario.setTipo(TipoFormulario.INSERIR);
+        formulario.alterarTituloModal();
+        formulario.showModal();
     }
     
     public void abrirModalEdicao(){
         Entidade entidade = (Entidade) tableModel.getSelected();
-        if(entidade != null) formulario.abrirModalEdicao(entidade);
+        if(entidade != null) {
+            formulario.setTipo(TipoFormulario.EDITAR);
+            formulario.setEntidadeSelecionada(entidade);
+            formulario.setCamposFormulario(entidade);
+            formulario.alterarTituloModal();
+            formulario.showModal();
+        }
         else AlertaErro.showErro(framePrincipal, "Primeiro selecione uma linha da tabela");
     }
 
     public void abrirModalFiltragem(){
-        formulario.abrirModalFiltragem();
+        formulario.setTipo(TipoFormulario.FILTRAR);
+        formulario.alterarTituloModal();
+        formulario.showModal();
     }
     
     public void fecharModal(){
         formulario.closeModal();
         formulario.limparCampos();
+        formulario.setEntidadeSelecionada(null);
         listar();
     }
     
