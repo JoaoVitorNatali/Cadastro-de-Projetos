@@ -16,7 +16,6 @@ import gerTarefas.gerInterface.TableModels.TableModelAluno;
 import gerTarefas.gerInterface.TableModels.TableModelEmpresa;
 import gerTarefas.gerInterface.TableModels.TableModelProfessor;
 import gerTarefas.gerInterface.comum.AlertaErro;
-import gerTarefas.gerInterface.comum.GenericGerenciador;
 import interfaceGrafica.Formularios.FormularioAluno;
 import interfaceGrafica.Formularios.FormularioEmpresa;
 import interfaceGrafica.MainWindow;
@@ -39,7 +38,7 @@ import org.hibernate.HibernateException;
  *
  * @author João Vitor
  */
-public class GerenciadorProjeto extends GenericGerenciador<Projeto> {
+public class GerenciadorProjeto extends TemplateGerenciadorInterface<Projeto> {
     private Projeto projeto = null;
     private final DadosProjeto dadosProjeto;
     
@@ -47,10 +46,15 @@ public class GerenciadorProjeto extends GenericGerenciador<Projeto> {
     private final GerenciadorEntidadesProjeto empresasProjeto;
     private final GerenciadorEntidadesProjeto alunosProjeto;
     
-    
-    public GerenciadorProjeto(MainWindow janelaPrincipal, GerenciadorInterface gerInter) {
-        super(janelaPrincipal, FormularioProjeto.class, TableModelProjeto.class, gerInter, GerDominProjeto.class);
+    public GerenciadorProjeto(MainWindow janelaPrincipal, GerenciadorInterface gerenciadorInterface) {
+        super(
+                janelaPrincipal,
+                new TableModelProjeto(),
+                gerenciadorInterface,
+                new GerDominProjeto()
+        );
         
+        this.formulario = new FormularioProjeto(janelaPrincipal, true, this);
         
         professoresProjeto = new GerenciadorEntidadesProjeto<Professor>(
                 janelaPrincipal,

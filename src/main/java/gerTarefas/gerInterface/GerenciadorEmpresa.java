@@ -6,8 +6,6 @@ package gerTarefas.gerInterface;
 
 import gerTarefas.gerInterface.TableModels.TableModelEmpresa;
 import gerTarefas.gerDominio.GerDominEmpresa;
-import gerTarefas.gerInterface.GerenciadorInterface;
-import gerTarefas.gerInterface.comum.GenericGerenciador;
 import interfaceGrafica.Formularios.FormularioEmpresa;
 import interfaceGrafica.MainWindow;
 import modelo.Empresa;
@@ -16,9 +14,16 @@ import modelo.Empresa;
  *
  * @author João Vitor
  */
-public class GerenciadorEmpresa extends GenericGerenciador<Empresa>{
+public class GerenciadorEmpresa extends TemplateGerenciadorInterface<Empresa>{
     
-    public GerenciadorEmpresa(MainWindow janelaPrincipal, GerenciadorInterface gerInter) {
-        super(janelaPrincipal, FormularioEmpresa.class, TableModelEmpresa.class, gerInter, GerDominEmpresa.class);
+    public GerenciadorEmpresa(MainWindow janelaPrincipal, GerenciadorInterface gerenciadorInterface) {
+        super(
+                janelaPrincipal, 
+                new TableModelEmpresa(),
+                gerenciadorInterface, 
+                new GerDominEmpresa()
+        );
+        
+        this.formulario = new FormularioEmpresa(janelaPrincipal, true, this);
     }
 }

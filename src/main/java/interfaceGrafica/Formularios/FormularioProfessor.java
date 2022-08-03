@@ -5,6 +5,7 @@ import gerTarefas.gerInterface.Constantes.TipoFormulario;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.EDITAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
+import gerTarefas.gerInterface.GerenciadorProfessor;
 import gerTarefas.gerInterface.comum.CustomFormularioInterface;
 import gerTarefas.gerInterface.comum.InterfGerenciadorInterface;
 import gerTarefas.gerInterface.comum.ValidaCampoForm;
@@ -24,7 +25,7 @@ import modelo.Professor;
 public class FormularioProfessor extends javax.swing.JDialog implements CustomFormularioInterface<Professor>{
     private Professor professor;
     private TipoFormulario tipo;
-    private InterfGerenciadorInterface gerenciador;
+    private GerenciadorProfessor gerenciador;
     
     /**
      * Creates new form CadastroProfessor
@@ -32,7 +33,7 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
      * @param modal
      * @param gerenciador
      */
-    public FormularioProfessor(java.awt.Frame parent, boolean modal, InterfGerenciadorInterface gerenciador) {
+    public FormularioProfessor(java.awt.Frame parent, boolean modal, GerenciadorProfessor gerenciador) {
         super(parent, modal);
         this.tipo = INSERIR;
         this.gerenciador = gerenciador;
@@ -55,7 +56,7 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        siapeProfessor = new javax.swing.JFormattedTextField();
+        siapeProfessor = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         coordenadoriaSelect = new javax.swing.JComboBox<>();
@@ -84,13 +85,7 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
 
         jLabel9.setText("Siape:");
         jPanel7.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 244, 24));
-
-        try {
-            siapeProfessor.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jPanel7.add(siapeProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 230, 30));
+        jPanel7.add(siapeProfessor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 240, 30));
 
         jPanel6.add(jPanel7);
 
@@ -186,7 +181,7 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        closeModal();
+        gerenciador.fecharModal();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
@@ -214,7 +209,7 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JTextField nomeProfessor;
-    private javax.swing.JFormattedTextField siapeProfessor;
+    private javax.swing.JTextField siapeProfessor;
     private javax.swing.JLabel tituloModal;
     // End of variables declaration//GEN-END:variables
 

@@ -6,8 +6,6 @@ package gerTarefas.gerInterface;
 
 import gerTarefas.gerInterface.TableModels.TableModelProfessor;
 import gerTarefas.gerDominio.GerDominProfessor;
-import gerTarefas.gerInterface.GerenciadorInterface;
-import gerTarefas.gerInterface.comum.GenericGerenciador;
 import interfaceGrafica.MainWindow;
 import interfaceGrafica.Formularios.FormularioProfessor;
 import modelo.Professor;
@@ -16,9 +14,16 @@ import modelo.Professor;
  *
  * @author João Vitor
  */
-public class GerenciadorProfessor extends GenericGerenciador<Professor>{
+public class GerenciadorProfessor extends TemplateGerenciadorInterface<Professor>{
 
-    public GerenciadorProfessor(MainWindow janelaPrincipal, GerenciadorInterface gerInter) {
-        super(janelaPrincipal, FormularioProfessor.class, TableModelProfessor.class, gerInter, GerDominProfessor.class);
+    public GerenciadorProfessor(MainWindow janelaPrincipal, GerenciadorInterface gerenciadorInterface) {
+        super(
+                janelaPrincipal,
+                new TableModelProfessor(), 
+                gerenciadorInterface, 
+                new GerDominProfessor()
+        );
+        
+        this.formulario = new FormularioProfessor(janelaPrincipal, true, this);
     }
 }

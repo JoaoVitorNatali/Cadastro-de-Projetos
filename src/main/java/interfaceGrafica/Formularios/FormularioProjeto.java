@@ -4,6 +4,7 @@ import gerTarefas.gerInterface.Constantes.TipoFormulario;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.EDITAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
+import gerTarefas.gerInterface.GerenciadorProjeto;
 import gerTarefas.gerInterface.comum.CustomFormularioInterface;
 import gerTarefas.gerInterface.comum.InterfGerenciadorInterface;
 import gerTarefas.gerInterface.comum.ValidaCampoForm;
@@ -22,7 +23,7 @@ import modelo.Projeto;
  */
 public class FormularioProjeto extends javax.swing.JDialog implements CustomFormularioInterface<Projeto> {
     private TipoFormulario tipo;
-    private InterfGerenciadorInterface gerenciadorInterface;
+    private GerenciadorProjeto gerenciadorInterface;
     private Projeto projeto = null;
 
     /**
@@ -31,7 +32,7 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
      * @param modal
      * @param gerenciadorInterface
      */
-    public FormularioProjeto(java.awt.Frame parent, boolean modal, InterfGerenciadorInterface gerenciadorInterface) {
+    public FormularioProjeto(java.awt.Frame parent, boolean modal, GerenciadorProjeto gerenciadorInterface) {
         super(parent, modal);
         this.tipo = INSERIR;
         this.gerenciadorInterface = gerenciadorInterface;
@@ -189,7 +190,7 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        closeModal();
+        this.gerenciadorInterface.fecharModal();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed

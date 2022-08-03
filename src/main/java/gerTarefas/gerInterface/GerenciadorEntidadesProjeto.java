@@ -159,6 +159,4 @@ public class GerenciadorEntidadesProjeto<Entidade> implements InterfGerenciadorI
             this.fecharListagem();
         }
     }
-    
-    
 }
