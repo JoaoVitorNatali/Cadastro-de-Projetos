@@ -6,10 +6,9 @@ import gerTarefas.gerInterface.Constantes.TipoFormulario;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.EDITAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
-import gerTarefas.gerInterface.GerenciadorAluno;
-import gerTarefas.gerInterface.comum.CustomFormularioInterface;
-import gerTarefas.gerInterface.comum.ValidaCampoForm;
+import gerTarefas.comum.ValidaCampoForm;
 import modelo.Aluno;
+import gerTarefas.gerInterface.IGerenciadorInterface;
 
 
 
@@ -22,10 +21,10 @@ import modelo.Aluno;
  *
  * @author João Vitor
  */
-public class FormularioAluno extends javax.swing.JDialog implements CustomFormularioInterface<Aluno> {
+public class FormularioAluno extends javax.swing.JDialog implements InterfaceFormulario<Aluno> {
     private Aluno alunoSelecionado;
     private TipoFormulario tipo;
-    private final GerenciadorAluno gerenciador;
+    private final IGerenciadorInterface gerenciador;
 
     /**
      * Creates new form CadastroAluno
@@ -33,7 +32,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
      * @param modal
      * @param gerenciador
      */
-    public FormularioAluno(java.awt.Frame parent, boolean modal, GerenciadorAluno gerenciador) {
+    public FormularioAluno(java.awt.Frame parent, boolean modal, IGerenciadorInterface gerenciador) {
         super(parent, modal);
         this.gerenciador = gerenciador;
         this.tipo = INSERIR;
@@ -101,10 +100,15 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
         jLabel6 = new javax.swing.JLabel();
         telefoneAluno = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
         });
 
@@ -241,7 +245,7 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.gerenciador.fecharModal();
+        this.gerenciador.fecharFormulario();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
@@ -254,6 +258,10 @@ public class FormularioAluno extends javax.swing.JDialog implements CustomFormul
             cursoAluno.addItem(item);
         }
     }//GEN-LAST:event_formComponentShown
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        gerenciador.fecharFormulario();
+    }//GEN-LAST:event_formWindowClosing
     
     @Override
     public void closeModal() {

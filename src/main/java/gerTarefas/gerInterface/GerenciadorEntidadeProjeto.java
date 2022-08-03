@@ -6,9 +6,7 @@ package gerTarefas.gerInterface;
 
 import gerTarefas.gerDominio.TemplateGerenciadorDominio;
 import gerTarefas.gerInterface.Constantes.TipoFormulario;
-import gerTarefas.gerInterface.comum.CustomFormularioInterface;
 import gerTarefas.gerInterface.TableModels.TemplateTableModel;
-import gerTarefas.gerInterface.comum.InterfGerenciadorInterface;
 import interfaceGrafica.MainWindow;
 import java.awt.Frame;
 import java.lang.reflect.InvocationTargetException;
@@ -25,6 +23,7 @@ import modelo.Empresa;
 import modelo.EmpresaProjeto;
 import modelo.Professor;
 import modelo.ProfessorProjeto;
+import interfaceGrafica.Formularios.InterfaceFormulario;
 
 
 /**
@@ -32,15 +31,15 @@ import modelo.ProfessorProjeto;
  * @author João Vitor
  * @param <ENTITY>
  */
-public class GerenciadorEntidadesProjeto<ENTITY> {
+public class GerenciadorEntidadeProjeto<ENTITY> implements IGerenciadorInterface{
     TemplateTableModel tableModelProjeto;
     TemplateTableModel tableModelPesquisa;
     JDialog listagemEntidades;
-    CustomFormularioInterface<ENTITY> formularioFiltro;
+    InterfaceFormulario<ENTITY> formularioFiltro;
     TemplateGerenciadorDominio gerenciadorDominio;
     GerenciadorProjeto gerenciadorProjeto;
 
-    GerenciadorEntidadesProjeto(
+    GerenciadorEntidadeProjeto(
             MainWindow janelaPrincipal,
             TemplateTableModel tableModelProjeto,
             TemplateTableModel tableModelPesquisa,
@@ -55,23 +54,21 @@ public class GerenciadorEntidadesProjeto<ENTITY> {
         this.gerenciadorProjeto = gerenciador;
         
         try {
-            this.listagemEntidades = (JDialog) listagemEntidades.getConstructor(
-                    Frame.class,
+            this.listagemEntidades = (JDialog) listagemEntidades.getConstructor(Frame.class,
                     boolean.class,
-                    GerenciadorEntidadesProjeto.class
+                    GerenciadorEntidadeProjeto.class
             ).newInstance(janelaPrincipal, true, this);
         } catch (NoSuchMethodException | SecurityException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException ex) {
-            Logger.getLogger(GerenciadorEntidadesProjeto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GerenciadorEntidadeProjeto.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         try {
-            this.formularioFiltro = (CustomFormularioInterface<ENTITY>) formularioFiltro.getConstructor(
-                    Frame.class,
+            this.formularioFiltro = (InterfaceFormulario<ENTITY>) formularioFiltro.getConstructor(Frame.class,
                     boolean.class,
-                    InterfGerenciadorInterface.class
+                    IGerenciadorInterface.class
             ).newInstance(janelaPrincipal, true, this);
         } catch ( InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException ex) {
-            Logger.getLogger(GerenciadorEntidadesProjeto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(GerenciadorEntidadeProjeto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -130,12 +127,18 @@ public class GerenciadorEntidadesProjeto<ENTITY> {
         this.tableModelPesquisa.setTabela(tabela);
     }
 
+    @Override
     public void concluir() {
         // função chamada pelo botao de concluir do filtro da listagem usada para inserir entidades no projeto
         ENTITY entidade = this.formularioFiltro.toObject();
         List<ENTITY> entidades = this.gerenciadorDominio.filtrar(entidade);
         this.formularioFiltro.closeModal();
         this.tableModelPesquisa.adicionar(entidades);
+    }
+
+    @Override
+    public void fecharFormulario() {
+        this.formularioFiltro.closeModal();
     }
 
     public void removerAluno() {

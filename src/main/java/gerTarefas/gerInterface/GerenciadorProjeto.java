@@ -15,7 +15,7 @@ import gerTarefas.gerDominio.GerDominProjeto;
 import gerTarefas.gerInterface.TableModels.TableModelAluno;
 import gerTarefas.gerInterface.TableModels.TableModelEmpresa;
 import gerTarefas.gerInterface.TableModels.TableModelProfessor;
-import gerTarefas.gerInterface.comum.AlertaErro;
+import gerTarefas.comum.AlertaErro;
 import interfaceGrafica.Formularios.FormularioAluno;
 import interfaceGrafica.Formularios.FormularioEmpresa;
 import interfaceGrafica.MainWindow;
@@ -42,9 +42,9 @@ public class GerenciadorProjeto extends TemplateGerenciadorInterface<Projeto> {
     private Projeto projeto = null;
     private final DadosProjeto dadosProjeto;
     
-    private final GerenciadorEntidadesProjeto professoresProjeto;
-    private final GerenciadorEntidadesProjeto empresasProjeto;
-    private final GerenciadorEntidadesProjeto alunosProjeto;
+    private final GerenciadorEntidadeProjeto professoresProjeto;
+    private final GerenciadorEntidadeProjeto empresasProjeto;
+    private final GerenciadorEntidadeProjeto alunosProjeto;
     
     public GerenciadorProjeto(MainWindow janelaPrincipal, GerenciadorInterface gerenciadorInterface) {
         super(
@@ -56,7 +56,7 @@ public class GerenciadorProjeto extends TemplateGerenciadorInterface<Projeto> {
         
         this.formulario = new FormularioProjeto(janelaPrincipal, true, this);
         
-        professoresProjeto = new GerenciadorEntidadesProjeto<Professor>(
+        professoresProjeto = new GerenciadorEntidadeProjeto<Professor>(
                 janelaPrincipal,
                 new TableModelProfessoresProjeto(),
                 new TableModelProfessor(),
@@ -66,7 +66,7 @@ public class GerenciadorProjeto extends TemplateGerenciadorInterface<Projeto> {
                 new GerDominProfessor()
         );
         
-        empresasProjeto = new GerenciadorEntidadesProjeto<Empresa>(
+        empresasProjeto = new GerenciadorEntidadeProjeto<Empresa>(
                 janelaPrincipal,
                 new TableModelEmpresasProjeto(),
                 new TableModelEmpresa(),
@@ -76,7 +76,7 @@ public class GerenciadorProjeto extends TemplateGerenciadorInterface<Projeto> {
                 new GerDominEmpresa()
         );
 
-        alunosProjeto = new GerenciadorEntidadesProjeto<AlunoParticipante>(
+        alunosProjeto = new GerenciadorEntidadeProjeto<AlunoParticipante>(
                 janelaPrincipal,
                 new TableModelAlunosProjeto(),
                 new TableModelAluno(),
@@ -90,11 +90,11 @@ public class GerenciadorProjeto extends TemplateGerenciadorInterface<Projeto> {
     }
     
     public void abrirProjeto(Projeto projeto){
-        this.projeto = detalharProjeto(projeto.getCodigo());
+        this.projeto = this.getProjeto(projeto.getCodigo());
         dadosProjeto.abrirProjeto(projeto);
     }
     
-    public Projeto detalharProjeto(int codigo){
+    public Projeto getProjeto(int codigo){
         return (Projeto) this.getGerenciadorDominio().getGenericDao().get(Projeto.class, codigo);
     }
     
@@ -113,7 +113,7 @@ public class GerenciadorProjeto extends TemplateGerenciadorInterface<Projeto> {
             this.getAlunosProjeto().fecharListagem();
         } catch (HibernateException ex){
             AlertaErro.showErro(this.getFramePrincipal(), "Esse aluno já está cadastrado no projeto");
-            this.projeto = detalharProjeto(this.projeto.getCodigo()); // ajustar objeto de objeto para não repetir os dados
+            this.projeto = this.getProjeto(this.projeto.getCodigo()); // ajustar objeto de objeto para não repetir os dados
         }   
     }
     
@@ -124,7 +124,7 @@ public class GerenciadorProjeto extends TemplateGerenciadorInterface<Projeto> {
             this.getEmpresasProjeto().fecharListagem();
         } catch (HibernateException ex){
             AlertaErro.showErro(this.getFramePrincipal(), "Essa empresa já está cadastrada no projeto");
-            this.projeto = detalharProjeto(this.projeto.getCodigo()); // ajustar objeto de objeto para não repetir os dados
+            this.projeto = this.getProjeto(this.projeto.getCodigo()); // ajustar objeto de objeto para não repetir os dados
         }
     }
     
@@ -135,7 +135,7 @@ public class GerenciadorProjeto extends TemplateGerenciadorInterface<Projeto> {
             this.getProfessoresProjeto().fecharListagem();
         } catch (HibernateException ex){
             AlertaErro.showErro(this.getFramePrincipal(), "Esse professor já está cadastrado no projeto");
-            this.projeto = detalharProjeto(this.projeto.getCodigo()); // ajustar objeto de objeto para não repetir os dados
+            this.projeto = this.getProjeto(this.projeto.getCodigo()); // ajustar objeto de objeto para não repetir os dados
         }
     }
     
@@ -143,15 +143,15 @@ public class GerenciadorProjeto extends TemplateGerenciadorInterface<Projeto> {
         this.getGerenciadorDominio().alterar(this.projeto);
     }
 
-    public GerenciadorEntidadesProjeto getProfessoresProjeto() {
+    public GerenciadorEntidadeProjeto getProfessoresProjeto() {
         return professoresProjeto;
     }
 
-    public GerenciadorEntidadesProjeto getEmpresasProjeto() {
+    public GerenciadorEntidadeProjeto getEmpresasProjeto() {
         return empresasProjeto;
     }
 
-    public GerenciadorEntidadesProjeto getAlunosProjeto() {
+    public GerenciadorEntidadeProjeto getAlunosProjeto() {
         return alunosProjeto;
     }
 

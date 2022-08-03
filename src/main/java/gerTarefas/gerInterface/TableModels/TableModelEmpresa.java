@@ -6,7 +6,7 @@ package gerTarefas.gerInterface.TableModels;
 
 import modelo.Empresa;
 import gerTarefas.gerInterface.TableModels.TemplateTableModel;
-import gerTarefas.gerInterface.comum.ValidaCnpj;
+import gerTarefas.comum.ValidaCnpj;
 import java.util.ArrayList;
 import java.util.List;
 

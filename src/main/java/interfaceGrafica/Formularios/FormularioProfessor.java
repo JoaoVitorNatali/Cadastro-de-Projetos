@@ -6,9 +6,9 @@ import static gerTarefas.gerInterface.Constantes.TipoFormulario.EDITAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
 import gerTarefas.gerInterface.GerenciadorProfessor;
-import gerTarefas.gerInterface.comum.AlertaErro;
-import gerTarefas.gerInterface.comum.CustomFormularioInterface;
-import gerTarefas.gerInterface.comum.ValidaCampoForm;
+import gerTarefas.comum.AlertaErro;
+import gerTarefas.comum.ValidaCampoForm;
+import gerTarefas.gerInterface.IGerenciadorInterface;
 import modelo.Professor;
 
 
@@ -22,10 +22,10 @@ import modelo.Professor;
  *
  * @author João Vitor
  */
-public class FormularioProfessor extends javax.swing.JDialog implements CustomFormularioInterface<Professor>{
+public class FormularioProfessor extends javax.swing.JDialog implements InterfaceFormulario<Professor>{
     private Professor professorSelecionado;
     private TipoFormulario tipo;
-    private final GerenciadorProfessor gerenciador;
+    private final IGerenciadorInterface gerenciador;
     
     /**
      * Creates new form CadastroProfessor
@@ -33,7 +33,7 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
      * @param modal
      * @param gerenciador
      */
-    public FormularioProfessor(java.awt.Frame parent, boolean modal, GerenciadorProfessor gerenciador) {
+    public FormularioProfessor(java.awt.Frame parent, boolean modal, IGerenciadorInterface gerenciador) {
         super(parent, modal);
         this.tipo = INSERIR;
         this.gerenciador = gerenciador;
@@ -69,6 +69,11 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
+            }
+        });
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
         });
 
@@ -187,7 +192,7 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        gerenciador.fecharModal();
+        gerenciador.fecharFormulario();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
@@ -208,6 +213,10 @@ public class FormularioProfessor extends javax.swing.JDialog implements CustomFo
             this.siapeProfessor.setText(siape);
         }
     }//GEN-LAST:event_siapeProfessorKeyReleased
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        gerenciador.fecharFormulario();
+    }//GEN-LAST:event_formWindowClosing
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;

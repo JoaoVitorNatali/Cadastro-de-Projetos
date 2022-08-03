@@ -4,9 +4,8 @@ import gerTarefas.gerInterface.Constantes.TipoFormulario;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.EDITAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
-import gerTarefas.gerInterface.GerenciadorEmpresa;
-import gerTarefas.gerInterface.comum.CustomFormularioInterface;
-import gerTarefas.gerInterface.comum.ValidaCampoForm;
+import gerTarefas.comum.ValidaCampoForm;
+import gerTarefas.gerInterface.IGerenciadorInterface;
 import modelo.Empresa;
 
 
@@ -20,10 +19,10 @@ import modelo.Empresa;
  *
  * @author João Vitor
  */
-public class FormularioEmpresa extends javax.swing.JDialog implements CustomFormularioInterface<Empresa> {
+public class FormularioEmpresa extends javax.swing.JDialog implements InterfaceFormulario<Empresa> {
     private Empresa empresaSelecionada;
     private TipoFormulario tipo;
-    GerenciadorEmpresa gerenciador;
+    IGerenciadorInterface gerenciador;
     
     /**
      * Creates new form CadastroEmpresa
@@ -31,7 +30,7 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
      * @param modal
      * @param gerenciador
      */
-    public FormularioEmpresa(java.awt.Frame parent, boolean modal, GerenciadorEmpresa gerenciador) {
+    public FormularioEmpresa(java.awt.Frame parent, boolean modal, IGerenciadorInterface gerenciador) {
         super(parent, modal);
         this.tipo = INSERIR;
         this.gerenciador = gerenciador;
@@ -68,6 +67,11 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
         nomeFantasia = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         tituloModal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tituloModal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -211,12 +215,16 @@ public class FormularioEmpresa extends javax.swing.JDialog implements CustomForm
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        gerenciador.fecharModal();
+        gerenciador.fecharFormulario();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         gerenciador.concluir();
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        gerenciador.fecharFormulario();
+    }//GEN-LAST:event_formWindowClosing
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;

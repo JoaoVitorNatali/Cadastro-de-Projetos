@@ -4,10 +4,10 @@
  */
 package interfaceGrafica.Projetos;
 
-import gerTarefas.gerInterface.GerenciadorEntidadesProjeto;
-import gerTarefas.gerInterface.comum.AlertaErro;
-import gerTarefas.gerInterface.comum.FormataData;
-import gerTarefas.gerInterface.comum.ValidaCampoForm;
+import gerTarefas.gerInterface.GerenciadorEntidadeProjeto;
+import gerTarefas.comum.AlertaErro;
+import gerTarefas.comum.FormataData;
+import gerTarefas.comum.ValidaCampoForm;
 import java.util.Date;
 
 
@@ -17,7 +17,7 @@ import java.util.Date;
  */
 public class SelecionarAlunoProjeto extends javax.swing.JDialog {
     
-    private GerenciadorEntidadesProjeto gerenciador;
+    private GerenciadorEntidadeProjeto gerenciador;
 
     /**
      * Creates new form SelecionarAluno
@@ -25,7 +25,7 @@ public class SelecionarAlunoProjeto extends javax.swing.JDialog {
      * @param modal
      * @param gerenciador
      */
-    public SelecionarAlunoProjeto(java.awt.Frame parent, boolean modal, GerenciadorEntidadesProjeto gerenciador) {
+    public SelecionarAlunoProjeto(java.awt.Frame parent, boolean modal, GerenciadorEntidadeProjeto gerenciador) {
         super(parent, modal);
         initComponents();
         

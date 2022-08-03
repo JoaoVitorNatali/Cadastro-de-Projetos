@@ -5,8 +5,8 @@ import static gerTarefas.gerInterface.Constantes.TipoFormulario.EDITAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.FILTRAR;
 import static gerTarefas.gerInterface.Constantes.TipoFormulario.INSERIR;
 import gerTarefas.gerInterface.GerenciadorProjeto;
-import gerTarefas.gerInterface.comum.CustomFormularioInterface;
-import gerTarefas.gerInterface.comum.ValidaCampoForm;
+import gerTarefas.comum.ValidaCampoForm;
+import gerTarefas.gerInterface.IGerenciadorInterface;
 import modelo.Projeto;
 
 
@@ -20,9 +20,9 @@ import modelo.Projeto;
  *
  * @author João Vitor
  */
-public class FormularioProjeto extends javax.swing.JDialog implements CustomFormularioInterface<Projeto> {
+public class FormularioProjeto extends javax.swing.JDialog implements InterfaceFormulario<Projeto> {
     private TipoFormulario tipo;
-    private final GerenciadorProjeto gerenciadorInterface;
+    private final IGerenciadorInterface gerenciadorInterface;
     private Projeto projetoSelecionado = null;
 
     /**
@@ -31,7 +31,7 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
      * @param modal
      * @param gerenciadorInterface
      */
-    public FormularioProjeto(java.awt.Frame parent, boolean modal, GerenciadorProjeto gerenciadorInterface) {
+    public FormularioProjeto(java.awt.Frame parent, boolean modal, IGerenciadorInterface gerenciadorInterface) {
         super(parent, modal);
         this.tipo = INSERIR;
         this.gerenciadorInterface = gerenciadorInterface;
@@ -65,6 +65,11 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
         btnCadastrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         tituloModal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         tituloModal.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -189,12 +194,16 @@ public class FormularioProjeto extends javax.swing.JDialog implements CustomForm
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.gerenciadorInterface.fecharModal();
+        this.gerenciadorInterface.fecharFormulario();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         this.gerenciadorInterface.concluir();
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.gerenciadorInterface.fecharFormulario();
+    }//GEN-LAST:event_formWindowClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

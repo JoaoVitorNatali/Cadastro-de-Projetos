@@ -4,7 +4,7 @@
  */
 package interfaceGrafica.Projetos;
 
-import gerTarefas.gerInterface.GerenciadorEntidadesProjeto;
+import gerTarefas.gerInterface.GerenciadorEntidadeProjeto;
 
 /**
  *
@@ -12,7 +12,7 @@ import gerTarefas.gerInterface.GerenciadorEntidadesProjeto;
  */
 public class SelecionarProfessorProjeto extends javax.swing.JDialog {
     
-    private final GerenciadorEntidadesProjeto gerenciador;
+    private final GerenciadorEntidadeProjeto gerenciador;
 
     /**
      * Creates new form SelecionarProfessor
@@ -20,7 +20,7 @@ public class SelecionarProfessorProjeto extends javax.swing.JDialog {
      * @param modal
      * @param gerenciador
      */
-    public SelecionarProfessorProjeto(java.awt.Frame parent, boolean modal, GerenciadorEntidadesProjeto gerenciador) {
+    public SelecionarProfessorProjeto(java.awt.Frame parent, boolean modal, GerenciadorEntidadeProjeto gerenciador) {
         super(parent, modal);
         this.gerenciador = gerenciador;
         

@@ -7,23 +7,22 @@ package gerTarefas.gerInterface;
 import gerTarefas.gerInterface.TableModels.TemplateTableModel;
 import gerTarefas.gerDominio.TemplateGerenciadorDominio;
 import gerTarefas.gerInterface.Constantes.TipoFormulario;
-import gerTarefas.gerInterface.comum.AlertaErro;
-import gerTarefas.gerInterface.comum.CustomFormularioInterface;
-import gerTarefas.gerInterface.comum.InterfGerenciadorInterface;
+import gerTarefas.comum.AlertaErro;
 import java.awt.Frame;
 import java.util.ArrayList;
 import javax.persistence.PersistenceException;
 import javax.swing.JTable;
 import org.hibernate.HibernateException;
+import interfaceGrafica.Formularios.InterfaceFormulario;
 
 /**
  *
  * @author João Vitor
  * @param <ENTITY>
  */
-public abstract class TemplateGerenciadorInterface<ENTITY> implements InterfGerenciadorInterface {
+public abstract class TemplateGerenciadorInterface<ENTITY> implements IGerenciadorInterface {
     
-    protected CustomFormularioInterface<ENTITY> formulario = null;
+    protected InterfaceFormulario<ENTITY> formulario = null;
     private final TemplateTableModel tableModel;
     private final TemplateGerenciadorDominio gerenciadorDominio;
     private final Frame framePrincipal;
@@ -80,7 +79,7 @@ public abstract class TemplateGerenciadorInterface<ENTITY> implements InterfGere
         formulario.showModal();
     }
     
-    public void fecharModal(){
+    public void fecharFormulario(){
         formulario.closeModal();
         formulario.limparCampos();
         formulario.setEntidadeSelecionada(null);
@@ -94,13 +93,13 @@ public abstract class TemplateGerenciadorInterface<ENTITY> implements InterfGere
     
     private void inserir(ENTITY entidade){
         gerenciadorDominio.inserir(entidade);
-        fecharModal();
+        fecharFormulario();
     }
     
     private void alterar(ENTITY entidade){
         try{
             gerenciadorDominio.alterar(entidade);
-            fecharModal();
+            fecharFormulario();
         } catch (HibernateException ex){
             AlertaErro.showErro(framePrincipal, ex.getCause().toString());
         } catch (PersistenceException ex){

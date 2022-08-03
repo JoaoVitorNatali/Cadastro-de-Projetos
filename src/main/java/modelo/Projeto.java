@@ -4,7 +4,7 @@
  */
 package modelo;
 
-import gerTarefas.gerInterface.comum.FormataData;
+import gerTarefas.comum.FormataData;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
